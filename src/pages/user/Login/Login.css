@@ -1,0 +1,81 @@
+.loginParentDiv {
+    /* border: .5px solid black; */
+    width:max-content;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+  GoogleButton{
+    background-color: #ffffff;
+  }
+  /* input {
+    border: 2px solid currentcolor;
+  }
+  input:invalid {
+    border: 2px dashed red;
+  }
+  input:invalid:focus {
+    background-image: linear-gradient(pink, lightgreen);
+  } */
+    h6{
+      margin-bottom: 7px;
+      font-size: medium;
+    }
+  .loginParentDiv .input {
+    margin-bottom:10px;
+    padding: 6px;
+    width: 22em;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    outline-color: transparent;
+   
+  }
+  #signInDiv{
+    width: 100% !important;
+    height: 48px;
+     
+     
+    /* border-color: transparent; */
+    background-color: #f6f8f8 !important;
+    
+    color: rgb(66, 133, 244) !important;
+    font-weight: 900;
+  
+  }
+  body{
+    background-color: #313131;
+  }
+  
+  .loginButton {
+    width: 100%;
+    height: 48px;
+    /* border-color: transparent; */
+    background-color: #022d32;
+    color: whitesmoke;
+    font-weight: 900;
+  }
+  .loginParentDiv button:hover {
+    background-color: white;
+    color: #002f34;
+    border: 2px solid #002f34;
+  }
+  
+  .loginParentDiv a {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  } .logo{
+    /* padding-left: 7em;
+    padding-top: 5em; */
+    margin-left: 95px;
+    width: 150px;
+    height: 100px;
+  }
+  .or{
+    text-align: center;
+  }

@@ -1,0 +1,31 @@
+.header{
+    width: 100%;
+    position: fixed;
+    color: #fff ;
+}
+
+.navup{
+    height: 30px;
+    width: 100%;
+    background-color: rgb(14, 13, 13);
+    color: white;
+    text-align: right;
+}
+span{
+    margin-left: 30px;
+}#middleSpan{
+    color: rgb(24, 222, 183);
+    margin-left: 0%;
+}
+.admin-heading{
+    color: #fff;
+    margin-left: 27px;
+    
+
+}
+.admin-heading.nav-link:hover{
+    color:#fff; 
+    background-color: #000000;
+
+}
+ 
