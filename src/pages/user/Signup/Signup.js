@@ -1,22 +1,22 @@
-import React, { useContext, useState } from "react";
-import { firebaseContext } from "../../../context/FirebaseContext";
-import swal from "sweetalert";
-import "../login/Login.css";
-import { collection, addDoc } from "firebase/firestore/lite";
+import React, { useContext, useState } from 'react';
+import { firebaseContext } from '../../../context/FirebaseContext';
+import swal from 'sweetalert';
+import '../login/Login.css';
+import { collection, addDoc } from 'firebase/firestore/lite';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-} from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+} from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const { db } = useContext(firebaseContext);
-  const Collection = collection(db, "user");
+  const Collection = collection(db, 'user');
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +38,7 @@ function Signup() {
         });
       })
       .then(() => {
-        navigate("/");
+        navigate('/');
       })
 
       .catch((error) => {
@@ -49,7 +49,7 @@ function Signup() {
     <div>
       <div className="loginParentDiv">
         <img
-        alt="ecos logo"
+          alt="ecos logo"
           width="200px"
           height="200px"
           className="logo"
@@ -120,7 +120,7 @@ function Signup() {
           <button className="loginButton">Login</button>
         </form>
 
-        <span onClick={()=> navigate('/login')}>Login</span>
+        <span onClick={() => navigate('/login')}>Login</span>
       </div>
     </div>
   );

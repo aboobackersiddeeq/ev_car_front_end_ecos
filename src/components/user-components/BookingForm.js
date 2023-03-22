@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import "../../style/booking.css";
-import axios from "../../axios/axios";
-import { useNavigate } from "react-router-dom";
-import { Button, Card, ListGroup } from "react-bootstrap";
-import { toast } from "react-hot-toast";
+import React, { useEffect, useState } from 'react';
+import '../../style/booking.css';
+import axios from '../../axios/axios';
+import { useNavigate } from 'react-router-dom';
+import { Button, Card, ListGroup } from 'react-bootstrap';
+import { toast } from 'react-hot-toast';
 
 const BookingForm = (props) => {
   const navigate = useNavigate();
   const [product, setProduct] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
 
-  const [selectedModal, setModal] = useState("");
-  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedModal, setModal] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
   const [color, setColor] = useState([]);
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState('');
 
   const [isActive, setIsActive] = useState(0);
 
@@ -25,8 +25,8 @@ const BookingForm = (props) => {
     if (Object.keys(errors).length === 0) {
       // Submit the form data
       setFormErrors(errors);
-      axios.post("/test-drive", {}).then(() => {
-        navigate("/ev-thank");
+      axios.post('/test-drive', {}).then(() => {
+        navigate('/ev-thank');
       });
     } else {
       setFormErrors(errors);
@@ -35,7 +35,7 @@ const BookingForm = (props) => {
   useEffect(() => {
     try {
       axios
-        .post("/admin/get-product", {})
+        .post('/admin/get-product', {})
         .then((response) => {
           const pro = response.data.result;
           setProduct(response.data.result);
@@ -47,10 +47,10 @@ const BookingForm = (props) => {
           props.onData(pro[0].image);
         })
         .catch((error) => {
-          toast.error( error.message);
+          toast.error(error.message);
         });
     } catch (err) {
-      toast.error("Network error");
+      toast.error('Network error');
     }
   }, []);
 
@@ -65,7 +65,7 @@ const BookingForm = (props) => {
   const handilecolor = (index) => {
     console.log(index);
     setIsActive(index);
-    console.log(color[index], "color");
+    console.log(color[index], 'color');
     setSelectedColor(color[index]);
     console.log(selectedColor, index);
   };
@@ -73,10 +73,10 @@ const BookingForm = (props) => {
   const validate = (data) => {
     const errors = {};
     if (!data.color) {
-      errors.color = "Please choose your color";
+      errors.color = 'Please choose your color';
     }
     if (!data.model) {
-      errors.model = "Please choose your modal";
+      errors.model = 'Please choose your modal';
     }
     return errors;
   };
@@ -100,8 +100,8 @@ const BookingForm = (props) => {
                             }}
                             className={
                               index === activeIndex
-                                ? "active  ListGroup"
-                                : " ListGroup"
+                                ? 'active  ListGroup'
+                                : ' ListGroup'
                             }
                           >
                             {element.productName}
@@ -123,7 +123,7 @@ const BookingForm = (props) => {
                     <Card
                       key={element}
                       className="card"
-                      style={{ width: "7rem" }}
+                      style={{ width: '7rem' }}
                     >
                       <Card.Body>
                         <Button
@@ -132,8 +132,8 @@ const BookingForm = (props) => {
                           }}
                           className={
                             index === isActive
-                              ? "active Button tick-active"
-                              : "Button"
+                              ? 'active Button tick-active'
+                              : 'Button'
                           }
                           style={{ backgroundColor: element }}
                         ></Button>
@@ -168,7 +168,7 @@ const BookingForm = (props) => {
           </div>
         </form>
         <div className="messageError">
-          <span className="message" style={{ display: "none" }}></span>
+          <span className="message" style={{ display: 'none' }}></span>
         </div>
       </div>
     </div>

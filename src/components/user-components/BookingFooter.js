@@ -1,8 +1,8 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { useNavigate } from "react-router-dom";
-import "../header/header.css";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from 'react-router-dom';
+import '../header/header.css';
 function BookingFooter() {
   const navigate = useNavigate();
   return (
@@ -11,7 +11,7 @@ function BookingFooter() {
         <Container>
           <Navbar.Brand
             onClick={() => {
-              navigate("/admin");
+              navigate('/admin');
             }}
           >
             ecos
@@ -20,12 +20,11 @@ function BookingFooter() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto"></Nav>
             <Nav>
-               <div className="regFormBtn  ">
-                <button  className="nexon-btn h-checkout p-3 ">CHECKOUT</button>
+              <div className="regFormBtn  ">
+                <button className="nexon-btn h-checkout p-3 ">CHECKOUT</button>
               </div>
             </Nav>
           </Navbar.Collapse>
-              
         </Container>
       </Navbar>
     </div>

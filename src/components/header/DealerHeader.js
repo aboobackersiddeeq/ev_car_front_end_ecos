@@ -1,19 +1,19 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import "../../style/header.css";
-import { useSelector } from "react-redux";
-import { AppContext } from "../../context/AppContext";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import '../../style/header.css';
+import { useSelector } from 'react-redux';
+import { AppContext } from '../../context/AppContext';
 function AdminHeader() {
   const navigate = useNavigate();
   const { setDealerLoginStatus } = useContext(AppContext);
   const dealer = useSelector((state) => state.dealer.value);
   const logout = () => {
-    localStorage.removeItem("dealertoken");
+    localStorage.removeItem('dealertoken');
     setDealerLoginStatus(false);
-    navigate("/dealer");
+    navigate('/dealer');
   };
   return (
     <div className="header">
@@ -26,7 +26,7 @@ function AdminHeader() {
             <Nav>
               <Nav.Link
                 className="admin-heading"
-                onClick={() => navigate("/dealer/test-drive")}
+                onClick={() => navigate('/dealer/test-drive')}
                 eventKey={2}
               >
                 Test Drive Bookings
@@ -34,14 +34,14 @@ function AdminHeader() {
               <Nav.Link
                 className="admin-heading"
                 eventKey={3}
-                onClick={() => navigate("/dealer/bookings")}
+                onClick={() => navigate('/dealer/bookings')}
               >
                 Bookings
               </Nav.Link>
               <Nav.Link
                 className="admin-heading"
                 eventKey={4}
-                onClick={() => navigate("/dealer/products")}
+                onClick={() => navigate('/dealer/products')}
               >
                 Products
               </Nav.Link>
@@ -49,14 +49,14 @@ function AdminHeader() {
               <Nav.Link
                 className="admin-heading"
                 eventKey={6}
-                onClick={() => navigate("/dealer/dealers")}
+                onClick={() => navigate('/dealer/dealers')}
               >
                 Users
               </Nav.Link>
               <Nav.Link
                 className="admin-heading"
                 eventKey={7}
-                onClick={() => navigate("/dealer/users")}
+                onClick={() => navigate('/dealer/users')}
               >
                 Profile
               </Nav.Link>

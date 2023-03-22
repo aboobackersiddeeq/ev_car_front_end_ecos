@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const dealerSlice = createSlice({
-  name: "DealerDetails",
+  name: 'DealerDetails',
   initialState: { value: {} },
   reducers: {
     dealerLogin: (state, action) => {

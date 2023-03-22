@@ -4,7 +4,15 @@ import { CDBContainer } from 'cdbreact';
 
 const Charts = () => {
   const [data] = useState({
-    labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+    labels: [
+      'Eating',
+      'Drinking',
+      'Sleeping',
+      'Designing',
+      'Coding',
+      'Cycling',
+      'Running',
+    ],
     datasets: [
       {
         label: 'My First dataset',

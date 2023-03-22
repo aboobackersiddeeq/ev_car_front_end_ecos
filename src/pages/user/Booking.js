@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import Footer from "../../components/footer/Footer";
-import HeaderTwo from "../../components/header/HeaderTwo";
-import BookingForm from "../../components/user-components/BookingForm";
+import React, { useState } from 'react';
+import Footer from '../../components/footer/Footer';
+import HeaderTwo from '../../components/header/HeaderTwo';
+import BookingForm from '../../components/user-components/BookingForm';
 
 const Booking = () => {
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState('');
   const handleChildData = (data) => {
     setImage(data);
   };
@@ -19,7 +19,7 @@ const Booking = () => {
           <div className=" col-lg-5">
             <div className="col-md-2"></div>
             <div className="">
-              <BookingForm  onData={handleChildData}/>
+              <BookingForm onData={handleChildData} />
               <div className="col-md-2"></div>
             </div>
           </div>

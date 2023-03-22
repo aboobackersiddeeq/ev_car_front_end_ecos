@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Errorpage() {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ function Errorpage() {
       <button
         className="btn btn-primary"
         onClick={() => {
-          navigate("/");
+          navigate('/');
         }}
       >
         Back to Home

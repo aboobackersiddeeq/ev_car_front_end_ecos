@@ -1,29 +1,29 @@
-import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../components/header/AdminHeader";
-import { Form, Button, Modal } from "react-bootstrap";
-import Footer from "../../../components/footer/Footer";
-import swal from "sweetalert";
-import { useEffect, useState } from "react";
+import Table from 'react-bootstrap/Table';
+import AdminHeader from '../../../components/header/AdminHeader';
+import { Form, Button, Modal } from 'react-bootstrap';
+import Footer from '../../../components/footer/Footer';
+import swal from 'sweetalert';
+import { useEffect, useState } from 'react';
 import {
   Trash,
   PencilSquare,
   PersonFillLock,
   Unlock,
-} from "react-bootstrap-icons";
-import axios from "../../../axios/axios";
-import { dealerLogin } from "../../../redux/Dealer";
-import { useDispatch } from "react-redux";
+} from 'react-bootstrap-icons';
+import axios from '../../../axios/axios';
+import { dealerLogin } from '../../../redux/Dealer';
+import { useDispatch } from 'react-redux';
 function Products() {
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [dealers, setdealer] = useState([]);
   const [dealerName, setDealerName] = useState([]);
-  const [editId, changeId] = useState("");
-  const [phone, setPhone] = useState("");
-  const [state, setState] = useState("");
-  const [city, setCity] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [editId, changeId] = useState('');
+  const [phone, setPhone] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch(dealerLogin);
@@ -32,12 +32,12 @@ function Products() {
     setShowEdit(false);
   };
   const handleShow = () => {
-    setState("");
-    setCity("");
-    setDealerName("");
-    setPhone("");
-    setPassword("");
-    setEmail("");
+    setState('');
+    setCity('');
+    setDealerName('');
+    setPhone('');
+    setPassword('');
+    setEmail('');
     setShow(true);
   };
 
@@ -60,7 +60,7 @@ function Products() {
       setShow(false);
       axios
         .post(
-          "/admin/add-dealer",
+          '/admin/add-dealer',
           {
             dealerName,
             city,
@@ -71,22 +71,22 @@ function Products() {
           },
           {
             headers: {
-              "x-access-admintoken": localStorage.getItem("admintoken"),
+              'x-access-admintoken': localStorage.getItem('admintoken'),
             },
           }
         )
         .then((response) => {
-          if (response.data.status === "success") {
+          if (response.data.status === 'success') {
             dispatch(dealerLogin(response.data));
             setdealer(response.data.result);
           } else {
-            swal("OOPS", response.data.message, "error");
+            swal('OOPS', response.data.message, 'error');
           }
 
           setShow(false);
         })
         .catch((err) => {
-          swal("network error: " + err.message);
+          swal('network error: ' + err.message);
         });
     } else {
       setFormErrors(errors);
@@ -98,7 +98,7 @@ function Products() {
     if (Object.keys(errors).length === 0) {
       axios
         .post(
-          "/admin/edit-dealer",
+          '/admin/edit-dealer',
           {
             editId,
             dealerName,
@@ -109,14 +109,14 @@ function Products() {
           },
           {
             headers: {
-              "x-access-admintoken": localStorage.getItem("admintoken"),
+              'x-access-admintoken': localStorage.getItem('admintoken'),
             },
           }
         )
         .then((response) => {
           setdealer(response.data.result);
-          swal("Poof! Your imaginary file has been Edited!", {
-            icon: "success",
+          swal('Poof! Your imaginary file has been Edited!', {
+            icon: 'success',
           });
           setShowEdit(false);
         })
@@ -130,27 +130,27 @@ function Products() {
 
   const deleteProduct = (id) => {
     swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
-      icon: "warning",
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this imaginary file!',
+      icon: 'warning',
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
         axios
           .post(
-            "/admin/delete-dealer",
+            '/admin/delete-dealer',
             { id },
             {
               headers: {
-                "x-access-admintoken": localStorage.getItem("admintoken"),
+                'x-access-admintoken': localStorage.getItem('admintoken'),
               },
             }
           )
           .then((response) => {
             setdealer(response.data.result);
-            swal("Poof! Your imaginary file has been deleted!", {
-              icon: "success",
+            swal('Poof! Your imaginary file has been deleted!', {
+              icon: 'success',
             });
           })
           .catch((err) => {
@@ -158,33 +158,33 @@ function Products() {
             swal(err.message);
           });
       } else {
-        swal("Your file is safe!");
+        swal('Your file is safe!');
       }
     });
   };
 
   const blockDealer = (id) => {
     swal({
-      title: "Are you sure?",
-      icon: "warning",
+      title: 'Are you sure?',
+      icon: 'warning',
       buttons: true,
       dangerMode: true,
     }).then((willBlock) => {
       if (willBlock) {
         axios
           .post(
-            "/admin/block-dealer",
+            '/admin/block-dealer',
             { id },
             {
               headers: {
-                "x-access-admintoken": localStorage.getItem("admintoken"),
+                'x-access-admintoken': localStorage.getItem('admintoken'),
               },
             }
           )
           .then((response) => {
             setdealer(response.data.result);
-            swal("Poof! This Dealer has been Blocked!", {
-              icon: "success",
+            swal('Poof! This Dealer has been Blocked!', {
+              icon: 'success',
             });
           })
           .catch((err) => {
@@ -192,16 +192,16 @@ function Products() {
             swal(err.message);
           });
       } else {
-        swal("Your work is not saved !");
+        swal('Your work is not saved !');
       }
     });
   };
 
   useEffect(() => {
     axios
-      .get("/admin/get-dealers", {
+      .get('/admin/get-dealers', {
         headers: {
-          "x-access-admintoken": localStorage.getItem("admintoken"),
+          'x-access-admintoken': localStorage.getItem('admintoken'),
         },
       })
       .then((response) => {
@@ -209,9 +209,9 @@ function Products() {
         setdealer(response.data.result);
       });
   }, [dispatch]);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const filterData = dealers.filter((val, i, arr) => {
-    if (searchTerm === "" || /^\s*$/.test(searchTerm)) {
+    if (searchTerm === '' || /^\s*$/.test(searchTerm)) {
       return true;
     } else if (
       val.dealerName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -230,31 +230,31 @@ function Products() {
   const validate = (dealerName, state, city) => {
     const errors = {};
     if (!dealerName) {
-      errors.dealerName = "Name is required";
+      errors.dealerName = 'Name is required';
     } else if (/^\s*$/.test(dealerName)) {
-      errors.dealerName = "Please enter a valid name";
+      errors.dealerName = 'Please enter a valid name';
     }
     if (!state) {
-      errors.state = "State is required";
+      errors.state = 'State is required';
     } else if (/^\s*$/.test(state)) {
-      errors.state = "Please enter a valid state";
+      errors.state = 'Please enter a valid state';
     }
     if (!city) {
-      errors.city = "City is required";
+      errors.city = 'City is required';
     } else if (/^\s*$/.test(city)) {
-      errors.city = "Please enter a valid city";
+      errors.city = 'Please enter a valid city';
     }
     if (!phone) {
-      errors.phone = "Phone number is required";
+      errors.phone = 'Phone number is required';
     } else if (phone.length < 10) {
-      errors.phone = "Password must be at least 10 characters long";
+      errors.phone = 'Password must be at least 10 characters long';
     } else if (isNaN(phone) || /^\s*$/.test(phone)) {
-      errors.phone = " Please enter a valid phone number";
+      errors.phone = ' Please enter a valid phone number';
     }
     if (!password) {
-      errors.password = "Password is required";
+      errors.password = 'Password is required';
     } else if (password.length < 6) {
-      errors.password = "Password must be at least 6 characters long";
+      errors.password = 'Password must be at least 6 characters long';
     }
 
     return errors;
@@ -442,7 +442,7 @@ function Products() {
               />
             </Form.Group>
             {Object.keys(formErrors).length !== 0 && (
-              <span style={{ color: "red" }}>
+              <span style={{ color: 'red' }}>
                 {Object.values(formErrors)[0]}
               </span>
             )}
@@ -537,7 +537,7 @@ function Products() {
               />
             </Form.Group>
             {Object.keys(formErrors).length !== 0 && (
-              <span style={{ color: "red" }}>
+              <span style={{ color: 'red' }}>
                 {Object.values(formErrors)[0]}
               </span>
             )}

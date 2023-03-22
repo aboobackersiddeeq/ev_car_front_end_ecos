@@ -1,50 +1,50 @@
-import React, { useContext, useState} from "react";
+import React, { useContext, useState } from 'react';
 
-import { GoogleButton } from "react-google-button";
-import { auth, provider } from "../../firebase/Firebase-config";
-import { signInWithPopup } from "firebase/auth";
-import "../user/login/Login.css"; 
-import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
-import axios from "../../axios/axios";
-import { useDispatch } from "react-redux";
-import { adminlogin } from "../../redux/admin";
-import { AppContext } from "../../context/AppContext";
+import { GoogleButton } from 'react-google-button';
+import { auth, provider } from '../../firebase/Firebase-config';
+import { signInWithPopup } from 'firebase/auth';
+import '../user/login/Login.css';
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
+import axios from '../../axios/axios';
+import { useDispatch } from 'react-redux';
+import { adminlogin } from '../../redux/admin';
+import { AppContext } from '../../context/AppContext';
 function AdminLogin() {
   const handleClick = () => {
-    signInWithPopup(auth, provider).then(() => {
-    });
+    signInWithPopup(auth, provider).then(() => {});
   };
   const dispatch = useDispatch(adminlogin);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { setAdminLoginStatus } = useContext(AppContext);
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("/admin", { email, password })
+      .post('/admin', { email, password })
       .then((response) => {
         if (!response.data.auth) {
           swal(response.data.message);
         } else {
           dispatch(adminlogin(response.data));
-          localStorage.setItem("admintoken", response.data.token);
-          swal("success", response.data.message, "success");
+          localStorage.setItem('admintoken', response.data.token);
+          swal('success', response.data.message, 'success');
 
           setAdminLoginStatus(true);
-          navigate("/admin");
+          navigate('/admin');
         }
       })
       .catch((err) => {
-        swal("sorry", err.message, "error");
+        swal('sorry', err.message, 'error');
       });
   };
 
   return (
     <div>
       <div className="loginParentDiv">
-        <img alt="ecos-logo"
+        <img
+          alt="ecos-logo"
           width="200px"
           height="200px"
           className="logo"
@@ -53,11 +53,11 @@ function AdminLogin() {
         <h6> Admin Sign In</h6>
         {/* <br/> */}
         <div className="googleButton">
-          <GoogleButton onClick={handleClick} id="signInDiv" />{" "}
+          <GoogleButton onClick={handleClick} id="signInDiv" />{' '}
         </div>
 
         <h6 className="or">
-          <br /> Or <br />{" "}
+          <br /> Or <br />{' '}
         </h6>
 
         <form onSubmit={handleLogin}>

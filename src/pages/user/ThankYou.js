@@ -1,7 +1,7 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import HeaderTwo from "../../components/header/HeaderTwo";
-import "../../style/thank.css";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import HeaderTwo from '../../components/header/HeaderTwo';
+import '../../style/thank.css';
 
 const ThankYou = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const ThankYou = () => {
                 Congratulations! You've just signed up for an electrifying
                 journey!
               </h5>
-              <button className="btn_take" onClick={() => navigate("/")}>
+              <button className="btn_take" onClick={() => navigate('/')}>
                 TAKE ME TO HOME PAGE
               </button>
             </div>

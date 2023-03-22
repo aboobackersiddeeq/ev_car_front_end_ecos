@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
-import { Route, Routes } from "react-router-dom";
-import Products from "../pages/admin/admin-products/Products";
-import Booking from "../pages/admin/booking/Booking";
-import TestDriveBooking from "../pages/admin/booking/TestDriveBooking";
-import Community from "../pages/admin/community/Community";
-import Dealers from "../pages/admin/dealers/Dealers";
-import AdminUser from "../pages/admin/user-management/AdminUser";
-import AdminLogin from "../pages/admin/AdminLogin";
-import AdminDashboard from "../pages/admin/dashboard/AdminDashboard";
-import { AppContext } from "../context/AppContext";
+import React, { useContext } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Products from '../pages/admin/admin-products/Products';
+import Booking from '../pages/admin/booking/Booking';
+import TestDriveBooking from '../pages/admin/booking/TestDriveBooking';
+import Community from '../pages/admin/community/Community';
+import Dealers from '../pages/admin/dealers/Dealers';
+import AdminUser from '../pages/admin/user-management/AdminUser';
+import AdminLogin from '../pages/admin/AdminLogin';
+import AdminDashboard from '../pages/admin/dashboard/AdminDashboard';
+import { AppContext } from '../context/AppContext';
 const AdminRouters = () => {
   const { adminLoginStatus } = useContext(AppContext);
   return (

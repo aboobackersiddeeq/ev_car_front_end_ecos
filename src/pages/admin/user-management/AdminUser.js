@@ -1,15 +1,15 @@
-import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../components/header/AdminHeader";
-import { Form, Button } from "react-bootstrap";
-import Footer from "../../../components/footer/Footer";
-import { useContext, useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore/lite";
-import { firebaseContext } from "../../../context/FirebaseContext";
+import Table from 'react-bootstrap/Table';
+import AdminHeader from '../../../components/header/AdminHeader';
+import { Form, Button } from 'react-bootstrap';
+import Footer from '../../../components/footer/Footer';
+import { useContext, useEffect, useState } from 'react';
+import { collection, getDocs } from 'firebase/firestore/lite';
+import { firebaseContext } from '../../../context/FirebaseContext';
 
 function AdminUser() {
   const [users, setUsers] = useState([]);
   const { db } = useContext(firebaseContext);
-  const Collection = collection(db, "user");
+  const Collection = collection(db, 'user');
   // eslint-disable-next-line
   const userslist = async () => {
     const Snapshot = await getDocs(Collection);
@@ -21,21 +21,17 @@ function AdminUser() {
 
   useEffect(() => {
     userslist();
-  },[userslist]);
+  }, [userslist]);
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const filterData = users.filter((val, i, arr) => {
-    if (searchTerm === "" || /^\s*$/.test(searchTerm)) {
+    if (searchTerm === '' || /^\s*$/.test(searchTerm)) {
       return true;
-    } else if (
-      val.name.toLowerCase().includes(searchTerm.toLowerCase())
-    ) {
+    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
       return true;
-    }   else if (
-      val.phone.toString().includes(searchTerm )
-    ) {
+    } else if (val.phone.toString().includes(searchTerm)) {
       return true;
-    }  
+    }
     return false;
   });
   return (
@@ -50,7 +46,7 @@ function AdminUser() {
               <h2 className="head-contant">User</h2>
             </div>
             <div className="col-md-4">
-            <Form className="d-flex">
+              <Form className="d-flex">
                 <Form.Control
                   type="search"
                   placeholder="Search"
@@ -66,35 +62,36 @@ function AdminUser() {
           </div>
         </div>
         <div className="container p-5">
-        {filterData.length > 0 ? (
-          <Table responsive="sm">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>UserId</th>
-                <th>Block/Unblock</th>
-              </tr>
-            </thead>
-            <tbody>
-            {filterData &&
+          {filterData.length > 0 ? (
+            <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>UserId</th>
+                  <th>Block/Unblock</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filterData &&
                   // eslint-disable-next-line
                   filterData.map((element, index) => {
                     return (
-              <tr key={element.phone}>
-                <td>{index+1}</td>
-                <td>{element.name}</td>
-                <td>{element.email}</td>
-                <td>{element.phone}</td>
-                <td>{element.userid}</td>
-                <td>Block</td>
-              </tr>
-              )})}
-            </tbody>
-          </Table>
-           ) : (
+                      <tr key={element.phone}>
+                        <td>{index + 1}</td>
+                        <td>{element.name}</td>
+                        <td>{element.email}</td>
+                        <td>{element.phone}</td>
+                        <td>{element.userid}</td>
+                        <td>Block</td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </Table>
+          ) : (
             <p>No results found.</p>
           )}
         </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import HeaderTwo from "../../components/header/HeaderTwo";
+import React from 'react';
+import HeaderTwo from '../../components/header/HeaderTwo';
 
 const Checkout = () => {
   return (
@@ -73,7 +73,7 @@ const Checkout = () => {
           </div>
           <div className="col-md-8 order-md-1 ">
             <h4 className="text-center ">YOUR PERSONAL DETAILS</h4>
-            <form   className="needs-validation " novalidate>
+            <form className="needs-validation " novalidate>
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <label forHtml="firstName">Mobile Number*</label>
@@ -124,13 +124,13 @@ const Checkout = () => {
                   Email Address* <span className="text-muted"> </span>
                 </label>
                 <input
-                    type="text"
-                    className="form-control  rounded-0"
-                    id="email"
-                    placeholder="Last Name*"
-                    value=""
-                    required
-                  />
+                  type="text"
+                  className="form-control  rounded-0"
+                  id="email"
+                  placeholder="Last Name*"
+                  value=""
+                  required
+                />
                 <div className="invalid-feedback">
                   Please enter a valid email address for shipping updates.
                 </div>
@@ -219,7 +219,7 @@ const Checkout = () => {
                   Give us a missed call on <strong>7574890000</strong>
                 </label>
               </div>
-              <br/>
+              <br />
               <button
                 className="btn btn-primary btn-lg btn-block rounded-0 nexon-btn h-checkout"
                 type="button"

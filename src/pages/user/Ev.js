@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const Ev = () => {
-  return (
-    <div>Ev</div>
-  )
-}
+  return <div>Ev</div>;
+};
 
-export default Ev
+export default Ev;

@@ -1,34 +1,34 @@
-import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../components/header/AdminHeader";
-import { Form, Button } from "react-bootstrap";
-import Footer from "../../../components/footer/Footer";
-import axios from "../../../axios/axios";
-import { useEffect, useState } from "react";
-import swal from "sweetalert";
+import Table from 'react-bootstrap/Table';
+import AdminHeader from '../../../components/header/AdminHeader';
+import { Form, Button } from 'react-bootstrap';
+import Footer from '../../../components/footer/Footer';
+import axios from '../../../axios/axios';
+import { useEffect, useState } from 'react';
+import swal from 'sweetalert';
 
 function TestDriveBooking() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const [details, setDetails] = useState([]);
 
   useEffect(() => {
     axios
-      .get("admin/test-drive", {
-        headers: { "x-access-admintoken": localStorage.getItem("admintoken") },
+      .get('admin/test-drive', {
+        headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
       })
       .then((response) => {
-        if (response.data.status === "success") {
+        if (response.data.status === 'success') {
           setDetails(response.data.result);
         } else {
-          swal("OOPS", response.data.message, "error");
+          swal('OOPS', response.data.message, 'error');
         }
       })
       .catch((err) => {
-        alert("network error: " + err.message);
+        alert('network error: ' + err.message);
       });
   }, []);
 
-  const filterData=details.filter((val, i, arr) => {
-    if (searchTerm === "" || /^\s*$/.test(searchTerm)) {
+  const filterData = details.filter((val, i, arr) => {
+    if (searchTerm === '' || /^\s*$/.test(searchTerm)) {
       return true;
     } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
       return true;
@@ -73,24 +73,23 @@ function TestDriveBooking() {
           </div>
         </div>
         <div className="container p-5">
-          {filterData.length>0 ?(
-          <Table responsive="sm">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Date</th>
-                <th>Name</th>
-                <th>Phone No</th>
-                <th>Vehicle Name</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filterData.map((element, index) => {
-                return (
-                  
+          {filterData.length > 0 ? (
+            <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Date</th>
+                  <th>Name</th>
+                  <th>Phone No</th>
+                  <th>Vehicle Name</th>
+                  <th>State</th>
+                  <th>City</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filterData.map((element, index) => {
+                  return (
                     <tr key={element._id}>
                       <td>{index}</td>
                       <td>{element.updatedAt}</td>
@@ -101,11 +100,13 @@ function TestDriveBooking() {
                       <td>{element.city}</td>
                       <td>pending</td>
                     </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-          ):(<p>No results found.</p>)}
+                  );
+                })}
+              </tbody>
+            </Table>
+          ) : (
+            <p>No results found.</p>
+          )}
         </div>
       </div>
 

@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const adminSlice = createSlice({
-  name: "adminDetails",
+  name: 'adminDetails',
   initialState: { value: {} },
   reducers: {
     adminlogin: (state, action) => {

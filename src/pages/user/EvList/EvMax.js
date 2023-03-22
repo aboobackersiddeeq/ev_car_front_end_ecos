@@ -1,5 +1,5 @@
-import React from "react";
-import HeaderTwo from "../../../components/header/HeaderTwo";
+import React from 'react';
+import HeaderTwo from '../../../components/header/HeaderTwo';
 
 const EvMax = () => {
   return (

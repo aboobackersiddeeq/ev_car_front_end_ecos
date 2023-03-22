@@ -1,12 +1,12 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { signOut } from "firebase/auth";
-import { AuthContext, firebaseContext } from "../../context/FirebaseContext";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import { useNavigate } from "react-router-dom";
-import "../../style/headerTwo.css";
-import { useContext } from "react";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { signOut } from 'firebase/auth';
+import { AuthContext, firebaseContext } from '../../context/FirebaseContext';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useNavigate } from 'react-router-dom';
+import '../../style/headerTwo.css';
+import { useContext } from 'react';
 function HeaderTwo() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
@@ -21,19 +21,19 @@ function HeaderTwo() {
           <span
             onClick={() => {
               signOut(auth);
-              navigate("/login");
+              navigate('/login');
             }}
           >
             Logout
           </span>
         ) : (
-          <span onClick={() => navigate("/login")}>Login</span>
+          <span onClick={() => navigate('/login')}>Login</span>
         )}
         <span id="endSpan">
           Call<span id="middleSpan">1800 209 8282</span>For Any Assistance
         </span>
       </div>
-      {["md "].map((expand) => (
+      {['md '].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3 navbar">
           <Container>
             <Navbar.Brand href="#">Ecos</Navbar.Brand>
@@ -52,19 +52,19 @@ function HeaderTwo() {
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <Nav.Link
                     className="nexon-ev"
-                    onClick={() => navigate("/ev-prime")}
+                    onClick={() => navigate('/ev-prime')}
                   >
                     Nexon EV PRIME
                   </Nav.Link>
                   <Nav.Link
                     className="nexon-ev"
-                    onClick={() => navigate("/ev-max")}
+                    onClick={() => navigate('/ev-max')}
                   >
                     Nexon EV MAX
                   </Nav.Link>
                   <Nav.Link
                     className="nexon-ev ml-2"
-                    onClick={() => navigate("/ev-dark")}
+                    onClick={() => navigate('/ev-dark')}
                   >
                     Dark Edition
                   </Nav.Link>
@@ -74,7 +74,7 @@ function HeaderTwo() {
                   <Nav.Link
                     className="book-now"
                     eventKey={5}
-                    onClick={() => navigate("/ev-test-booking")}
+                    onClick={() => navigate('/ev-test-booking')}
                   >
                     Book A Test Drive
                   </Nav.Link>
@@ -84,7 +84,7 @@ function HeaderTwo() {
                   <Nav.Link
                     className="book-now"
                     eventKey={4}
-                    onClick={() => navigate("/booking")}
+                    onClick={() => navigate('/booking')}
                   >
                     Book Now
                   </Nav.Link>
@@ -92,7 +92,7 @@ function HeaderTwo() {
                     Chat With Us
                   </Nav.Link>
                   <Nav.Link className="hidden" href="#action2">
-                    Charging Locator{" "}
+                    Charging Locator{' '}
                   </Nav.Link>
                   <Nav.Link className="hidden" href="#action2">
                     Community

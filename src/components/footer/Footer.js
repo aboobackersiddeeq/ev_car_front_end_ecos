@@ -1,8 +1,8 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { useNavigate } from "react-router-dom";
-import "../../style/header.css";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from 'react-router-dom';
+import '../../style/header.css';
 function Footer() {
   const navigate = useNavigate();
   return (
@@ -11,7 +11,7 @@ function Footer() {
         <Container>
           <Navbar.Brand
             onClick={() => {
-              navigate("/admin");
+              navigate('/admin');
             }}
           >
             ecos
@@ -22,22 +22,22 @@ function Footer() {
             <Nav>
               <Nav.Link
                 className="admin-heading"
-                onClick={() => navigate("")}
+                onClick={() => navigate('')}
                 eventKey={9}
               >
                 FAQS
-              </Nav.Link>{" "}
+              </Nav.Link>{' '}
               <Nav.Link
                 className="admin-heading"
                 eventKey={3}
-                onClick={() => navigate(" ")}
+                onClick={() => navigate(' ')}
               >
                 PRIVACY POLICY
               </Nav.Link>
               <Nav.Link
                 className="admin-heading"
                 eventKey={4}
-                onClick={() => navigate(" ")}
+                onClick={() => navigate(' ')}
               >
                 TERMS AND CONDITION
               </Nav.Link>

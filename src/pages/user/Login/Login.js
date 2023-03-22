@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { GoogleButton } from "react-google-button";
-import { auth, provider } from "../../../firebase/Firebase-config";
-import { signInWithPopup } from "firebase/auth";
-import swal from "sweetalert";
-import "./Login.css";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { GoogleButton } from 'react-google-button';
+import { auth, provider } from '../../../firebase/Firebase-config';
+import { signInWithPopup } from 'firebase/auth';
+import swal from 'sweetalert';
+import './Login.css';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const handleClick = () => {
     signInWithPopup(auth, provider).then(() => {
-      navigate("/");
+      navigate('/');
     });
   };
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
-        swal("User not found");
+        swal('User not found');
       });
   };
 
@@ -40,11 +40,11 @@ function Login() {
         ></img>
         <h6>Sign In</h6>
         <div className="googleButton">
-          <GoogleButton onClick={handleClick} id="signInDiv" />{" "}
+          <GoogleButton onClick={handleClick} id="signInDiv" />{' '}
         </div>
 
         <h6 className="or">
-          <br /> Or <br />{" "}
+          <br /> Or <br />{' '}
         </h6>
 
         <form onSubmit={handleLogin}>
@@ -79,7 +79,7 @@ function Login() {
           <br />
           <button className="loginButton">Login</button>
         </form>
-        <span onClick={()=>navigate("/signup")}>Signup</span>
+        <span onClick={() => navigate('/signup')}>Signup</span>
       </div>
     </div>
   );

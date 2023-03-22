@@ -1,17 +1,17 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from 'react';
 
-import { GoogleButton } from "react-google-button";
-import { auth, provider } from "../../firebase/Firebase-config";
-import { signInWithPopup } from "firebase/auth";
+import { GoogleButton } from 'react-google-button';
+import { auth, provider } from '../../firebase/Firebase-config';
+import { signInWithPopup } from 'firebase/auth';
 
 // import { firebaseContext } from '../../store/context';
 // import Logo from '../../public/images/';
-import "../user/Login/Login.css";
+import '../user/Login/Login.css';
 // import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
-import axios from "../../axios/axios";
-import { AppContext } from "../../context/AppContext";
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
+import axios from '../../axios/axios';
+import { AppContext } from '../../context/AppContext';
 
 function DealerLogin() {
   const handleClick = () => {
@@ -20,27 +20,27 @@ function DealerLogin() {
     });
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { setDealerLoginStatus } = useContext(AppContext);
   const handleLogin = (e) => {
     e.preventDefault();
     axios
-      .post("/dealer", { email, password })
+      .post('/dealer', { email, password })
       .then((response) => {
         if (!response.data.auth) {
           swal(response.data.message);
         } else {
-          localStorage.setItem("dealertoken", response.data.token);
-          swal("success", response.data.message, "success");
+          localStorage.setItem('dealertoken', response.data.token);
+          swal('success', response.data.message, 'success');
 
           setDealerLoginStatus(true);
-          navigate("/dealer");
+          navigate('/dealer');
         }
       })
       .catch((err) => {
-        swal("sorry", err.message, "error");
+        swal('sorry', err.message, 'error');
       });
   };
 
@@ -55,11 +55,11 @@ function DealerLogin() {
         ></img>
         <h6>Dealer Sign In</h6>
         <div className="googleButton">
-          <GoogleButton onClick={handleClick} id="signInDiv" />{" "}
+          <GoogleButton onClick={handleClick} id="signInDiv" />{' '}
         </div>
 
         <h6 className="or">
-          <br /> Or <br />{" "}
+          <br /> Or <br />{' '}
         </h6>
 
         <form onSubmit={handleLogin}>
