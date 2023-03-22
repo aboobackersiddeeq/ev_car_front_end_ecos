@@ -6,7 +6,7 @@ import swal from "sweetalert";
 import { useEffect, useState } from "react";
 import { Trash, PencilSquare } from "react-bootstrap-icons";
 import axios from "../../../axios/axios";
-import { product } from "../../../redux/Product";
+import { product } from "../../../redux/product";
 import { useDispatch } from "react-redux";
 import Multiselect from "multiselect-react-dropdown";
 

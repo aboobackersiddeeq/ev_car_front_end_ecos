@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "../../axios/axios";
 import { useDispatch } from "react-redux";
-import { adminlogin } from "../../redux/Admin";
+import { adminlogin } from "../../redux/admin";
 import { AppContext } from "../../context/AppContext";
 function AdminLogin() {
   const handleClick = () => {

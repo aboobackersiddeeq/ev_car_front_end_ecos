@@ -3,6 +3,7 @@ import "../../style/booking.css";
 import axios from "../../axios/axios";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, ListGroup } from "react-bootstrap";
+import { toast } from "react-hot-toast";
 
 const BookingForm = (props) => {
   const navigate = useNavigate();
@@ -32,16 +33,25 @@ const BookingForm = (props) => {
     }
   };
   useEffect(() => {
-    axios.post("/admin/get-product", {}).then((response) => {
-      const pro = response.data.result;
-      setProduct(response.data.result);
-      setActiveIndex(0);
-      setPrice(pro[0].price);
-      setModal(pro[0].productName);
-      setColor(pro[0].color);
-      setSelectedColor(color[0]);
-      props.onData(pro[0].image);
-    });
+    try {
+      axios
+        .post("/admin/get-product", {})
+        .then((response) => {
+          const pro = response.data.result;
+          setProduct(response.data.result);
+          setActiveIndex(0);
+          setPrice(pro[0].price);
+          setModal(pro[0].productName);
+          setColor(pro[0].color);
+          setSelectedColor(color[0]);
+          props.onData(pro[0].image);
+        })
+        .catch((error) => {
+          toast.error( error.message);
+        });
+    } catch (err) {
+      toast.error("Network error");
+    }
   }, []);
 
   const handleElement = (index) => {

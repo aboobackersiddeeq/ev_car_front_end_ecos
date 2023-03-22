@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { signOut } from "firebase/auth";
-import { AuthContext, firebaseContext } from "../../context/FirebaseContext";
+import { AuthContext, firebaseContext } from "../../context/firebaseContext";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useNavigate } from "react-router-dom";
 import "./headerTwo.css";
