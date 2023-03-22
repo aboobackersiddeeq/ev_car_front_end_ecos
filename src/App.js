@@ -27,7 +27,6 @@ function App() {
         headers: { "x-access-admintoken": localStorage.getItem("admintoken") },
       })
       .then((response) => {
-        console.log(response.data);
         if (!response.data.auth) {
           setAdminLoginStatus(false);
         } else {

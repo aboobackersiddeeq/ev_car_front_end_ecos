@@ -1,6 +1,7 @@
 .header {
   width: 100%;
   position: fixed;
+  z-index: 20;
   color: #fff;
 }
 
@@ -11,9 +12,9 @@
   color: white;
   text-align: right;
 }
-span {
+/* span {
   margin-left: 30px;
-}
+} */
 #middleSpan {
   color: rgb(24, 222, 183);
   margin-left: 0%;
@@ -25,4 +26,10 @@ span {
 .admin-heading.nav-link:hover {
   color: #fff;
   background-color: #000000;
+}
+.booking-footer{
+  /* position: fixed; */
+  align-items: end;
+  min-height: 30vh;
+  
 }

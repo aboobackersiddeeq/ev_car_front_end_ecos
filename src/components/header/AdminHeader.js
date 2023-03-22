@@ -9,7 +9,6 @@ import { AppContext } from "../../context/AppContext";
 function AdminHeader() {
   const { setAdminLoginStatus } = useContext(AppContext);
   const admin = useSelector((state) => state.admin.value);
-  console.log(admin, "admin");
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("admintoken");

@@ -1,23 +1,30 @@
 import React from "react";
-import HeaderTwo from "../../component/header/HeaderTwo";
-import "../user/EvList/evTestBooking.css";
+import HeaderTwo from "../../components/header/HeaderTwo";
+import TestDriveForm from "../../components/user-components/TestDriveForm";
+import "./evList/evTestBooking.css";
 const EvTestBooking = () => {
   return (
-    <>
+    <div className="bg-light parent">
       <HeaderTwo />
-      <div className="row bg-light">
-        <div className="col-md-7 bg-light">
-          <img
-            className="nexonEv"
-            src="../../../Images/book-drive-banner1.png"
-            alt=""
-          />
-        </div>
-        <div className=" col-md -5">
-          <div className="   banner-side"></div>
+      <div className="container-fluid  ">
+        <div className="row">
+          <div className="col-md-7 bg-light">
+            <img
+              className="nexonEv"
+              src="../../../Images/book-drive-banner1.png"
+              alt=""
+            />
+          </div>
+          <div className=" col-md-5">
+            <div className="col-md-2"></div>
+            <div className="">
+              <TestDriveForm />
+              <div className="col-md-2"></div>
+            </div>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

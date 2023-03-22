@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../component/header/AdminHeader";
+import AdminHeader from "../../../components/header/AdminHeader";
 import { Form, Button, Modal } from "react-bootstrap";
-import Footer from "../../../component/footer/Footer";
+import Footer from "../../../components/footer/Footer";
 import swal from "sweetalert";
 import { useEffect, useState } from "react";
 import { Trash, PencilSquare } from "react-bootstrap-icons";
@@ -11,10 +11,9 @@ import { useDispatch } from "react-redux";
 import Multiselect from "multiselect-react-dropdown";
 
 function Products() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [products, setproduct] = useState("");
+  const [products, setproduct] = useState([]);
   const [editId, changeId] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
@@ -22,7 +21,8 @@ function Products() {
   const [color, setColor] = useState([]);
   const [bookingPrice, setBookingPrice] = useState("");
   const [productName, setProductName] = useState("");
-  const [options] = useState(["Blue", "Black", "Red"]);
+  const [options] = useState(["Blue", "Black", "Red","White"]);
+  const [formErrors, setFormErrors] = useState({});
   const dispatch = useDispatch(product);
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => {
@@ -60,21 +60,29 @@ function Products() {
     });
   const addHandler = async (e) => {
     e.preventDefault();
-    const imgBase = await toBase64(image);
 
+    const errors = validate(productName,price,bookingPrice,color,image);
+    if (Object.keys(errors).length === 0) {
+      setFormErrors(errors);
+      const imgBase = await toBase64(image);
     axios
-      .post("/admin/add-product", {
-        img: imgBase,
-        price,
-        color,
-        bookingPrice,
-        productName,
-      })
-      .then((response) => {
-        dispatch(product(response.data));
-        setproduct(response.data.result);
-        setShow(false);
-      });
+    .post("/admin/add-product", {
+      img: imgBase,
+      price,
+      color,
+      bookingPrice,
+      productName,
+    })
+    .then((response) => {
+      dispatch(product(response.data));
+      setproduct(response.data.result);
+      setShow(false);
+    });
+    }else{
+      setFormErrors(errors);
+    }
+   
+
   };
   const editHandile = async (e) => {
     e.preventDefault();
@@ -148,10 +156,60 @@ function Products() {
   useEffect(() => {
     axios.post("/admin/get-product", {}).then((response) => {
       dispatch(product(response.data));
-      console.log(response.data.result);
       setproduct(response.data.result);
     });
   }, [dispatch]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const filterData = products.filter((val, i, arr) => {
+    const price = val.price.toString();
+    if (searchTerm === "" || /^\s*$/.test(searchTerm)) {
+      return true;
+    } else if (
+      val.productName.toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      return true;
+    } else if (
+      val.color.join("").toLowerCase().includes(searchTerm.toLowerCase())
+    ) {
+      return true;
+    } else if (price.includes(searchTerm)) {
+      return true;
+    } else if (val.bookingPrice.toString().includes(searchTerm)) {
+      return true;
+    }
+    return false;
+  });
+
+  const validate = (productName,price,bookingPrice,color,image) => {
+    const nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
+    const errors = {};
+    if (!productName) {
+      errors.name = "Name is required";
+    } else if (!nameRegex.test(productName)) {
+      errors.productName = "Please enter a valid name";
+    }
+     
+    if (!price) {
+      errors.price = "Price is required";
+    } else if(isNaN(price)){
+      errors.price = "Price is not a number";
+    }
+    if (!bookingPrice) {
+      errors.bookingPrice = "Booking price  is required";
+    } else if(isNaN(bookingPrice)){
+      errors.price = "Price is not a number";
+    }  
+    
+     
+    if (!color) {
+      errors.color = "Please choose minimum one color";
+    }if (!image) {
+      errors.bookingPrice = "Image is required";
+    }
+     
+    return errors;
+  };
+
   return (
     <div>
       <div>
@@ -185,70 +243,56 @@ function Products() {
           </div>
         </div>
         <div className="container p-5">
-          <Table responsive="sm">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Photo</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Booking Price</th>
-                <th>Colors</th>
-                <th>Actions </th>
-              </tr>
-            </thead>
-            <tbody>
-              {products &&
-               // eslint-disable-next-line
-                products.filter((val, i, arr) => {
-                    if (searchTerm === "" || /^\s*$/.test(searchTerm)) {
-                      return val;
-                    } else if (
-                      val.productName
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                    ) {
-                      return val;
-                    } else if (
-                      val.color
-                        .join("")
-                        .toLowerCase()
-                        .includes(searchTerm.toLowerCase())
-                    ) {
-                      return val;
-                    }
-                  })
-                  .map((element, index) => {
+          {filterData.length > 0 ? (
+            <Table responsive="sm">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Photo</th>
+                  <th>Product Name</th>
+                  <th>Price</th>
+                  <th>Booking Price</th>
+                  <th>Colors</th>
+                  <th>Actions </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filterData &&
+                  // eslint-disable-next-line
+                  filterData.map((element, index) => {
                     return (
-                      <>
-                        <tr key={element._id}>
-                          <td>{index}</td>
-                          <td>
-                            <img
-                              src={element.image}
-                              alt="Product"
-                              height="50px"
-                            />
-                          </td>
-                          <td>{element.productName}</td>
-                          <td>{element.price}</td>
-                          <td>{element.bookingPrice}</td>
-                          <td>{element.color.join()}</td>
-                          <td>
-                            <PencilSquare
-                              onClick={() => handleShowEdit(index, element._id)}
-                              className="m-2"
-                            />
-                            <Trash onClick={() => deleteProduct(element._id)} />
-                          </td>
-                        </tr>
-                      </>
+                      <tr key={element._id}>
+                        <td>{index}</td>
+                        <td>
+                          <img
+                            src={element.image}
+                            alt="Product"
+                            height="50px"
+                          />
+                        </td>
+                        <td>{element.productName}</td>
+                        <td>{element.price}</td>
+                        <td>{element.bookingPrice}</td>
+                        <td>{element.color.join()}</td>
+                        <td>
+                          <PencilSquare
+                            onClick={() => handleShowEdit(index, element._id)}
+                            className="m-2"
+                          />
+                          <Trash onClick={() => deleteProduct(element._id)} />
+                        </td>
+                      </tr>
                     );
                   })}
-            </tbody>
-          </Table>
+              </tbody>
+            </Table>
+          ) : (
+            <p>No results found.</p>
+          )}
         </div>
       </div>
+
+      {/* Add Product */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Product</Modal.Title>
@@ -265,6 +309,7 @@ function Products() {
               <Form.Label>Upload Image</Form.Label>
 
               <Form.Control
+                required
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
@@ -280,6 +325,7 @@ function Products() {
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
                 autoFocus
+                required
               />
             </Form.Group>
             <Form.Group
@@ -306,6 +352,8 @@ function Products() {
               <Form.Label>Product Price</Form.Label>
               <Form.Control
                 type="number"
+                required
+                min={1000}
                 placeholder="Product Price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
@@ -318,20 +366,24 @@ function Products() {
             >
               <Form.Label>Booking Price</Form.Label>
               <Form.Control
+                required
                 type="number"
                 placeholder="Booking Price"
+                min={0}
                 value={bookingPrice}
                 onChange={(e) => setBookingPrice(e.target.value)}
                 autoFocus
               />
+              
             </Form.Group>
+            {Object.keys(formErrors).length === 0 && formErrors.image}
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseEdit}>
+            <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
             <Button type="submit" variant="primary">
-              Add Product
+              Save
             </Button>
           </Modal.Footer>
         </Form>
@@ -357,7 +409,7 @@ function Products() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files[0])}
-                autoFocus
+                autoFocus 
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -369,6 +421,7 @@ function Products() {
                 value={productName}
                 onChange={(e) => setProductName(e.target.value)}
                 autoFocus
+                 required
               />
             </Form.Group>
             <Form.Group
@@ -400,7 +453,9 @@ function Products() {
                 placeholder="Product Price"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
+                min="10000"
                 autoFocus
+                required
               />
             </Form.Group>
             <Form.Group
@@ -412,8 +467,10 @@ function Products() {
                 type="number"
                 placeholder="Product Price"
                 value={bookingPrice}
+                min={0}
                 onChange={(e) => setBookingPrice(e.target.value)}
                 autoFocus
+                required
               />
             </Form.Group>
           </Modal.Body>
@@ -422,7 +479,7 @@ function Products() {
               Close
             </Button>
             <Button type="submit" variant="primary">
-              Edi Product
+              Save
             </Button>
           </Modal.Footer>
         </Form>

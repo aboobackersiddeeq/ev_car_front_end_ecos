@@ -1,5 +1,5 @@
 import React from "react";
-import DealerHeader from "../../component/header/DealerHeader";
+import DealerHeader from "../../components/header/DealerHeader";
 import "./DealerDashboard.css";
 const DealerDashboard = () => {
   return (

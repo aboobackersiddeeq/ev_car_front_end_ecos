@@ -1,0 +1,60 @@
+.thank{
+ font-size:5em;
+ color:#00adba;
+ padding-bottom: 40PX;
+ margin-top: -20px;
+
+}
+.congr{
+    font-size: xx-large;
+    padding-right: 20px;
+    padding-bottom: 90px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.btn_take{
+    padding: 20px;
+    font-size: 20px;
+    background-color: #00adba;
+    color: #fff;
+    border: none;
+    margin-bottom: 80px;
+    
+
+}.parent_thank{
+    align-items: center;
+    height: auto;
+   padding-left: 50px;
+     
+}
+.thank-body{
+    background-color:#484848;
+} 
+@media (min-width: 767px) {
+    .thank_ev {
+      padding-top: 100px;
+    }
+    
+  }
+
+  @media (max-width: 1028px) {
+    .thank_ev {
+      padding-top: 200px;
+    }.thank{
+        font-size: 3em;
+    }.congr{
+        font-size: large;   
+    }
+    
+  }
+  @media (max-width: 765px) {
+    .thank_ev {
+      padding-top: 00px;
+
+    }.thank{
+        font-size: 4em;
+        margin-top: -70px;
+    }.congr{
+        font-size: xx-large;
+    }
+    
+  }

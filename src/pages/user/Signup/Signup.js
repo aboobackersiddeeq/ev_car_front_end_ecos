@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { firebaseContext } from "../../../context/FirebaseContext";
 import swal from "sweetalert";
-import "../../user/Login/Login.css";
+import "../login/Login.css";
 import { collection, addDoc } from "firebase/firestore/lite";
 import {
   getAuth,
@@ -120,7 +120,7 @@ function Signup() {
           <button className="loginButton">Login</button>
         </form>
 
-        {/* <a onClick={()=>history.push('/signup')}>Signup</a> */}
+        <span onClick={()=> navigate('/login')}>Login</span>
       </div>
     </div>
   );

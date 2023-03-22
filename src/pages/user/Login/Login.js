@@ -79,7 +79,7 @@ function Login() {
           <br />
           <button className="loginButton">Login</button>
         </form>
-        <button onClick={navigate("/signup")}>Signup</button>
+        <span onClick={()=>navigate("/signup")}>Signup</span>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import React, { useContext, useState} from "react";
 import { GoogleButton } from "react-google-button";
 import { auth, provider } from "../../firebase/Firebase-config";
 import { signInWithPopup } from "firebase/auth";
-import "../user/Login/Login.css"; 
+import "../user/login/Login.css"; 
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "../../axios/axios";
@@ -12,8 +12,7 @@ import { adminlogin } from "../../redux/Admin";
 import { AppContext } from "../../context/AppContext";
 function AdminLogin() {
   const handleClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      console.log(data);
+    signInWithPopup(auth, provider).then(() => {
     });
   };
   const dispatch = useDispatch(adminlogin);
@@ -29,7 +28,6 @@ function AdminLogin() {
         if (!response.data.auth) {
           swal(response.data.message);
         } else {
-          console.log(response.data);
           dispatch(adminlogin(response.data));
           localStorage.setItem("admintoken", response.data.token);
           swal("success", response.data.message, "success");

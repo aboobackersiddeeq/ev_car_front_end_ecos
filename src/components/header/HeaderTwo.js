@@ -81,7 +81,11 @@ function HeaderTwo() {
                   <Nav.Link className="book-now" eventKey={3} href="#me">
                     Download Brochure
                   </Nav.Link>
-                  <Nav.Link className="book-now" eventKey={4} href="#mem">
+                  <Nav.Link
+                    className="book-now"
+                    eventKey={4}
+                    onClick={() => navigate("/booking")}
+                  >
                     Book Now
                   </Nav.Link>
                   <Nav.Link className="hidden" href="#action2">
