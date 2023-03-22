@@ -168,7 +168,7 @@ const BookingForm = (props) => {
           </div>
         </form>
         <div className="messageError">
-          <span className="message" style={{ display: 'none' }}></span>
+        {Object.keys(formErrors).length !== 0 && <span style={{color:'red'}}>{Object.values(formErrors)[0]}</span> }
         </div>
       </div>
     </div>
