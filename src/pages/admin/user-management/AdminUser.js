@@ -4,7 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import Footer from "../../../components/footer/Footer";
 import { useContext, useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore/lite";
-import { firebaseContext } from "../../../context/firebaseContext";
+import { firebaseContext } from "../../../context/FirebaseContext";
 
 function AdminUser() {
   const [users, setUsers] = useState([]);

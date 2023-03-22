@@ -10,6 +10,7 @@ import DarkEdition from "../pages/user/evList/DarkEdition";
 import EvTestBooking from "../pages/user/EvTestBooking";
 import ThankYou from "../pages/user/ThankYou";
 import Booking from "../pages/user/Booking";
+import Checkout from "../pages/user/Checkout";
 
 const UserRouters = () => {
   return (
@@ -23,6 +24,7 @@ const UserRouters = () => {
         <Route path="/ev-test-booking" element={<EvTestBooking />}></Route>
         <Route path="/booking" element={<Booking/>}></Route>
         <Route path="/ev-thank" element={<ThankYou />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="signup" element={<Signup />}></Route>
       </Routes>

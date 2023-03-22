@@ -1,6 +1,6 @@
 import React from "react";
 import DealerHeader from "../../components/header/DealerHeader";
-import "./DealerDashboard.css";
+import "../../style/dealerDashboard.css";
 const DealerDashboard = () => {
   return (
     <div className="dealerBody">

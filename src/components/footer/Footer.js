@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
-import "../header/header.css";
+import "../../style/header.css";
 function Footer() {
   const navigate = useNavigate();
   return (

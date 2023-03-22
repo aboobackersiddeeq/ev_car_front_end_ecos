@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { firebaseContext } from "../../../context/firebaseContext";
+import { firebaseContext } from "../../../context/FirebaseContext";
 import swal from "sweetalert";
 import "../login/Login.css";
 import { collection, addDoc } from "firebase/firestore/lite";

@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import "./header.css";
+import "../../style/header.css";
 import { useSelector } from "react-redux";
 import { AppContext } from "../../context/AppContext";
 function AdminHeader() {

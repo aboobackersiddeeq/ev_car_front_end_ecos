@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import "../src/style/index.css";
 import App from "./App";
 import { Provider } from "react-redux";
 import adminReducer from "./redux/admin";
 import dealerReducer from "./redux/Dealer";
 import productReducer from "./redux/product";
 import { BrowserRouter } from "react-router-dom";
-import { firebaseContext } from "./context/firebaseContext";
+import { firebaseContext } from "./context/FirebaseContext";
 import { auth, provider, app, db } from "./firebase/Firebase-config";
-import Context from "./context/firebaseContext";
+import Context from "./context/FirebaseContext";
 import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({
   reducer: {

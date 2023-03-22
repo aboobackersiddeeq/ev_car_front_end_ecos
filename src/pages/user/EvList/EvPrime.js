@@ -1,6 +1,6 @@
 import React from "react";
 import HeaderTwo from "../../../components/header/HeaderTwo";
-import "../../user/home.css";
+import "../../../style/home.css";
 
 const EvPrime = () => {
   return (

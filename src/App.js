@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "./context/firebaseContext";
+import { AuthContext } from "./context/FirebaseContext";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { AppContext } from "./context/AppContext";
 import axios from "./axios/axios";

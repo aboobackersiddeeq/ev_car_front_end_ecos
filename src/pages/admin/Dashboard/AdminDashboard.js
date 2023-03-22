@@ -1,6 +1,6 @@
 import React from "react";
 import AdminHeader from "../../../components/header/AdminHeader";
-import "./adminDashboard.css";
+import "../../../style/adminDashboard.css";
 import Button from "react-bootstrap/Button";
 import Footer from "../../../components/footer/Footer";
 const AdminDashboard = () => {
