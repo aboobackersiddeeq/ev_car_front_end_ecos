@@ -80,6 +80,7 @@ function Products() {
         });
     } else {
       setFormErrors(errors);
+      console.log(formErrors);
     }
   };
   const editHandile = async (e) => {
@@ -373,7 +374,7 @@ function Products() {
                 autoFocus
               />
             </Form.Group>
-            {Object.keys(formErrors).length === 0 && formErrors.image}
+            {Object.keys(formErrors).length !== 0 && <span style={{color:'red'}}>{Object.values(formErrors)[0]}</span> }
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
@@ -470,6 +471,7 @@ function Products() {
                 required
               />
             </Form.Group>
+            {Object.keys(formErrors).length !== 0 && <span style={{color:'red'}}>{Object.values(formErrors)[0]}</span> }
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>

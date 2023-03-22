@@ -235,7 +235,6 @@ const TestDriveForm = () => {
                 <span className="msg">{formErrors.checked}</span>
               )}
             </div>
-            {/* <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Default checkbox' /> */}
             <div className="registerBtn capthcbtnsub">
               <div className="regFormBtn captchaForm nwcaptichWrap">
                 <div className="g-recaptcha " id="g-recaptcha"></div>

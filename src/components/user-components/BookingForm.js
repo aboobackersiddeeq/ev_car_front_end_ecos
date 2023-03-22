@@ -155,7 +155,7 @@ const BookingForm = (props) => {
                 </div>
               </div>
               <div className="regFormBtn  ">
-                <button className="nexon-btn h-checkout   ">CHECKOUT</button>
+                <button className="nexon-btn h-checkout ">CHECKOUT</button>
               </div>
             </div>
 
