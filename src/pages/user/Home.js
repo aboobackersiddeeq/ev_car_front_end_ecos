@@ -1,16 +1,16 @@
-import React from 'react'
-import HeaderTwo from '../../component/Header/HeaderTwo'
-import './home.css'
+import React from "react";
+import HeaderTwo from "../../component/header/HeaderTwo";
+import "./home.css";
 
 const Home = () => {
   return (
     <>
-    <HeaderTwo/>
-    <div>
-        <img className='nexonEv'   src="../../../Images/nexonEv.jpg" alt=""/>
-    </div>
+      <HeaderTwo />
+      <div>
+        <img className="nexonEv" src="../../../Images/nexonEv.jpg" alt="" />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

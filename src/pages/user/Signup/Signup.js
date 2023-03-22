@@ -1,71 +1,75 @@
+import React, { useContext, useState } from "react";
+import { firebaseContext } from "../../../context/FirebaseContext";
+import swal from "sweetalert";
+import "../../user/Login/Login.css";
+import { collection, addDoc } from "firebase/firestore/lite";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
-import React, { useContext, useState } from 'react';
-import { firebaseContext } from '../../../context/firebaseContext';
-// import Logo from '../../public/images/';
-import '../../user/Login/Login.css';
-import {  collection, addDoc} from 'firebase/firestore/lite';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword ,updateProfile} from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
- 
 function Signup() {
- 
-  
-  const [email,setEmail]=useState('')
-  const [password,setPassword]=useState('')
-  const [name,setName]=useState('')
-  const [phone,setPhone]=useState('')
-  const {db} =useContext(firebaseContext)
-  const Collection = collection(db,'user');
-  const navigate =useNavigate()
-  const handleSubmit=(e)=>{
-    e.preventDefault()
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const { db } = useContext(firebaseContext);
+  const Collection = collection(db, "user");
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     let id;
     const auth = getAuth();
     console.log(auth);
     createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        await updateProfile(auth.currentUser, { displayName: name }).catch(
+          (err) => swal(err)
+        );
+        id = userCredential.user;
+      })
+      .then(() => {
+        addDoc(Collection, {
+          userid: id.uid,
+          name: name,
+          phone: phone,
+        });
+      })
+      .then(() => {
+        navigate("/");
+      })
 
-  .then( async(userCredential) => {
-    await updateProfile(auth.currentUser, { displayName: name }).catch(
-      (err) => console.log(err,'nan error')
-    )
-    id = userCredential.user;
-  }).then(()=>{
-     addDoc(Collection,{
-      userid: id.uid,
-      name:name,
-      phone:phone  
-    }) 
-  }).then(()=>{   
-        navigate('/')
-    })
- 
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert(error.message)
-    // ..
-  });
-    
-  }
+      .catch((error) => {
+        swal(error.message);
+      });
+  };
   return (
     <div>
       <div className="loginParentDiv">
-        <img width="200px" height="200px" className='logo' src='../../../Images/ecosLogo2.png'></img>
+        <img
+        alt="ecos logo"
+          width="200px"
+          height="200px"
+          className="logo"
+          src="../../../Images/ecosLogo2.png"
+        ></img>
         <h6>Sign Up</h6>
-        
-        <hr/>
+
+        <hr />
         <form onSubmit={handleSubmit}>
-        <label htmlFor="fname">Username</label>
+          <label htmlFor="fname">Username</label>
           <br />
           <input
             className="input"
             type="text"
             value={name}
-            onChange={(e)=>setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             id="fname"
             name="name"
             required={true}
-            placeholder='Username'
+            placeholder="Username"
             defaultValue="John"
           />
           <br />
@@ -77,12 +81,11 @@ function Signup() {
             value={phone}
             required={true}
             minLength={10}
-            onChange={(e)=>setPhone(e.target.value)}
+            onChange={(e) => setPhone(e.target.value)}
             id="lname"
             name="phone"
-            placeholder='Ph:8137020393'
+            placeholder="Ph:8137020393"
             defaultValue="Phone"
-            
           />
           <br />
           <label htmlFor="fname">Email</label>
@@ -92,9 +95,9 @@ function Signup() {
             type="email"
             id="fname"
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             name="email"
-            placeholder='Email'
+            placeholder="Email"
             required={true}
             defaultValue="John"
           />
@@ -106,15 +109,15 @@ function Signup() {
             type="password"
             id="lname"
             value={password}
-            onChange={(e)=>setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             name="password"
             required={true}
-            placeholder='Password'
+            placeholder="Password"
             minLength={6}
           />
           <br />
           <br />
-          <button className='loginButton'>Login</button>
+          <button className="loginButton">Login</button>
         </form>
 
         {/* <a onClick={()=>history.push('/signup')}>Signup</a> */}
@@ -124,4 +127,3 @@ function Signup() {
 }
 
 export default Signup;
-

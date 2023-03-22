@@ -1,14 +1,9 @@
 import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../component/Header/AdminHeader";
+import AdminHeader from "../../../component/header/AdminHeader";
 import { Form, Button } from "react-bootstrap";
 import Footer from "../../../component/footer/Footer";
-import swal from "sweetalert";
-import { useState } from "react";
- 
-function TestDriveBooking() {
-    const addHandler=()=>{
 
-    }
+function TestDriveBooking() {
   return (
     <div>
       <div>
@@ -32,7 +27,7 @@ function TestDriveBooking() {
               </Form>
             </div>
             <div className="col-md-3">
-              <Button  variant="outline-dark">Download</Button>
+              <Button variant="outline-dark">Download</Button>
             </div>
           </div>
         </div>
@@ -55,7 +50,7 @@ function TestDriveBooking() {
                 <td>Table cell</td>
                 <td>Table cell</td>
                 <td>Table cell</td>
-                <td>  dd </td>
+                <td> dd </td>
               </tr>
               <tr>
                 <td>2</td>
@@ -85,7 +80,7 @@ function TestDriveBooking() {
           </Table>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

@@ -1,84 +1,74 @@
-.OffcanvasBody{
-    color: rgb(189, 184, 29);
-    width: 30px;
+.OffcanvasBody {
+  color: rgb(189, 184, 29);
+  width: 30px;
 }
-.justify-content-end{
-    color: blue;
-   
+.justify-content-end {
+  color: blue;
 }
 .offcanvas.offcanvas-end {
-    width: 40%;
-    /* width: max-content; */
+  width: 40%;
 }
 @media (min-width: 767px) {
-    .hidden {
-      display: none;
-    }
+  .hidden {
+    display: none;
   }
-  @media (max-width: 767px) {
-    .navup {
-      display: none;
-      
-    }
+}
+@media (max-width: 767px) {
+  .navup {
+    display: none;
   }
+}
+.navup {
+  height: 30px;
+  width: 100%;
+  background-color: rgb(14, 13, 13);
+  color: white;
+  text-align: right;
+}
+.parentNav {
+  position: fixed;
+  width: 100%;
+}
+span {
+  margin-left: 25px;
+  cursor: pointer;
+}
+#middleSpan {
+  color: rgb(24, 222, 183);
+  margin-left: 0%;
+}
+#endSpan {
+  margin-right: 20px;
+}
+.book-now {
+  font-size: large;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+  background-color: #00adba;
+  border-color: rgb(78, 183, 26);
+  border-top: none;
 
-  .navup{
-    height: 30px;
-    width: 100%;
-    background-color: rgb(14, 13, 13);
-    color: white;
-    text-align: right;
-    
-}
-.parentNav{
-    position: fixed;
-    width: 100%;
-}
-span{
-    margin-left: 25px;
-    cursor: pointer;
-   
-}#middleSpan{
-    color: rgb(24, 222, 183);
-    margin-left: 0%;
-}
-#endSpan{
-    margin-right: 20px;
-}
-.book-now{
-    font-size: large;
-    font-weight: 400;
-    color: rgb(255, 255, 255);
-    background-color:#00ADBA;
-    border-color: rgb(78, 183, 26);
-    border-top:none ;
-    
-    margin-left: 3px;
-      
-    position: relative;
-    
+  margin-left: 3px;
 
- 
+  position: relative;
 }
-.navbar-nav .nav-link.active, .navbar-nav .show>.nav-link,.book-now.nav-link.active {
-    /* color:white ; */
-    text-decoration-line: underline;
+.navbar-nav .nav-link.active,
+.navbar-nav .show > .nav-link,
+.book-now.nav-link.active {
+  text-decoration-line: underline;
 }
-.nav-link:hover{
-    color: rgb(255, 255, 255);
-    background-color: #0d7e86;
+.nav-link:hover {
+  color: rgb(255, 255, 255);
+  background-color: #0d7e86;
 }
-.navbar{
-    box-shadow: 7px 1px 10px;
-    /* position: fixed; */
-    width: 100%;
-}.nexon-ev{
-    /* text-align: center; */
-    margin-right:20px;
+.navbar {
+  box-shadow: 7px 1px 10px;
+  width: 100%;
 }
-.nexon-ev:active{
-    color: black; 
+.nexon-ev { 
+  margin-right: 20px;
 }
- /* .nexon-ev.active .nexon-ev::before {
-    background-color: rgb(249, 253, 253);
-    content: "";} */
+.nexon-ev:active {
+  color: black;
+}
+

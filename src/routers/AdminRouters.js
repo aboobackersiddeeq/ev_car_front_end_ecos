@@ -1,26 +1,28 @@
 import React, { useContext } from "react";
 import { Route, Routes } from "react-router-dom";
-import Products from "../pages/admin/AdminProducts/Products";
-import Booking from "../pages/admin/Booking/Booking";
-import TestDriveBooking from "../pages/admin/Booking/TestDriveBooking";
-import Community from "../pages/admin/Community/Community";
+import Products from "../pages/admin/admin-products/Products";
+import Booking from "../pages/admin/booking/Booking";
+import TestDriveBooking from "../pages/admin/booking/TestDriveBooking";
+import Community from "../pages/admin/community/Community";
 import Dealers from "../pages/admin/Dealers/Dealers";
 import AdminUser from "../pages/admin/user-management/AdminUser";
 import AdminLogin from "../pages/admin/AdminLogin";
 import AdminDashboard from "../pages/admin/Dashboard/AdminDashboard";
-import {AppContext} from '../context/AppContext'
+import { AppContext } from "../context/AppContext";
 const AdminRouters = () => {
-   const{adminLoginStatus}  = useContext(AppContext)
+  const { adminLoginStatus } = useContext(AppContext);
   return (
     <>
       <Routes>
         <Route
-          path="/admin/login" exact
-          element={!adminLoginStatus ?  <AdminLogin /> : <AdminDashboard />}
+          path="/admin/login"
+          exact
+          element={!adminLoginStatus ? <AdminLogin /> : <AdminDashboard />}
         ></Route>
         <Route
-          path="/admin" exact
-          element={adminLoginStatus ?  <AdminDashboard /> : <AdminLogin />}
+          path="/admin"
+          exact
+          element={adminLoginStatus ? <AdminDashboard /> : <AdminLogin />}
         ></Route>
         {adminLoginStatus && (
           <>

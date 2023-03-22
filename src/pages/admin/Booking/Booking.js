@@ -1,14 +1,9 @@
 import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../component/Header/AdminHeader";
+import AdminHeader from "../../../component/header/AdminHeader";
 import { Form, Button } from "react-bootstrap";
 import Footer from "../../../component/footer/Footer";
-import swal from "sweetalert";
-import { useState } from "react";
- 
-function Booking() {
-    const addHandler=()=>{
 
-    }
+function Booking() { ;
   return (
     <div>
       <div>
@@ -32,7 +27,7 @@ function Booking() {
               </Form>
             </div>
             <div className="col-md-3">
-              <Button  variant="outline-dark">Download</Button>
+              <Button variant="outline-dark">Download</Button>
             </div>
           </div>
         </div>
@@ -56,7 +51,7 @@ function Booking() {
                 <td>Table cell</td>
                 <td>Table cell</td>
                 <td>Table cell</td>
-                <td>  dd </td>
+                <td> dd </td>
               </tr>
               <tr>
                 <td>2</td>
@@ -86,7 +81,7 @@ function Booking() {
           </Table>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

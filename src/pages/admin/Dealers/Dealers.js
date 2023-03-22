@@ -1,22 +1,19 @@
 import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../component/Header/AdminHeader";
-import { Form, Button,Modal } from "react-bootstrap";
+import AdminHeader from "../../../component/header/AdminHeader";
+import { Form, Button, Modal } from "react-bootstrap";
 import Footer from "../../../component/footer/Footer";
-import swal from "sweetalert";
 import { useState } from "react";
-import { Trash, PencilSquare} from 'react-bootstrap-icons';
+import { Trash, PencilSquare } from "react-bootstrap-icons";
 function Dealers() {
-    const [show, setShow] = useState(false);
-    const [image, setImage]=useState('')
-    const [price, setPrice]=useState('')
-    const [color, setColor]=useState('')
-    const [bookingPrice, setBookingPrice]=useState('')
-    const [productName, setProductName]=useState('')
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const addHandler=()=>{
-
-    }
+  const [show, setShow] = useState(false);
+  const [image, setImage] = useState("");
+  const [price, setPrice] = useState("");
+  const [color, setColor] = useState("");
+  const [bookingPrice, setBookingPrice] = useState("");
+  const [productName, setProductName] = useState("");
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const addHandler = () => {};
   return (
     <div>
       <div>
@@ -40,7 +37,9 @@ function Dealers() {
               </Form>
             </div>
             <div className="col-md-3">
-              <Button onClick={handleShow} variant="outline-dark">Add Product</Button>
+              <Button onClick={handleShow} variant="outline-dark">
+                Add Product
+              </Button>
             </div>
           </div>
         </div>
@@ -63,7 +62,11 @@ function Dealers() {
                 <td>Table cell</td>
                 <td>Table cell</td>
                 <td>Table cell</td>
-                <td> <PencilSquare onClick={handleShow}/><Trash/>  </td>
+                <td>
+                  {" "}
+                  <PencilSquare onClick={handleShow} />
+                  <Trash />{" "}
+                </td>
               </tr>
               <tr>
                 <td>2</td>
@@ -100,7 +103,7 @@ function Dealers() {
         <Form onSubmit={addHandler}>
           <Modal.Body>
             <img
-              src={image ? URL.createObjectURL(image) : ''}
+              src={image ? URL.createObjectURL(image) : ""}
               alt="Posts"
               width="200px"
               height="200px"

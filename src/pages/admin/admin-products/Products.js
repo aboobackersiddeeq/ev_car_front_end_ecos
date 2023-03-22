@@ -1,30 +1,35 @@
 import Table from "react-bootstrap/Table";
-import AdminHeader from "../../../component/Header/AdminHeader";
-import {  Form, Button, Modal } from "react-bootstrap";
+import AdminHeader from "../../../component/header/AdminHeader";
+import { Form, Button, Modal } from "react-bootstrap";
 import Footer from "../../../component/footer/Footer";
 import swal from "sweetalert";
 import { useEffect, useState } from "react";
 import { Trash, PencilSquare } from "react-bootstrap-icons";
 import axios from "../../../axios/axios";
-import { product } from "../../../redux/product";
+import { product } from "../../../redux/Product";
 import { useDispatch } from "react-redux";
 import Multiselect from "multiselect-react-dropdown";
- 
+
 function Products() {
   const [searchTerm, setSearchTerm] = useState("");
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [products, setproduct] = useState("");
   const [editId, changeId] = useState("");
-  const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [imageTemb, setImageTemb] = useState("");
   const [color, setColor] = useState([]);
   const [bookingPrice, setBookingPrice] = useState("");
   const [productName, setProductName] = useState("");
-  const [options, setOptions] = useState(["Blue", "Black", "Red"]);
+  const [options] = useState(["Blue", "Black", "Red"]);
   const dispatch = useDispatch(product);
   const handleClose = () => setShow(false);
-  const handleCloseEdit = () => setShowEdit(false);
+  const handleCloseEdit = () => {
+    setImageTemb("");
+    setImage("");
+    setShowEdit(false);
+  };
   const handleShow = () => {
     setImage("");
     setPrice("");
@@ -34,14 +39,15 @@ function Products() {
     setShow(true);
   };
 
-  const handleShowEdit = (index, id) => {
+  const handleShowEdit = async (index, id) => {
+    await setShowEdit(true);
     changeId(id);
-    setShowEdit(true);
     setPrice(products[index].price);
-    setColor(products[index].color);
-    setImage(product[index].image)
     setProductName(products[index].productName);
     setBookingPrice(products[index].bookingPrice);
+    setColor(products[index].color);
+    setImageTemb(products[index].image);
+    console.log(color, "handileshow edit");
   };
   const toBase64 = (image) =>
     new Promise((resolve, reject) => {
@@ -55,7 +61,7 @@ function Products() {
   const addHandler = async (e) => {
     e.preventDefault();
     const imgBase = await toBase64(image);
-    console.log(imgBase);
+
     axios
       .post("/admin/add-product", {
         img: imgBase,
@@ -70,15 +76,20 @@ function Products() {
         setShow(false);
       });
   };
-  const editHandile = () => {
+  const editHandile = async (e) => {
+    e.preventDefault();
     console.log(editId);
+    const imgBase = await toBase64(image);
     axios
       .post(
-        "/admin/edit_user",
+        "/admin/edit-product",
         {
-          // username: name,
-          // email: email,
-          // editId: editId,
+          editId,
+          img: imgBase,
+          price,
+          color,
+          bookingPrice,
+          productName,
         },
         {
           headers: {
@@ -91,7 +102,8 @@ function Products() {
         swal("Poof! Your imaginary file has been Edited!", {
           icon: "success",
         });
-        setShow(false);
+        setShowEdit(false);
+        setImageTemb("");
       })
       .catch((err) => {
         swal(err.message);
@@ -139,7 +151,7 @@ function Products() {
       console.log(response.data.result);
       setproduct(response.data.result);
     });
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <div>
@@ -186,10 +198,10 @@ function Products() {
               </tr>
             </thead>
             <tbody>
-              {products && 
-                  products
-                  .filter((val,i,arr) => {
-                    if (searchTerm == "" || /^\s*$/.test(searchTerm)) {
+              {products &&
+               // eslint-disable-next-line
+                products.filter((val, i, arr) => {
+                    if (searchTerm === "" || /^\s*$/.test(searchTerm)) {
                       return val;
                     } else if (
                       val.productName
@@ -205,39 +217,34 @@ function Products() {
                     ) {
                       return val;
                     }
-                    else {
-
-                      return  ;
-                    }
                   })
                   .map((element, index) => {
-                   
                     return (
                       <>
-                      
-                      <tr key={element._id}>
-                        <td>{index}</td>
-                        <td>
-                          <img
-                            src={element.image}
-                            alt="No image"
-                            height="50px"
+                        <tr key={element._id}>
+                          <td>{index}</td>
+                          <td>
+                            <img
+                              src={element.image}
+                              alt="Product"
+                              height="50px"
                             />
-                        </td>
-                        <td>{element.productName}</td>
-                        <td>{element.price}</td>
-                        <td>{element.bookingPrice}</td>
-                        <td>{element.color.join()}</td>
-                        <td>
-                          <PencilSquare onClick={() =>handleShowEdit(index,element._id)} className="m-2" />
-                          <Trash onClick={() => deleteProduct(element._id)} />
-                        </td>
-                      </tr> 
-                            </>
-                      
+                          </td>
+                          <td>{element.productName}</td>
+                          <td>{element.price}</td>
+                          <td>{element.bookingPrice}</td>
+                          <td>{element.color.join()}</td>
+                          <td>
+                            <PencilSquare
+                              onClick={() => handleShowEdit(index, element._id)}
+                              className="m-2"
+                            />
+                            <Trash onClick={() => deleteProduct(element._id)} />
+                          </td>
+                        </tr>
+                      </>
                     );
-                    
-                  }) }
+                  })}
             </tbody>
           </Table>
         </div>
@@ -312,7 +319,7 @@ function Products() {
               <Form.Label>Booking Price</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Product Price"
+                placeholder="Booking Price"
                 value={bookingPrice}
                 onChange={(e) => setBookingPrice(e.target.value)}
                 autoFocus
@@ -329,8 +336,8 @@ function Products() {
           </Modal.Footer>
         </Form>
       </Modal>
-     
-     {/* Edit Modal */}
+
+      {/* Edit Modal */}
       <Modal show={showEdit} onHide={handleCloseEdit}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Product</Modal.Title>
@@ -338,7 +345,7 @@ function Products() {
         <Form onSubmit={editHandile}>
           <Modal.Body>
             <img
-              src={image ? URL.createObjectURL(image) : ""}
+              src={image ? URL.createObjectURL(image) ?? "" : imageTemb}
               alt="Posts"
               width="200px"
               height="200px"
@@ -378,6 +385,8 @@ function Products() {
                   onRemove={(event) => {
                     setColor(event);
                   }}
+                  OnValue={color}
+                  // displayValue="color"
                   onSelect={(event) => {
                     setColor(event);
                   }}

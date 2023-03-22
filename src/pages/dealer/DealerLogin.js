@@ -24,7 +24,6 @@ function DealerLogin() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { setDealerLoginStatus } = useContext(AppContext);
- 
   const handleLogin = (e) => {
     e.preventDefault();
     axios
@@ -33,8 +32,6 @@ function DealerLogin() {
         if (!response.data.auth) {
           swal(response.data.message);
         } else {
-          console.log(response.data);
-          // dispatch(adminlogin(response.data));
           localStorage.setItem("dealertoken", response.data.token);
           swal("success", response.data.message, "success");
 
@@ -94,8 +91,6 @@ function DealerLogin() {
           <br />
           <button className="loginButton">Login</button>
         </form>
-
-        {/* <a onClick={navigate('/signup')}>Signup</a> */}
       </div>
     </div>
   );
