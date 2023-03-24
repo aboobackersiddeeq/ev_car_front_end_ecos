@@ -7,25 +7,28 @@
   margin-left: -1px;
 }
 .contantBody {
-  padding-top: 100px;
+  padding-top: 65px;
 }
 .badgeButton {
   width: 20%;
-  height: 70px;
+ 
+  border: none;
   text-align: left;
   margin-left: 50px;
-  color: #fff;
+  color: #2DD4BF;
+ border-radius: 0%;
+ background-color:#f5f5f5;
 }
 .side-content-div {
   /* background-color: aquamarine; */
-  height: 500px;
+  padding-top: -30px;
 }
 .badge {
   padding: 10px;
 }
 .admincar-img {
-  width: 100%;
-  height: 500px;
+  width: 85%;
+  /* height: 700px; */
   /* margin-left: 10px; */
 
   /* position: absolute;
@@ -42,4 +45,22 @@
 }
 .head-contant {
   font-weight: 700;
+}.chart{
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+ 
+}.notification-content{
+  text-align: center;
+   
+}#drive-what-is{
+  position: 'absolute';
+                top: '30%';
+                left: '50%';
+                transform: 'translate(-50%, -50%)';
+                color: '#fff';
+                font-size: '2rem';
+}.charts{
+  /* background-color:#f5f5f5 ; */
 }

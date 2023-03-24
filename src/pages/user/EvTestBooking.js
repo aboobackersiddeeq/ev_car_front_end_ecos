@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderTwo from '../../components/header/HeaderTwo';
 import TestDriveForm from '../../components/user-components/TestDriveForm';
-import './evList/evTestBooking.css';
+import '../../style/evTestBooking.css';
 const EvTestBooking = () => {
   return (
     <div className="bg-light parent">

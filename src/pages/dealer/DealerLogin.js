@@ -16,7 +16,6 @@ import { AppContext } from '../../context/AppContext';
 function DealerLogin() {
   const handleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
-      console.log(data);
     });
   };
 

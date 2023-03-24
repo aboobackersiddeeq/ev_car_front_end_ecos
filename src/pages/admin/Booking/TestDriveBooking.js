@@ -91,7 +91,7 @@ function TestDriveBooking() {
                 {filterData.map((element, index) => {
                   return (
                     <tr key={element._id}>
-                      <td>{index}</td>
+                      <td>{index+1}</td>
                       <td>{element.updatedAt}</td>
                       <td>{element.name}</td>
                       <td>{element.phone}</td>

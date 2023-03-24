@@ -22,9 +22,11 @@
     "react-google-button": "^0.7.2",
     "react-google-recaptcha": "^2.1.0",
     "react-hot-toast": "^2.4.0",
+    "react-razorpay": "^1.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "recharts": "^2.5.0",
     "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4"
   },

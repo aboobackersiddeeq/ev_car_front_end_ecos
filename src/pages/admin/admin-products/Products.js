@@ -6,9 +6,10 @@ import swal from 'sweetalert';
 import { useEffect, useState } from 'react';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
 import axios from '../../../axios/axios';
-import { product } from '../../../redux/product';
+import { product } from '../../../redux/Product';
 import { useDispatch } from 'react-redux';
 import Multiselect from 'multiselect-react-dropdown';
+import { toast } from 'react-hot-toast';
 
 function Products() {
   const [show, setShow] = useState(false);
@@ -47,7 +48,6 @@ function Products() {
     setBookingPrice(products[index].bookingPrice);
     setColor(products[index].color);
     setImageTemb(products[index].image);
-    console.log(color, 'handileshow edit');
   };
   const toBase64 = (image) =>
     new Promise((resolve, reject) => {
@@ -56,7 +56,7 @@ function Products() {
       reader.onload = () => resolve(reader.result);
       reader.onerror = (error) => reject(error);
     }).catch((err) => {
-      console.log(err);
+      toast.error(err.message);
     });
   const addHandler = async (e) => {
     e.preventDefault();
@@ -80,12 +80,10 @@ function Products() {
         });
     } else {
       setFormErrors(errors);
-      console.log(formErrors);
     }
   };
   const editHandile = async (e) => {
     e.preventDefault();
-    console.log(editId);
     const imgBase = await toBase64(image);
     axios
       .post(
@@ -143,7 +141,6 @@ function Products() {
             });
           })
           .catch((err) => {
-            console.log(err);
             swal(err.message);
           });
       } else {
@@ -203,10 +200,26 @@ function Products() {
       errors.color = 'Please choose minimum one color';
     }
     if (!image) {
-      errors.bookingPrice = 'Image is required';
+      errors.image = 'Image is required';
     }
 
     return errors;
+  };
+  const handleFileUpload = (event) => {
+    const selectedFile = event.target.files[0];
+    const allowedExtensions = /(\.png|\.jpg|\.jpeg)$/i;
+    // validate file
+    if (!allowedExtensions.exec(selectedFile.name)) {
+      toast.error('Please upload a PNG, JPG, or JPEG image.');
+      setImage('');
+      return;
+    } else if (selectedFile.size > 1 * 1024 * 1024) {
+      toast.error('Please upload a file smaller than 1MB.');
+      setImage('');
+      return;
+    } else {
+      setImage(selectedFile);
+    }
   };
 
   return (
@@ -311,7 +324,7 @@ function Products() {
                 required
                 type="file"
                 accept="image/*"
-                onChange={(e) => setImage(e.target.files[0])}
+                onChange={handleFileUpload}
                 autoFocus
               />
             </Form.Group>
@@ -374,7 +387,11 @@ function Products() {
                 autoFocus
               />
             </Form.Group>
-            {Object.keys(formErrors).length !== 0 && <span style={{color:'red'}}>{Object.values(formErrors)[0]}</span> }
+            {Object.keys(formErrors).length !== 0 && (
+              <span style={{ color: 'red' }}>
+                {Object.values(formErrors)[0]}
+              </span>
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
@@ -406,7 +423,7 @@ function Products() {
               <Form.Control
                 type="file"
                 accept="image/*"
-                onChange={(e) => setImage(e.target.files[0])}
+                onChange={handleFileUpload}
                 autoFocus
               />
             </Form.Group>
@@ -471,7 +488,11 @@ function Products() {
                 required
               />
             </Form.Group>
-            {Object.keys(formErrors).length !== 0 && <span style={{color:'red'}}>{Object.values(formErrors)[0]}</span> }
+            {Object.keys(formErrors).length !== 0 && (
+              <span style={{ color: 'red' }}>
+                {Object.values(formErrors)[0]}
+              </span>
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCloseEdit}>

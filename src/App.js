@@ -4,7 +4,7 @@ import { AuthContext } from './context/FirebaseContext';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { AppContext } from './context/AppContext';
 import axios from './axios/axios';
-import { adminlogin } from './redux/admin';
+import { adminlogin } from './redux/Admin';
 import { useDispatch } from 'react-redux';
 import AdminRouters from './routers/AdminRouters';
 import UserRouters from './routers/UserRouters';
@@ -14,6 +14,7 @@ import { Toaster } from 'react-hot-toast';
 function App() {
   const [adminLoginStatus, setAdminLoginStatus] = useState(false);
   const [dealerLoginStatus, setDealerLoginStatus] = useState(false);
+  const [bookingData, setBookingData] = useState({});
   const { setUser } = useContext(AuthContext);
   const dispatch = useDispatch(adminlogin);
   useEffect(() => {
@@ -49,6 +50,8 @@ function App() {
           setAdminLoginStatus,
           dealerLoginStatus,
           setDealerLoginStatus,
+          bookingData,
+          setBookingData,
         }}
       >
         <Toaster position="top-center" reverseOrder={false} />

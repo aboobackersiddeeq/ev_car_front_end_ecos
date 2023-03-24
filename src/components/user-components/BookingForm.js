@@ -1,33 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../../style/booking.css';
 import axios from '../../axios/axios';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import { toast } from 'react-hot-toast';
+import { AppContext } from '../../context/AppContext';
 
 const BookingForm = (props) => {
   const navigate = useNavigate();
   const [product, setProduct] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
-
-  const [selectedModal, setModal] = useState('');
+  const [selectedModel, setModal] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
-  const [color, setColor] = useState([]);
+  const [colors, setColor] = useState([]);
   const [price, setPrice] = useState('');
-
+  const [bookingPrice, setBookingPrice] = useState('');
   const [isActive, setIsActive] = useState(0);
-
   const [formErrors, setFormErrors] = useState({});
+  const { setBookingData } = useContext(AppContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const errors = validate();
     if (Object.keys(errors).length === 0) {
       // Submit the form data
+      const data = {};
+      data.price = price;
+      data.color = selectedColor;
+      data.model = selectedModel;
+      data.bookingPrice = bookingPrice;
       setFormErrors(errors);
-      axios.post('/test-drive', {}).then(() => {
-        navigate('/ev-thank');
-      });
+      setBookingData(data);
+      navigate('/checkout');
     } else {
       setFormErrors(errors);
     }
@@ -41,9 +45,10 @@ const BookingForm = (props) => {
           setProduct(response.data.result);
           setActiveIndex(0);
           setPrice(pro[0].price);
+          setBookingPrice(pro[0].bookingPrice);
           setModal(pro[0].productName);
           setColor(pro[0].color);
-          setSelectedColor(color[0]);
+          setSelectedColor(pro[0].color[0]);
           props.onData(pro[0].image);
         })
         .catch((error) => {
@@ -52,30 +57,28 @@ const BookingForm = (props) => {
     } catch (err) {
       toast.error('Network error');
     }
+    // eslint-disable-next-line
   }, []);
-
-  const handleElement = (index) => {
+  function handleElement(index) {
     setActiveIndex(index);
     setPrice(product[index].price);
+    setBookingPrice(product[index].bookingPrice);
     setModal(product[index].productName);
     props.onData(product[index].image);
     setColor(product[index].color);
-  };
+  }
 
   const handilecolor = (index) => {
-    console.log(index);
     setIsActive(index);
-    console.log(color[index], 'color');
-    setSelectedColor(color[index]);
-    console.log(selectedColor, index);
+    setSelectedColor(colors[index]);
   };
 
-  const validate = (data) => {
+  const validate = () => {
     const errors = {};
-    if (!data.color) {
+    if (!colors) {
       errors.color = 'Please choose your color';
     }
-    if (!data.model) {
+    if (!selectedModel) {
       errors.model = 'Please choose your modal';
     }
     return errors;
@@ -117,8 +120,8 @@ const BookingForm = (props) => {
             <div className="col-md-12"></div>
 
             <div className="peracard">
-              {color &&
-                color.map((element, index) => {
+              {colors &&
+                colors.map((element, index) => {
                   return (
                     <Card
                       key={element}
@@ -146,7 +149,7 @@ const BookingForm = (props) => {
             <div>
               <div className="bookingPara">
                 <div className="booking-amount">
-                  <h3>$ 21,000</h3>
+                  <h3>$ {bookingPrice}</h3>
                   <p>Booking Amount</p>
                 </div>
                 <div className="booking-amount">
@@ -168,7 +171,9 @@ const BookingForm = (props) => {
           </div>
         </form>
         <div className="messageError">
-        {Object.keys(formErrors).length !== 0 && <span style={{color:'red'}}>{Object.values(formErrors)[0]}</span> }
+          {Object.keys(formErrors).length !== 0 && (
+            <span>{Object.values(formErrors)[0]}</span>
+          )}
         </div>
       </div>
     </div>
