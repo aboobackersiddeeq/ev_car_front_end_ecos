@@ -8,11 +8,13 @@ import { useSelector } from 'react-redux';
 import { AppContext } from '../../context/AppContext';
 function AdminHeader() {
   const navigate = useNavigate();
-  const { setDealerLoginStatus } = useContext(AppContext);
+  const { dealerLoginStatus,setDealerLoginStatus } = useContext(AppContext);
   const dealer = useSelector((state) => state.dealer.value);
   const logout = () => {
+    console.log('logout');
     localStorage.removeItem('dealertoken');
     setDealerLoginStatus(false);
+    console.log(dealerLoginStatus);
     navigate('/dealer');
   };
   return (
@@ -63,7 +65,7 @@ function AdminHeader() {
               {dealer && (
                 <Nav.Link
                   className="admin-heading"
-                  eventKey={7}
+                  eventKey={8}
                   onClick={logout}
                 >
                   Logout

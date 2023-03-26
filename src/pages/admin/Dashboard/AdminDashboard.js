@@ -1,7 +1,6 @@
 import React from 'react';
 import AdminHeader from '../../../components/header/AdminHeader';
 import '../../../style/adminDashboard.css';
-import Button from 'react-bootstrap/Button';
 import Footer from '../../../components/footer/Footer';
 import Chart from '../../../components/admin -components/Chart';
 const AdminDashboard = () => {
@@ -11,7 +10,7 @@ const AdminDashboard = () => {
         <AdminHeader />
         <div className=" adminbody contantBody row">
           <div
-            className="side-content-div col-md-3"
+            className="side-content-div col-lg-3"
             style={{ position: 'fixed' }}
           >
             <img
@@ -19,7 +18,7 @@ const AdminDashboard = () => {
               src="../../../Images/admincar.jpg"
               alt=""
             />
-            <div 
+            <div
               style={{
                 position: 'absolute',
                 top: '50%',
@@ -28,14 +27,15 @@ const AdminDashboard = () => {
                 color: '#fff',
                 fontSize: '2.2rem',
               }}
+              className="drive-what-is"
             >
-              Drive  What Drove Electric
+              Drive What Drove Electric
             </div>
           </div>
 
-          <div className="col-md-9 mr-left">
-            <div className="chart mt-4">
-              <div className="  badgeButton">
+          <div className="col-lg-9  bars-wraper  ">
+            <div className="chart mt-4 ">
+              <div className="  badgeButton ">
                 <div className="notification-content">
                   <h1>$00</h1>
                   <smal>Today Bookings</smal>
@@ -44,28 +44,36 @@ const AdminDashboard = () => {
               <div className="  badgeButton">
                 <div className="notification-content">
                   <h1>$00</h1>
-                  <smal>Today Bookings</smal>
+                  <smal>Today Test Drive Bookings</smal>
                 </div>
               </div>
               <div className="  badgeButton">
                 <div className="notification-content">
                   <h1>$00</h1>
-                  <smal>Today Bookings</smal>
+                  <smal>Total Revenue</smal>
                 </div>
               </div>
               <div className="  badgeButton">
                 <div className="notification-content">
                   <h1>$00</h1>
-                  <smal>Today Bookings</smal>
+                  <smal>Total Bookings</smal>
                 </div>
               </div>
             </div>
 
-            <Chart />
+            {/* <Chart /> */}
+            <div className="chart mt-4   ">
+              {' '}
+              <Chart />
+            </div>
+            <div className="chart mt-4   ">
+              {' '}
+              <Chart />
+            </div>
           </div>
         </div>
       </div>
-      <Footer />
+          <Footer />
     </div>
   );
 };

@@ -356,7 +356,7 @@ function Products() {
         <Form onSubmit={addHandler}>
           <Modal.Body>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Product Name</Form.Label>
+              <Form.Label>Dealer Name</Form.Label>
 
               <Form.Control
                 type="text"

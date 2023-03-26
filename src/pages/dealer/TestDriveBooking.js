@@ -1,10 +1,10 @@
 import Table from 'react-bootstrap/Table';
-import AdminHeader from '../../../components/header/AdminHeader';
+import DealerHeader from '../../components/header/DealerHeader';
 import { Form, Button } from 'react-bootstrap';
-import Footer from '../../../components/footer/Footer';
-import axios from '../../../axios/axios';
+import Footer from '../../components/footer/Footer';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
+import axios from '../../axios/axios';
 
 function TestDriveBooking() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,7 +45,7 @@ function TestDriveBooking() {
   return (
     <div>
       <div>
-        <AdminHeader />
+        <DealerHeader />
       </div>
       <div className="adminbody contantBody ">
         <div className="container">
@@ -92,7 +92,7 @@ function TestDriveBooking() {
                 {filterData.map((element, index) => {
                   return (
                     <tr key={element._id}>
-                      <td>{index+1}</td>
+                      <td>{index + 1}</td>
                       <td>{element.updatedAt}</td>
                       <td>{element.name}</td>
                       <td>{element.email}</td>

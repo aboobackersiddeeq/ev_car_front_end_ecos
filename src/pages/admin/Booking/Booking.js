@@ -2,10 +2,9 @@ import Table from 'react-bootstrap/Table';
 import AdminHeader from '../../../components/header/AdminHeader';
 import { Form, Button } from 'react-bootstrap';
 import Footer from '../../../components/footer/Footer';
-import axios from '../../../axios/axios'
+import axios from '../../../axios/axios';
 import swal from 'sweetalert';
 import { useEffect, useState } from 'react';
-
 
 function Booking() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -73,7 +72,7 @@ function Booking() {
           </div>
         </div>
         <div className="container p-5">
-        {filterData.length > 0 ? (
+          {filterData.length > 0 ? (
             <Table responsive="sm">
               <thead>
                 <tr>
@@ -93,8 +92,8 @@ function Booking() {
                 {filterData.map((element, index) => {
                   return (
                     <tr key={element._id}>
-                      <td>{index+1}</td>
-                      <td>{element.updatedAt.substring(0,10)}</td>
+                      <td>{index + 1}</td>
+                      <td>{element.updatedAt.substring(0, 10)}</td>
                       <td>{element.dealer}</td>
                       <td>{element.email}</td>
                       <td>{element.names}</td>
@@ -103,7 +102,6 @@ function Booking() {
                       <td>{element.state}</td>
                       <td>{element.city}</td>
                       <td>{element.status}</td>
-                 
                     </tr>
                   );
                 })}

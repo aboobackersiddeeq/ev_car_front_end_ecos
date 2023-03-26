@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-hot-toast';
 import swal from 'sweetalert';
 
-const Checkout = () => { 
+const Checkout = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [formErrors, setFormErrors] = useState({});
-  const [dealerData,setDealerData] =useState([])
+  const [dealerData, setDealerData] = useState([]);
   const handlePayment = async (params) => {
     const options = {
       key: 'rzp_test_wyOr3rz1W1Hsvd',
@@ -55,17 +55,20 @@ const Checkout = () => {
     });
   };
 
-  useEffect(()=>{
-    try{
-    axios.get('get-dealer',{}).then((response)=>{
-         setDealerData(response.data.result)
-    }).catch((error)=>{
-      toast.error(error.message)
-    })
-  }catch(error){
-    toast.error(error.message)
-  }
-  },[])
+  useEffect(() => {
+    try {
+      axios
+        .get('get-dealer', {})
+        .then((response) => {
+          setDealerData(response.data.result);
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }, []);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -97,7 +100,6 @@ const Checkout = () => {
           } else if (response.data.status === 'Pending') {
             handlePayment(response.data.orderId);
             toast.error(response.data.message);
-            
           }
         })
         .catch((error) => {
@@ -184,8 +186,8 @@ const Checkout = () => {
               </li>
               <li className="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
-                  <h6 className="my-0">3.3 kW AC Charger Boxt</h6>
-                  <small className="text-muted">Brief description</small>
+                  <h6 className="my-0">3.3 kW AC Charger Box</h6>
+                  <small className="text-muted">Smart Connectivity</small>
                 </div>
                 <span className="text-muted">Included</span>
               </li>
@@ -375,12 +377,17 @@ const Checkout = () => {
                   value={formData.dealer}
                   onChange={handleInputChange}
                   required
-                > <option value=""> Select Dealer</option>
-                  {dealerData && dealerData.map((value,index)=>{
-                    return(
-                      <option value={value.dealerName}>{value.dealerName},{value.state},{ value.city}</option>
-                    )
-                  })}
+                >
+                  {' '}
+                  <option value=""> Select Dealer</option>
+                  {dealerData &&
+                    dealerData.map((value, index) => {
+                      return (
+                        <option value={value.dealerName}>
+                          {value.dealerName},{value.state},{value.city}
+                        </option>
+                      );
+                    })}
                 </select>
                 <div className="invalid-feedback">
                   Valid first name is required.

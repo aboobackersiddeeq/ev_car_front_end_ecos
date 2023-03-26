@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState,   } from 'react';
 
 import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../../firebase/Firebase-config';
@@ -6,7 +6,7 @@ import { signInWithPopup } from 'firebase/auth';
 
 // import { firebaseContext } from '../../store/context';
 // import Logo from '../../public/images/';
-import '../user/Login/Login.css';
+import '../user/login/Login.css';
 // import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -15,8 +15,7 @@ import { AppContext } from '../../context/AppContext';
 
 function DealerLogin() {
   const handleClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-    });
+    signInWithPopup(auth, provider).then((data) => {});
   };
 
   const [email, setEmail] = useState('');
@@ -46,7 +45,7 @@ function DealerLogin() {
   return (
     <div>
       <div className="loginParentDiv">
-        <img
+        <img alt='logo'
           width="200px"
           height="200px"
           className="logo"
