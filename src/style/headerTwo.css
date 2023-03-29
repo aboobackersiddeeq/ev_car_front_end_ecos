@@ -1,13 +1,13 @@
-.OffcanvasBody {
+/* .OffcanvasBody {
   color: rgb(189, 184, 29);
   width: 30px;
 }
 .justify-content-end {
   color: blue;
-}
-.offcanvas.offcanvas-end {
+} */
+/* .offcanvas.offcanvas-end {
   width: 40%;
-}
+} */
 @media (min-width: 767px) {
   .hidden {
     display: none;
@@ -30,8 +30,10 @@
   width: 100%;
   z-index: 20;
 }
-span {
+.sub-heading {
   margin-left: 25px;
+}
+span {
   cursor: pointer;
 }
 #middleSpan {
@@ -66,10 +68,9 @@ span {
   box-shadow: 7px 1px 10px;
   width: 100%;
 }
-.nexon-ev { 
+.nexon-ev {
   margin-right: 20px;
 }
 .nexon-ev:active {
   color: black;
 }
-

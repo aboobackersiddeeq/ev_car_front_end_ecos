@@ -12,8 +12,32 @@ import ThankYou from '../pages/user/ThankYou';
 import Booking from '../pages/user/Booking';
 import Checkout from '../pages/user/Checkout';
 import MapboxMap from '../pages/user/MapBox';
+// import Test from '../pages/user/Test';
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+import { useEffect } from 'react';
+import axios from '../axios/axios'
+import { userData } from '../redux/User';
+import { useDispatch } from 'react-redux';
 
 const UserRouters = () => {
+  const dispatch = useDispatch(userData);
+  const {setUserLoginStatus,userLoginStatus}=useContext(AppContext)
+  useEffect(() => {
+     
+    axios.get("/is-user-auth", {
+      headers: { "x-access-token": localStorage.getItem("usertoken") },
+    }).then((response)=>{
+      if(!response.data.auth){
+        setUserLoginStatus(false)
+      }else{
+        dispatch(userData(response.data))
+        setUserLoginStatus(true)
+         
+      }
+    })
+  },[userLoginStatus,setUserLoginStatus]);
+
   return (
     <>
       <Routes>
@@ -29,6 +53,7 @@ const UserRouters = () => {
         <Route path="login" element={<Login />}></Route>
         <Route path="signup" element={<Signup />}></Route>
         <Route path="/map" element={<MapboxMap />}></Route>
+        {/* <Route path="/maptest" element={<Test />}></Route> */}
       </Routes>
     </>
   );

@@ -1,17 +1,21 @@
 import React, { useContext, useState } from 'react';
 import { firebaseContext } from '../../../context/FirebaseContext';
 import swal from 'sweetalert';
-import '../login/Login.css';
+import '../../../style/login.css';
 import { collection, addDoc } from 'firebase/firestore/lite';
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from 'firebase/auth';
+import axios from '../../../axios/axios'
+import { AppContext } from '../../../context/AppContext';
+// import {
+//   getAuth,
+//   createUserWithEmailAndPassword,
+//   updateProfile,
+// } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 function Signup() {
   const [email, setEmail] = useState('');
+  const { setUserLoginStatus, userLoginStatus } = useContext(AppContext);
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -20,30 +24,66 @@ function Signup() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    let id;
-    const auth = getAuth();
-    console.log(auth);
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
-        await updateProfile(auth.currentUser, { displayName: name }).catch(
-          (err) => swal(err)
-        );
-        id = userCredential.user;
-      })
-      .then(() => {
-        addDoc(Collection, {
-          userid: id.uid,
-          name: name,
-          phone: phone,
+    if (
+      password === "" ||
+      phone === "" ||
+      email === "" ||
+      name === ""
+    ) {
+      swal("sorry!", "All fields are required!", "error");
+    }  else {
+      try{
+      axios
+        .post("/signup", {
+          username: name,
+          email: email,
+          password: password,
+          phone,
+        })
+        .then((response) => {
+         
+          if (response.data.status === "success") {
+            swal("SUCCESS", response.data.message, "success");
+            localStorage.setItem('usertoken', response.data.token);
+            setUserLoginStatus(true);
+            navigate("/");
+          } else {
+            swal("OOPS", response.data.message, "error");
+          }
         });
-      })
-      .then(() => {
-        navigate('/');
-      })
+      }catch(error){
+         toast(error.message)
+      }
+    }
 
-      .catch((error) => {
-        swal(error.message);
-      });
+
+
+
+
+    // let id;
+    // const auth = getAuth();
+    // console.log(auth);
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then(async (userCredential) => {
+    //     await updateProfile(auth.currentUser, { displayName: name }).catch(
+    //       (err) => swal(err)
+    //     );
+    //     id = userCredential.user;
+    //   })
+    //   .then(() => {
+    //     addDoc(Collection, {
+    //       userid: id.uid,
+    //       name: name,
+    //       phone: phone,
+    //     });
+    //   })
+    //   .then(() => {
+    //     navigate('/');
+    //   })
+
+    //   .catch((error) => {
+    //     swal(error.message);
+    //   });
   };
   return (
     <div>

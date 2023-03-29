@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../../firebase/Firebase-config';
 import { signInWithPopup } from 'firebase/auth';
-import '../user/login/Login.css';
+import '../../style/login.css';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from '../../axios/axios';
@@ -12,7 +12,7 @@ import { adminlogin } from '../../redux/Admin';
 import { AppContext } from '../../context/AppContext';
 function AdminLogin() {
   const handleClick = () => {
-    signInWithPopup(auth, provider).then(() => {});
+    signInWithPopup(auth, provider).then((data) => {});
   };
   const dispatch = useDispatch(adminlogin);
   const [email, setEmail] = useState('');

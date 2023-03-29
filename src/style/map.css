@@ -1,0 +1,204 @@
+.map-perent{
+ padding-top: 5.5em;
+ margin: 0;
+  
+}
+.map-child{
+    /* background-color: rgb(115, 202, 212); */
+    margin: 0%;
+     padding-right: 0px;
+    
+     
+}
+.content-map-child{
+    /* background-color: black; */
+    /* width: 100%; */
+    height: 100vh;
+    padding-left: 20px;
+}
+.results-map-head{
+    color: white;
+}
+.charging-map{
+    color:white
+    
+}.keys-para{
+    border: 2px solid;
+    margin-top: 50px;
+    border-color: rgb(36, 144, 186);
+    color:white;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}.li-keys-map{
+    list-style: none;
+    margin-top: 9px;
+}.tata-icon, .kseb-icon , .others-icon{
+    margin-right: 10px;
+    font-size: 25px;
+}
+.tata-icon{
+    color: blue;
+}
+.kseb-icon{
+    color: green;
+}.map-state{
+    background-color: rgb(233, 250, 251);
+    color: #00adba;
+}
+.select_box_map:after {
+    content: "";
+    align-items: end;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    /* border-top: 8px solid #00adba; */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-left: 500px;
+    z-index: 2;
+    position: relative;
+  }
+  .keys{
+    
+    background-color: rgb(49 49 49);
+    width: min-content;
+    padding-left:5px;
+    padding-right:5px;
+    position: relative;
+    top: -20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+  }.arrow{
+    float: right;
+    color: #00adba;
+    font-weight: bolder
+  }
+  .charging-map{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 510;
+  }
+  .has-content-map {
+    color: #00adba;
+    width: 100%;
+    border-radius: 0;
+  }
+  .has-content-map:focus {
+     
+    color: #00adba;
+   
+  }
+  .map-state{
+    background: url(../../public/images/dd-arrow.png) 96% / 12px no-repeat #e4eefc;
+  }.desc-selected-map{
+    font-size: x-small;
+  }.result-para{
+    border: 2px solid;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-color: rgb(36, 144, 186);
+    color:white;
+   padding: 20px;
+   
+     
+  }.rusult-for{
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    height: 230px;
+    
+  }
+  div::-webkit-scrollbar {
+    width: 5px;
+ 
+    
+  }
+  
+  div::-webkit-scrollbar-track {
+    background-color: rgb(49 49 49);
+  }
+  
+  div::-webkit-scrollbar-thumb {
+    background-color:#00adba;
+  }
+  .view-On-map{
+    color: #00adba !important;
+  }.marker-geofill{
+    color: #be7d32;
+    font-size: 30px;
+  }
+
+    /* outer  */
+  .card {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .label-d {
+    width: max-content;
+    color: tomato;
+    font-size: 13px;
+    border-bottom: 0.5px solid tomato;
+    margin: 3px 0;
+  }
+  
+  .desc {
+    font-size: 14px;
+  }
+  
+  .star {
+    color: gold;
+  }
+  
+  .username {
+    font-size: 14px;
+  }.date {
+    font-size: 12px;
+  }
+  
+  .form-d {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: rgb(88, 87, 87);
+  }
+  
+  .input-d {
+    border: none;
+    border-bottom: 1px solid gray;
+  }
+  
+  .input-d::placeholder,
+  .textarea-d::placeholder {
+    font-size: 12px;
+    color: rgb(185, 184, 184);
+  }
+  
+  .input-d:focus,
+  .textarea-d:focus,
+  .select-d:focus {
+    outline: none;
+  }
+  
+  .textarea-d {
+    border: none;
+    border-bottom: 1px solid gray;
+  }
+  
+  .submitButton {
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: tomato;
+    cursor: pointer;
+  }
+  .select-d{
+    outline: none;
+    border-radius: 0px;
+    background-color: #c8e9ec;
+    margin-top: 10px;
+  }

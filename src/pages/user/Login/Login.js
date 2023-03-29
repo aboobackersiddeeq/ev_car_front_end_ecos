@@ -3,29 +3,74 @@ import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../../../firebase/Firebase-config';
 import { signInWithPopup } from 'firebase/auth';
 import swal from 'sweetalert';
-import './Login.css';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import '../../../style/login.css';
+// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import axios from '../../../axios/axios';
+import { AppContext } from '../../../context/AppContext';
+import { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 
 function Login() {
   const handleClick = () => {
-    signInWithPopup(auth, provider).then(() => {
+    signInWithPopup(auth, provider).then((data) => {
+      console.log(data,'data');
+      try {
+        axios
+          .post('/login-with-google', {
+            email: data.user.email,
+            username: data.user.displayName,
+            provider: data.providerId,
+          })
+          .then((response) => {
+            console.log(response.data);
+            if (!response.data.auth) {
+              swal('sorry', response.data.message, 'error');
+              setUserLoginStatus(false);
+            } else {
+              setUserLoginStatus(true);
+              localStorage.setItem('usertoken', response.data.token);
+              navigate('/');
+              swal('success', response.data.message, 'success');
+            }
+          });
+      } catch (error) {
+        toast(error.message);
+      }
       navigate('/');
     });
   };
+  const { setUserLoginStatus } = useContext(AppContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        navigate('/');
-      })
-      .catch((error) => {
-        swal('User not found');
+    // const auth = getAuth();
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then(() => {
+    //     navigate('/');
+    //   })
+    //   .catch((error) => {
+    //     swal('User not found');
+    //   });
+
+    try {
+      axios.post('/login', { password, email }).then((response) => {
+        console.log(response.data);
+        if (!response.data.auth) {
+          swal('sorry', response.data.message, 'error');
+          setUserLoginStatus(false);
+        } else {
+          setUserLoginStatus(true);
+          localStorage.setItem('usertoken', response.data.token);
+          navigate('/');
+          swal('success', response.data.message, 'success');
+        }
       });
+    } catch (error) {
+      toast(error.message);
+    }
   };
 
   return (

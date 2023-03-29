@@ -14,7 +14,6 @@
 
   border: none;
   text-align: left;
-  /* margin-left: 50px;/ */
   color: #2dd4bf;
   border-radius: 0%;
   background-color: #f5f5f5;
@@ -22,7 +21,7 @@
   padding-top: 10px;
 }
 .side-content-div {
-  /* background-color: aquamarine; */
+
   padding-top: -30px;
 }
 .badge {

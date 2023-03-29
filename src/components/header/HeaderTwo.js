@@ -7,29 +7,37 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router-dom';
 import '../../style/headerTwo.css';
 import { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
+import { useDispatch } from 'react-redux';
+import { userData } from '../../redux/User';
 function HeaderTwo() {
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const dispatch=useDispatch(userData)
+  // const { user } = useContext(AuthContext);
+  const {userLoginStatus,setUserLoginStatus}=useContext(AppContext)
   const { auth } = useContext(firebaseContext);
   return (
     <div className="parentNav">
       <div className="navup">
-        <span>Chat With Us </span>
-        <span>Charging Locator </span>
-        <span>Community </span>
-        {user ? (
-          <span
+        <span className='sub-heading'>Chat With Us </span>
+        <span className='sub-heading' onClick={()=>navigate('/map')}>Charging Locator </span>
+        <span className='sub-heading'>Community </span>
+        {userLoginStatus ? (
+          <span className='sub-heading'
             onClick={() => {
               signOut(auth);
+              localStorage.removeItem("usertoken");
+              setUserLoginStatus(false);
+              dispatch(userData(null))
               navigate('/login');
             }}
           >
             Logout
           </span>
         ) : (
-          <span onClick={() => navigate('/login')}>Login</span>
+          <span className='sub-heading' onClick={() => navigate('/login')}>Login</span>
         )}
-        <span id="endSpan">
+        <span id="endSpan" className='sub-heading'>
           Call<span id="middleSpan">1800 209 8282</span>For Any Assistance
         </span>
       </div>

@@ -6,7 +6,7 @@ import { signInWithPopup } from 'firebase/auth';
 
 // import { firebaseContext } from '../../store/context';
 // import Logo from '../../public/images/';
-import '../user/login/Login.css';
+import '../../style/login.css';
 // import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';

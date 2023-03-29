@@ -1,7 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from './context/FirebaseContext';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {   useEffect, useState } from 'react';
 import { AppContext } from './context/AppContext';
 import axios from './axios/axios';
 import { adminlogin } from './redux/Admin';
@@ -13,16 +11,10 @@ import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [adminLoginStatus, setAdminLoginStatus] = useState(false);
+  const [userLoginStatus, setUserLoginStatus] = useState(false);
   const [dealerLoginStatus, setDealerLoginStatus] = useState(false);
   const [bookingData, setBookingData] = useState({});
-  const { setUser } = useContext(AuthContext);
   const dispatch = useDispatch(adminlogin);
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (users) => {
-      setUser(users);
-    });
-  });
   useEffect(() => {
     try {
       axios
@@ -51,7 +43,7 @@ function App() {
           dealerLoginStatus,
           setDealerLoginStatus,
           bookingData,
-          setBookingData,
+          setBookingData,userLoginStatus, setUserLoginStatus
         }}
       >
         <Toaster position="top-center" reverseOrder={false} />
