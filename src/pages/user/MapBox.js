@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HeaderTwo from '../../components/header/HeaderTwo';
 import 'mapbox-gl/dist/mapbox-gl.css';
-// import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import { GeoAltFill, ArrowClockwise, Key } from 'react-bootstrap-icons';
+import { GeoAltFill, ArrowClockwise } from 'react-bootstrap-icons';
 import '../../style/map.css';
 import axios from 'axios';
 import axiosInstance from '../../axios/axios';
@@ -19,8 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import { toast } from 'react-hot-toast';
 import Geocoder from '../../components/Geocoder';
-// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-// import {format}from 'timeago.js'
+import Footer from '../../components/footer/Footer';
+// import TimeAgo from 'timeago-react';
 function MapboxMap() {
   const [places, setPlace] = useState([]);
   const [newPopup, setNewPopup] = useState(null);
@@ -90,14 +89,15 @@ function MapboxMap() {
   }, []);
   React.useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
-        setViewPort({
-            ...viewPort,
-            latitude: pos.coords.latitude,
-            longitude: pos.coords.longitude,
-            zoom: 10,
-        });
+      setViewPort({
+        ...viewPort,
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude,
+        zoom: 10,
+      });
     });
-  },[])
+    // eslint-disable-next-line
+  }, []);
   useEffect(() => {
     axios
       .get(
@@ -131,6 +131,10 @@ function MapboxMap() {
             <li className="li-keys-map">
               <GeoAltFill className="kseb-icon" />
               KSEB
+            </li>
+            <li className="li-keys-map">
+              <GeoAltFill className="ather-icon" />
+              Ather
             </li>
             <li className="li-keys-map">
               <GeoAltFill className="others-icon" />
@@ -186,10 +190,21 @@ function MapboxMap() {
              
             </div>
           </div> */}
-           {selectPin.length !== 0 ?
-          <p className="results-map-head">Results For Charging Stations <span className="arrow" onClick={()=>{setSelectPin([])}}>
-              <ArrowClockwise />
-            </span></p> : <p className="results-map-head">Drive What Drove Electric </p>}
+          {selectPin.length !== 0 ? (
+            <p className="results-map-head">
+              Results For Charging Stations{' '}
+              <span
+                className="arrow"
+                onClick={() => {
+                  setSelectPin([]);
+                }}
+              >
+                <ArrowClockwise />
+              </span>
+            </p>
+          ) : (
+            <p className="results-map-head">Drive What Drove Electric </p>
+          )}
           <div className="rusult-for">
             {selectPin.length !== 0 &&
               selectPin.map((val) => {
@@ -197,7 +212,7 @@ function MapboxMap() {
                   <div className="result-para">
                     <h6>{val.title}</h6>
                     <p className="desc-selected-map">
-                       {val.desc},{val.type},{val.username}
+                      {val.desc},{val.type},{val.username}
                     </p>{' '}
                     <h6 className="view-On-map">View On Map | Get Direction</h6>
                   </div>
@@ -218,7 +233,8 @@ function MapboxMap() {
             mapStyle="mapbox://styles/mapbox/streets-v9"
             // zoom={3}
           >
-            {places && selectPin.length === 0 &&
+            {places &&
+              selectPin.length === 0 &&
               places.map((val, i) => {
                 return (
                   <div key={i}>
@@ -254,8 +270,8 @@ function MapboxMap() {
                       >
                         {' '}
                         <div>
-                          <h6>{val.AddressInfo.AccessComments}</h6>
-                          <p>
+                          <h6 className='popup-title'>{val.AddressInfo.AccessComments}</h6>
+                          <p className='popup-desc'>
                             {val.AddressInfo.AddressLine1}
                             {val.AddressInfo.AddressLine2}, Charging location{' '}
                             {i + 1}
@@ -282,7 +298,14 @@ function MapboxMap() {
                           <GeoAltFill
                             className="marker-geofill"
                             style={{
-                              color: val.type === 'Tata'? 'blue' :val.type === 'KSEB'?'green':'' ,
+                              color:
+                              val.type === 'Tata'
+                                ? 'blue'
+                                : val.type === 'KSEB'
+                                ? 'green'
+                                : val.type === 'Ather'
+                                ? '#be7d32'
+                                : '',
                               fontSize: val._id === currentId ? '30px' : ' ',
                               cursor: 'pointer',
                             }}
@@ -290,7 +313,7 @@ function MapboxMap() {
                         </div>
                       </Marker>
                       {currentId === val._id && (
-                        <Popup
+                        <Popup 
                           longitude={val.long}
                           latitude={val.lat}
                           closeButton={true}
@@ -300,8 +323,8 @@ function MapboxMap() {
                         >
                           {' '}
                           <div>
-                            <h6>{val.title}</h6>
-                            <p>
+                            <h6 className='popup-title'>{val.title}</h6>
+                            <p className='popup-desc'>
                               {val.desc}
                               {val.type}, Charging location {i + 1}
                               <p style={{ color: 'blue' }}>
@@ -328,7 +351,14 @@ function MapboxMap() {
                           <GeoAltFill
                             className="marker-geofill"
                             style={{
-                              color: 'green',
+                              color:
+                              val.type === 'Tata'
+                                ? 'blue'
+                                : val.type === 'KSEB'
+                                ? 'green'
+                                : val.type === 'Ather'
+                                ? '#be7d32'
+                                : '',
                               fontSize: val._id === currentId ? '30px' : ' ',
                               cursor: 'pointer',
                             }}
@@ -346,8 +376,8 @@ function MapboxMap() {
                         >
                           {' '}
                           <div>
-                            <h6>{val.title}</h6>
-                            <p>
+                            <h6 className='popup-title'>{val.title}</h6>
+                            <p className='popup-desc'>
                               {val.desc}
                               {val.type}, Charging location {i + 1}
                               <p style={{ color: 'blue' }}>
@@ -409,6 +439,7 @@ function MapboxMap() {
                           <option> Select keys</option>
                           <option value="Tata">Tata Motors</option>
                           <option value="KSEB">KSEB</option>
+                          <option value="Ather">Ather</option>
                           <option value="Others">Others</option>
                         </Form.Select>
                         <br />
@@ -465,6 +496,7 @@ function MapboxMap() {
           </Map>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
