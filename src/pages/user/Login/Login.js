@@ -14,7 +14,7 @@ import { toast } from 'react-hot-toast';
 function Login() {
   const handleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
-      console.log(data,'data');
+      console.log(data, 'data');
       try {
         axios
           .post('/login-with-google', {

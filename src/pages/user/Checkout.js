@@ -383,7 +383,7 @@ const Checkout = () => {
                   {dealerData &&
                     dealerData.map((value, index) => {
                       return (
-                        <option value={value.dealerName}>
+                        <option value={value._id}>
                           {value.dealerName},{value.state},{value.city}
                         </option>
                       );

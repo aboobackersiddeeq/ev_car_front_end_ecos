@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {   useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AppContext } from './context/AppContext';
 import axios from './axios/axios';
 import { adminlogin } from './redux/Admin';
@@ -43,7 +43,9 @@ function App() {
           dealerLoginStatus,
           setDealerLoginStatus,
           bookingData,
-          setBookingData,userLoginStatus, setUserLoginStatus
+          setBookingData,
+          userLoginStatus,
+          setUserLoginStatus,
         }}
       >
         <Toaster position="top-center" reverseOrder={false} />

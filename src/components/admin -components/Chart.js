@@ -1,4 +1,6 @@
-import React from 'react';
+import axios from '../../axios/axios';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import {
   PieChart,
   Pie,
@@ -11,6 +13,24 @@ import {
   CartesianGrid,
 } from 'recharts';
 const Chart = () => {
+   const [data,setData] =useState({})
+   const [revenue,setRevenue] =useState({})
+  useEffect(()=>{
+    try{
+      axios.get('/admin/get-chart', {
+        headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
+      }).then((response)=>{
+        if(response.data.status === 'success'){
+          setData(response.data.result)
+          setRevenue(response.data.revenue)
+        }else{
+          toast.error(response.data.message)
+        }
+      })
+    }catch(error){
+      toast.error(error.message)
+    }
+  },[])
   const data01 = [
     { name: 'Group A', value: 400 },
     { name: 'Group B', value: 300 },
@@ -29,8 +49,9 @@ const Chart = () => {
           <h5 className="mb-5"> Revenue Generated</h5>
           <PieChart width={400} height={300}>
             <Pie
-              data={data01}
-              dataKey="value"
+            nameKey="_id"
+              data={revenue}
+              dataKey="total"
               cx="50%"
               cy="50%"
               outerRadius={100}
@@ -58,7 +79,7 @@ const Chart = () => {
           <BarChart
             width={450}
             height={300}
-            data={data01}
+            data={data}
             margin={{
               top: 5,
               right: 30,
@@ -67,12 +88,12 @@ const Chart = () => {
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis dataKey="_id" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="value" fill="#2DD4BF" />
-            <Bar dataKey="value" fill="#82ca9d" />
+            <Bar dataKey="booking" fill="#2DD4BF" />
+            <Bar dataKey="testDrive" fill="#82ca9d" />
           </BarChart>
         </div>
       </div>

@@ -17,7 +17,7 @@ const store = configureStore({
     admin: adminReducer,
     dealer: dealerReducer,
     product: productReducer,
-    user:userReducer
+    user: userReducer,
   },
 });
 const root = ReactDOM.createRoot(document.getElementById('root'));

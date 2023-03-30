@@ -1,13 +1,10 @@
-import React, { useContext, useState,   } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../../firebase/Firebase-config';
 import { signInWithPopup } from 'firebase/auth';
-
-// import { firebaseContext } from '../../store/context';
-// import Logo from '../../public/images/';
-import '../../style/login.css';
-// import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+ 
+import '../../style/login.css'; 
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from '../../axios/axios';
@@ -45,7 +42,8 @@ function DealerLogin() {
   return (
     <div>
       <div className="loginParentDiv">
-        <img alt='logo'
+        <img
+          alt="logo"
           width="200px"
           height="200px"
           className="logo"

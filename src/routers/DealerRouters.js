@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { dealerLogin } from '../redux/Dealer';
 import Booking from '../pages/dealer/Booking';
 import TestDriveBooking from '../pages/dealer/TestDriveBooking';
+import Products from '../pages/dealer/Products';
 const DealerRouters = () => {
   const dispatch = useDispatch(dealerLogin);
   const { dealerLoginStatus, setDealerLoginStatus } = useContext(AppContext);
@@ -35,11 +36,9 @@ const DealerRouters = () => {
       ></Route>
       {dealerLoginStatus && (
         <>
-          <Route path="/dealer/bookings" element={<Booking/>}></Route>
-          <Route
-            path="/dealer/test-drive"
-            element={<TestDriveBooking />}
-          ></Route>
+          <Route path="/dealer/bookings" element={<Booking />}></Route>
+          <Route path="/dealer/products" element={<Products />}></Route>
+          <Route path="/dealer/test-drive" element={<TestDriveBooking />} ></Route>
         </>
       )}
       <Route

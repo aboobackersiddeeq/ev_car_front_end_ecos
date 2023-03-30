@@ -13,7 +13,7 @@
 .content-map-child{
     /* background-color: black; */
     /* width: 100%; */
-    height: 100vh;
+    height: 90vh;
     padding-left: 20px;
 }
 .results-map-head{
@@ -33,7 +33,7 @@
 }.li-keys-map{
     list-style: none;
     margin-top: 9px;
-}.tata-icon, .kseb-icon , .others-icon{
+}.tata-icon, .kseb-icon , .others-icon ,.ather-icon{
     margin-right: 10px;
     font-size: 25px;
 }
@@ -42,7 +42,12 @@
 }
 .kseb-icon{
     color: green;
-}.map-state{
+}.ather-icon{
+  color: #59575a;
+}.others-icon{
+   color: #be7d32;
+}
+.map-state{
     background-color: rgb(233, 250, 251);
     color: #00adba;
 }
@@ -121,6 +126,7 @@
   }
   .view-On-map{
     color: #00adba !important;
+    cursor: pointer;
   }.marker-geofill{
     color: #be7d32;
     font-size: 30px;
@@ -201,4 +207,8 @@
     border-radius: 0px;
     background-color: #c8e9ec;
     margin-top: 10px;
+  }
+  .popup-title{
+    font-weight: 700;
+    color: black;
   }

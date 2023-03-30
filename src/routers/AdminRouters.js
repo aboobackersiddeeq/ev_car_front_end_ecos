@@ -16,12 +16,10 @@ const AdminRouters = () => {
       <Routes>
         <Route
           path="/admin/login"
-          exact
           element={!adminLoginStatus ? <AdminLogin /> : <AdminDashboard />}
         ></Route>
         <Route
-          path="/admin"
-          exact
+          path="/admin" 
           element={adminLoginStatus ? <AdminDashboard /> : <AdminLogin />}
         ></Route>
         {adminLoginStatus && (

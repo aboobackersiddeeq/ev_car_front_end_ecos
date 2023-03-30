@@ -12,8 +12,8 @@ function Booking() {
 
   useEffect(() => {
     axios
-      .get('admin/get-bookings', {
-        headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
+      .get('dealer/get-bookings', {
+        headers: { 'x-access-dealertoken': localStorage.getItem('dealertoken') },
       })
       .then((response) => {
         if (response.data.status === 'success') {
@@ -44,7 +44,7 @@ function Booking() {
   return (
     <div>
       <div>
-        <DealerHeader/>
+        <DealerHeader />
       </div>
       <div className="adminbody contantBody ">
         <div className="container">
@@ -78,7 +78,7 @@ function Booking() {
                 <tr>
                   <th>ID</th>
                   <th>Date</th>
-                  <th>Dealer Name</th>
+                  {/* <th>Dealer Name</th> */}
                   <th>Email</th>
                   <th>Name</th>
                   <th>Phone No</th>
@@ -94,7 +94,7 @@ function Booking() {
                     <tr key={element._id}>
                       <td>{index + 1}</td>
                       <td>{element.updatedAt.substring(0, 10)}</td>
-                      <td>{element.dealer}</td>
+                      {/* <td>{element.dealer}</td> */}
                       <td>{element.email}</td>
                       <td>{element.names}</td>
                       <td>{element.phone}</td>

@@ -2,26 +2,68 @@ import Table from 'react-bootstrap/Table';
 import AdminHeader from '../../../components/header/AdminHeader';
 import { Form, Button } from 'react-bootstrap';
 import Footer from '../../../components/footer/Footer';
-import { useContext, useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore/lite';
-import { firebaseContext } from '../../../context/FirebaseContext';
+import {  useEffect, useState } from 'react';
+import axios from '../../../axios/axios';
+import swal from 'sweetalert';
+import { PersonFillLock, Unlock } from 'react-bootstrap-icons';
+import { toast } from 'react-hot-toast';
 
 function AdminUser() {
   const [users, setUsers] = useState([]);
-  const { db } = useContext(firebaseContext);
-  const Collection = collection(db, 'user');
-  // eslint-disable-next-line
-  const userslist = async () => {
-    const Snapshot = await getDocs(Collection);
-    const List = Snapshot.docs.map((doc) => {
-      return { ...doc.data(), id: doc.id };
+  const blockUser = (id) => {
+    swal({
+      title: 'Are you sure?',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willBlock) => {
+      try{
+      if (willBlock) {
+        axios
+          .post(
+            '/admin/block-user',
+            { id },
+            {
+              headers: {
+                'x-access-admintoken': localStorage.getItem('admintoken'),
+              },
+            }
+          )
+          .then((response) => {
+            setUsers(response.data.result);
+            swal('Poof! This Dealer has been Blocked!', {
+              icon: 'success',
+            });
+          })
+          .catch((err) => {
+            swal(err.message);
+          });
+      } else {
+        swal('Your work is not saved !');
+      }
+    }catch(error){
+      toast.error(error.message)
+    }
     });
-    setUsers(List);
   };
-
+  
   useEffect(() => {
-    userslist();
-  }, [userslist]);
+    axios
+      .get('admin/get-users', {
+        headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
+      })
+      .then((response) => {
+        if (response.data.status === 'success') {
+          setUsers(response.data.result);
+        } else {
+          swal('OOPS', response.data.message, 'error');
+        }
+      })
+      .catch((err) => {
+        alert('network error: ' + err.message);
+      });
+  }, [])
+ 
 
   const [searchTerm, setSearchTerm] = useState('');
   const filterData = users.filter((val, i, arr) => {
@@ -79,13 +121,23 @@ function AdminUser() {
                   // eslint-disable-next-line
                   filterData.map((element, index) => {
                     return (
-                      <tr key={element.phone}>
+                      <tr key={element.email}>
                         <td>{index + 1}</td>
-                        <td>{element.name}</td>
+                        <td>{element.username}</td>
                         <td>{element.email}</td>
-                        <td>{element.phone}</td>
-                        <td>{element.userid}</td>
-                        <td>Block</td>
+                        <td>{element.phone} {element.provider}</td>
+                        <td>{element._id}</td>
+                        <td> {element.isBanned === false ? (
+                            <Unlock
+                              onClick={() => blockUser(element._id)}
+                              className="m-2"
+                            />
+                          ) : (
+                            <PersonFillLock
+                              className="m-2"
+                              onClick={() => blockUser(element._id)}
+                            />
+                          )}</td>
                       </tr>
                     );
                   })}

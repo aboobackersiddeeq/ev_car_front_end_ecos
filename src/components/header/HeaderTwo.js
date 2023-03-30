@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { signOut } from 'firebase/auth';
-import { AuthContext, firebaseContext } from '../../context/FirebaseContext';
+import { firebaseContext } from '../../context/FirebaseContext';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router-dom';
 import '../../style/headerTwo.css';
@@ -12,32 +12,36 @@ import { useDispatch } from 'react-redux';
 import { userData } from '../../redux/User';
 function HeaderTwo() {
   const navigate = useNavigate();
-  const dispatch=useDispatch(userData)
-  // const { user } = useContext(AuthContext);
-  const {userLoginStatus,setUserLoginStatus}=useContext(AppContext)
+  const dispatch = useDispatch(userData);
+  const { userLoginStatus, setUserLoginStatus } = useContext(AppContext);
   const { auth } = useContext(firebaseContext);
   return (
     <div className="parentNav">
       <div className="navup">
-        <span className='sub-heading'>Chat With Us </span>
-        <span className='sub-heading' onClick={()=>navigate('/map')}>Charging Locator </span>
-        <span className='sub-heading'>Community </span>
+        <span className="sub-heading">Chat With Us </span>
+        <span className="sub-heading" onClick={() => navigate('/map')}>
+          Charging Locator{' '}
+        </span>
+        <span className="sub-heading">Community </span>
         {userLoginStatus ? (
-          <span className='sub-heading'
+          <span
+            className="sub-heading"
             onClick={() => {
               signOut(auth);
-              localStorage.removeItem("usertoken");
+              localStorage.removeItem('usertoken');
               setUserLoginStatus(false);
-              dispatch(userData(null))
+              dispatch(userData(null));
               navigate('/login');
             }}
           >
             Logout
           </span>
         ) : (
-          <span className='sub-heading' onClick={() => navigate('/login')}>Login</span>
+          <span className="sub-heading" onClick={() => navigate('/login')}>
+            Login
+          </span>
         )}
-        <span id="endSpan" className='sub-heading'>
+        <span id="endSpan" className="sub-heading">
           Call<span id="middleSpan">1800 209 8282</span>For Any Assistance
         </span>
       </div>

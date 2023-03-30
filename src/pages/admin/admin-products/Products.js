@@ -65,6 +65,7 @@ function Products() {
     if (Object.keys(errors).length === 0) {
       setFormErrors(errors);
       const imgBase = await toBase64(image);
+      try{
       axios
         .post('/admin/add-product', {
           img: imgBase,
@@ -72,12 +73,17 @@ function Products() {
           color,
           bookingPrice,
           productName,
+        },{
+          headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
         })
         .then((response) => {
           dispatch(product(response.data));
           setproduct(response.data.result);
           setShow(false);
         });
+      }catch(error){
+        toast.error(error.message)
+      }
     } else {
       setFormErrors(errors);
     }
@@ -85,6 +91,7 @@ function Products() {
   const editHandile = async (e) => {
     e.preventDefault();
     const imgBase = await toBase64(image);
+    try{
     axios
       .post(
         '/admin/edit-product',
@@ -113,6 +120,9 @@ function Products() {
       .catch((err) => {
         swal(err.message);
       });
+    }catch(error){
+      toast.error(error.message)
+    }
   };
 
   const deleteProduct = (id) => {
@@ -124,6 +134,7 @@ function Products() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
+        try{
         axios
           .post(
             '/admin/delete-product',
@@ -143,9 +154,13 @@ function Products() {
           .catch((err) => {
             swal(err.message);
           });
+        }catch(error){
+          toast.error(error.message)
+        }
       } else {
         swal('Your file is safe!');
       }
+    
     });
   };
 

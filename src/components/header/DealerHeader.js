@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { AppContext } from '../../context/AppContext';
 function AdminHeader() {
   const navigate = useNavigate();
-  const { dealerLoginStatus,setDealerLoginStatus } = useContext(AppContext);
+  const { dealerLoginStatus, setDealerLoginStatus } = useContext(AppContext);
   const dealer = useSelector((state) => state.dealer.value);
   const logout = () => {
     console.log('logout');
@@ -21,7 +21,7 @@ function AdminHeader() {
     <div className="header">
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container>
-          <Navbar.Brand href="#">ecos</Navbar.Brand>
+          <Navbar.Brand onClick={() => navigate('/dealer')}>ecos</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto"></Nav>
@@ -46,14 +46,6 @@ function AdminHeader() {
                 onClick={() => navigate('/dealer/products')}
               >
                 Products
-              </Nav.Link>
-
-              <Nav.Link
-                className="admin-heading"
-                eventKey={6}
-                onClick={() => navigate('/dealer/dealers')}
-              >
-                Users
               </Nav.Link>
               <Nav.Link
                 className="admin-heading"

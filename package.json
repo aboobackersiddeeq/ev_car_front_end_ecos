@@ -12,6 +12,7 @@
     "bootstrap": "^5.2.3",
     "cdbreact": "^1.5.9",
     "firebase": "^9.17.2",
+    "js": "^0.1.0",
     "jwt-decode": "^3.1.2",
     "mapbox-gl": "^2.13.0",
     "mdb-react-ui-kit": "^5.1.0",
@@ -30,8 +31,10 @@
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
     "recharts": "^2.5.0",
+    "source-map-loader": "^4.0.1",
     "sweetalert": "^2.1.2",
-    "timeago.js": "^4.0.2",
+    "timeago": "^1.6.7",
+    "timeago-react": "^3.0.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
