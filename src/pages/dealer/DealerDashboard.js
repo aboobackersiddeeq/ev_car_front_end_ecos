@@ -1,9 +1,33 @@
+import axios from '../../axios/axios';
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import Chart from '../../components/admin -components/Chart';
 import Footer from '../../components/footer/Footer';
 import DealerHeader from '../../components/header/DealerHeader';
 import '../../style/dealerDashboard.css';
 const DealerDashboard = () => {
+  const [dashboardData, setDashboardData] = useState({});
+  useEffect(() => {
+    try {
+      axios
+        .get('/dealer/get-dashboard', {
+          headers: {
+            'x-access-dealertoken': localStorage.getItem('dealertoken'),
+          },
+        })
+        .then((response) => {
+          if (response.data.status === 'success') {
+            setDashboardData(response.data);
+          } else {
+            toast.error(response.data.message);
+          }
+        });
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }, []);
   return (
     <div className="dealerBody">
       <DealerHeader />
@@ -38,25 +62,25 @@ const DealerDashboard = () => {
               <div className="chart mt-4 ">
                 <div className="  badgeButton ">
                   <div className="notification-content">
-                    <h1>$00</h1>
+                    <h1>+{dashboardData.todayBookingCount}</h1>
                     <smal>Today Bookings</smal>
                   </div>
                 </div>
                 <div className="  badgeButton">
                   <div className="notification-content">
-                    <h1>$00</h1>
+                    <h1>+{dashboardData.todayTestDriveCount}</h1>
                     <smal>Today Test Drive Bookings</smal>
                   </div>
                 </div>
                 <div className="  badgeButton">
                   <div className="notification-content">
-                    <h1>$00</h1>
+                    <h1>${dashboardData.revenue}</h1>
                     <smal>Total Revenue</smal>
                   </div>
                 </div>
                 <div className="  badgeButton">
                   <div className="notification-content">
-                    <h1>$00</h1>
+                    <h1>+{dashboardData.totalBooking}</h1>
                     <smal>Total Bookings</smal>
                   </div>
                 </div>
