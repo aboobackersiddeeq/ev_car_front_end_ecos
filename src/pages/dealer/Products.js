@@ -6,20 +6,17 @@ import swal from 'sweetalert';
 import { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
 
- 
-
 function Products() {
- 
   const [products, setproduct] = useState([]);
 
   useEffect(() => {
-    try{
-    axios.post('/admin/get-product', {}).then((response) => {
-      setproduct(response.data.result);
-    });
-  }catch(error){
-    swal(error.message)
-  }
+    try {
+      axios.post('/admin/get-product', {}).then((response) => {
+        setproduct(response.data.result);
+      });
+    } catch (error) {
+      swal(error.message);
+    }
   }, []);
   const [searchTerm, setSearchTerm] = useState('');
   const filterData = products.filter((val, i, arr) => {
@@ -41,9 +38,6 @@ function Products() {
     }
     return false;
   });
-
-   
-   
 
   return (
     <div>
@@ -70,9 +64,7 @@ function Products() {
                 <Button variant="outline-dark">Search</Button>
               </Form>
             </div>
-            <div className="col-md-3">
-             
-            </div>
+            <div className="col-md-3"></div>
           </div>
         </div>
         <div className="container p-5">
@@ -86,7 +78,6 @@ function Products() {
                   <th>Price</th>
                   <th>Booking Price</th>
                   <th>Colors</th>
-                 
                 </tr>
               </thead>
               <tbody>
@@ -107,7 +98,6 @@ function Products() {
                         <td>{element.price}</td>
                         <td>{element.bookingPrice}</td>
                         <td>{element.color.join()}</td>
-                         
                       </tr>
                     );
                   })}
@@ -119,7 +109,6 @@ function Products() {
         </div>
       </div>
 
-       
       <Footer />
     </div>
   );

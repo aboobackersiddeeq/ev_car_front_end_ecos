@@ -2,7 +2,7 @@ import Table from 'react-bootstrap/Table';
 import AdminHeader from '../../../components/header/AdminHeader';
 import { Form, Button } from 'react-bootstrap';
 import Footer from '../../../components/footer/Footer';
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from '../../../axios/axios';
 import swal from 'sweetalert';
 import { PersonFillLock, Unlock } from 'react-bootstrap-icons';
@@ -17,36 +17,36 @@ function AdminUser() {
       buttons: true,
       dangerMode: true,
     }).then((willBlock) => {
-      try{
-      if (willBlock) {
-        axios
-          .post(
-            '/admin/block-user',
-            { id },
-            {
-              headers: {
-                'x-access-admintoken': localStorage.getItem('admintoken'),
-              },
-            }
-          )
-          .then((response) => {
-            setUsers(response.data.result);
-            swal('Poof! This Dealer has been Blocked!', {
-              icon: 'success',
+      try {
+        if (willBlock) {
+          axios
+            .post(
+              '/admin/block-user',
+              { id },
+              {
+                headers: {
+                  'x-access-admintoken': localStorage.getItem('admintoken'),
+                },
+              }
+            )
+            .then((response) => {
+              setUsers(response.data.result);
+              swal('Poof! This Dealer has been Blocked!', {
+                icon: 'success',
+              });
+            })
+            .catch((err) => {
+              swal(err.message);
             });
-          })
-          .catch((err) => {
-            swal(err.message);
-          });
-      } else {
-        swal('Your work is not saved !');
+        } else {
+          swal('Your work is not saved !');
+        }
+      } catch (error) {
+        toast.error(error.message);
       }
-    }catch(error){
-      toast.error(error.message)
-    }
     });
   };
-  
+
   useEffect(() => {
     axios
       .get('admin/get-users', {
@@ -62,8 +62,7 @@ function AdminUser() {
       .catch((err) => {
         alert('network error: ' + err.message);
       });
-  }, [])
- 
+  }, []);
 
   const [searchTerm, setSearchTerm] = useState('');
   const filterData = users.filter((val, i, arr) => {
@@ -125,9 +124,13 @@ function AdminUser() {
                         <td>{index + 1}</td>
                         <td>{element.username}</td>
                         <td>{element.email}</td>
-                        <td>{element.phone} {element.provider}</td>
+                        <td>
+                          {element.phone} {element.provider}
+                        </td>
                         <td>{element._id}</td>
-                        <td> {element.isBanned === false ? (
+                        <td>
+                          {' '}
+                          {element.isBanned === false ? (
                             <Unlock
                               onClick={() => blockUser(element._id)}
                               className="m-2"
@@ -137,7 +140,8 @@ function AdminUser() {
                               className="m-2"
                               onClick={() => blockUser(element._id)}
                             />
-                          )}</td>
+                          )}
+                        </td>
                       </tr>
                     );
                   })}

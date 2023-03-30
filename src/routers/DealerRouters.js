@@ -38,7 +38,10 @@ const DealerRouters = () => {
         <>
           <Route path="/dealer/bookings" element={<Booking />}></Route>
           <Route path="/dealer/products" element={<Products />}></Route>
-          <Route path="/dealer/test-drive" element={<TestDriveBooking />} ></Route>
+          <Route
+            path="/dealer/test-drive"
+            element={<TestDriveBooking />}
+          ></Route>
         </>
       )}
       <Route

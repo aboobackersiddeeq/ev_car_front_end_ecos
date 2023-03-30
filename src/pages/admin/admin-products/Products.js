@@ -65,24 +65,30 @@ function Products() {
     if (Object.keys(errors).length === 0) {
       setFormErrors(errors);
       const imgBase = await toBase64(image);
-      try{
-      axios
-        .post('/admin/add-product', {
-          img: imgBase,
-          price,
-          color,
-          bookingPrice,
-          productName,
-        },{
-          headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
-        })
-        .then((response) => {
-          dispatch(product(response.data));
-          setproduct(response.data.result);
-          setShow(false);
-        });
-      }catch(error){
-        toast.error(error.message)
+      try {
+        axios
+          .post(
+            '/admin/add-product',
+            {
+              img: imgBase,
+              price,
+              color,
+              bookingPrice,
+              productName,
+            },
+            {
+              headers: {
+                'x-access-admintoken': localStorage.getItem('admintoken'),
+              },
+            }
+          )
+          .then((response) => {
+            dispatch(product(response.data));
+            setproduct(response.data.result);
+            setShow(false);
+          });
+      } catch (error) {
+        toast.error(error.message);
       }
     } else {
       setFormErrors(errors);
@@ -91,37 +97,37 @@ function Products() {
   const editHandile = async (e) => {
     e.preventDefault();
     const imgBase = await toBase64(image);
-    try{
-    axios
-      .post(
-        '/admin/edit-product',
-        {
-          editId,
-          img: imgBase,
-          price,
-          color,
-          bookingPrice,
-          productName,
-        },
-        {
-          headers: {
-            'x-access-admintoken': localStorage.getItem('admintoken'),
+    try {
+      axios
+        .post(
+          '/admin/edit-product',
+          {
+            editId,
+            img: imgBase,
+            price,
+            color,
+            bookingPrice,
+            productName,
           },
-        }
-      )
-      .then((response) => {
-        setproduct(response.data.result);
-        swal('Poof! Your imaginary file has been Edited!', {
-          icon: 'success',
+          {
+            headers: {
+              'x-access-admintoken': localStorage.getItem('admintoken'),
+            },
+          }
+        )
+        .then((response) => {
+          setproduct(response.data.result);
+          swal('Poof! Your imaginary file has been Edited!', {
+            icon: 'success',
+          });
+          setShowEdit(false);
+          setImageTemb('');
+        })
+        .catch((err) => {
+          swal(err.message);
         });
-        setShowEdit(false);
-        setImageTemb('');
-      })
-      .catch((err) => {
-        swal(err.message);
-      });
-    }catch(error){
-      toast.error(error.message)
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
@@ -134,33 +140,32 @@ function Products() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        try{
-        axios
-          .post(
-            '/admin/delete-product',
-            { id },
-            {
-              headers: {
-                'x-access-admintoken': localStorage.getItem('admintoken'),
-              },
-            }
-          )
-          .then((response) => {
-            setproduct(response.data.result);
-            swal('Poof! Your imaginary file has been deleted!', {
-              icon: 'success',
+        try {
+          axios
+            .post(
+              '/admin/delete-product',
+              { id },
+              {
+                headers: {
+                  'x-access-admintoken': localStorage.getItem('admintoken'),
+                },
+              }
+            )
+            .then((response) => {
+              setproduct(response.data.result);
+              swal('Poof! Your imaginary file has been deleted!', {
+                icon: 'success',
+              });
+            })
+            .catch((err) => {
+              swal(err.message);
             });
-          })
-          .catch((err) => {
-            swal(err.message);
-          });
-        }catch(error){
-          toast.error(error.message)
+        } catch (error) {
+          toast.error(error.message);
         }
       } else {
         swal('Your file is safe!');
       }
-    
     });
   };
 

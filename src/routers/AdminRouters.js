@@ -19,7 +19,7 @@ const AdminRouters = () => {
           element={!adminLoginStatus ? <AdminLogin /> : <AdminDashboard />}
         ></Route>
         <Route
-          path="/admin" 
+          path="/admin"
           element={adminLoginStatus ? <AdminDashboard /> : <AdminLogin />}
         ></Route>
         {adminLoginStatus && (

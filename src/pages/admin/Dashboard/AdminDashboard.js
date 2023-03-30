@@ -6,22 +6,26 @@ import Chart from '../../../components/admin -components/Chart';
 import axios from '../../../axios/axios';
 import { toast } from 'react-hot-toast';
 const AdminDashboard = () => {
-   const [dashboardData,setDashboardData]=useState({})
-  useEffect(()=>{
-    try{
-    axios.get("/admin/get-dashboard", {
-      headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
-    }).then((response)=>{
-      if(response.data.status === 'success'){
-        setDashboardData(response.data)
-      }else{
-        toast.error(response.data.message)
-      }
-      console.log(response.data);
-    })}catch(error){
-      toast.error(error.message)
+  const [dashboardData, setDashboardData] = useState({});
+  useEffect(() => {
+    try {
+      axios
+        .get('/admin/get-dashboard', {
+          headers: {
+            'x-access-admintoken': localStorage.getItem('admintoken'),
+          },
+        })
+        .then((response) => {
+          if (response.data.status === 'success') {
+            setDashboardData(response.data);
+          } else {
+            toast.error(response.data.message);
+          }
+        });
+    } catch (error) {
+      toast.error(error.message);
     }
-  },[])
+  }, []);
   return (
     <div>
       <div className="">
@@ -67,7 +71,7 @@ const AdminDashboard = () => {
               </div>
               <div className="  badgeButton">
                 <div className="notification-content">
-                    <h1>$ {dashboardData.revenue}</h1>
+                  <h1>$ {dashboardData.revenue}</h1>
                   <smal>Total Revenue</smal>
                 </div>
               </div>
@@ -82,7 +86,7 @@ const AdminDashboard = () => {
             {/* <Chart /> */}
             <div className="chart mt-4   ">
               {' '}
-              <Chart />
+              <Chart change={true} />
             </div>
             <div className="chart mt-4   ">
               {' '}

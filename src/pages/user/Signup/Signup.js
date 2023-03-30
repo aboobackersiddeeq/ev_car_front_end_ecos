@@ -13,7 +13,7 @@ import { toast } from 'react-hot-toast';
 
 function Signup() {
   const [email, setEmail] = useState('');
-  const { setUserLoginStatus} = useContext(AppContext);
+  const { setUserLoginStatus } = useContext(AppContext);
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');

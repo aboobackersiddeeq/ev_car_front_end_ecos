@@ -270,8 +270,10 @@ function MapboxMap() {
                       >
                         {' '}
                         <div>
-                          <h6 className='popup-title'>{val.AddressInfo.AccessComments}</h6>
-                          <p className='popup-desc'>
+                          <h6 className="popup-title">
+                            {val.AddressInfo.AccessComments}
+                          </h6>
+                          <p className="popup-desc">
                             {val.AddressInfo.AddressLine1}
                             {val.AddressInfo.AddressLine2}, Charging location{' '}
                             {i + 1}
@@ -299,13 +301,13 @@ function MapboxMap() {
                             className="marker-geofill"
                             style={{
                               color:
-                              val.type === 'Tata'
-                                ? 'blue'
-                                : val.type === 'KSEB'
-                                ? 'green'
-                                : val.type === 'Ather'
-                                ? '#be7d32'
-                                : '',
+                                val.type === 'Tata'
+                                  ? 'blue'
+                                  : val.type === 'KSEB'
+                                  ? 'green'
+                                  : val.type === 'Ather'
+                                  ? '#be7d32'
+                                  : '',
                               fontSize: val._id === currentId ? '30px' : ' ',
                               cursor: 'pointer',
                             }}
@@ -313,7 +315,7 @@ function MapboxMap() {
                         </div>
                       </Marker>
                       {currentId === val._id && (
-                        <Popup 
+                        <Popup
                           longitude={val.long}
                           latitude={val.lat}
                           closeButton={true}
@@ -323,8 +325,8 @@ function MapboxMap() {
                         >
                           {' '}
                           <div>
-                            <h6 className='popup-title'>{val.title}</h6>
-                            <p className='popup-desc'>
+                            <h6 className="popup-title">{val.title}</h6>
+                            <p className="popup-desc">
                               {val.desc}
                               {val.type}, Charging location {i + 1}
                               <p style={{ color: 'blue' }}>
@@ -352,13 +354,13 @@ function MapboxMap() {
                             className="marker-geofill"
                             style={{
                               color:
-                              val.type === 'Tata'
-                                ? 'blue'
-                                : val.type === 'KSEB'
-                                ? 'green'
-                                : val.type === 'Ather'
-                                ? '#be7d32'
-                                : '',
+                                val.type === 'Tata'
+                                  ? 'blue'
+                                  : val.type === 'KSEB'
+                                  ? 'green'
+                                  : val.type === 'Ather'
+                                  ? '#be7d32'
+                                  : '',
                               fontSize: val._id === currentId ? '30px' : ' ',
                               cursor: 'pointer',
                             }}
@@ -376,8 +378,8 @@ function MapboxMap() {
                         >
                           {' '}
                           <div>
-                            <h6 className='popup-title'>{val.title}</h6>
-                            <p className='popup-desc'>
+                            <h6 className="popup-title">{val.title}</h6>
+                            <p className="popup-desc">
                               {val.desc}
                               {val.type}, Charging location {i + 1}
                               <p style={{ color: 'blue' }}>
@@ -496,7 +498,7 @@ function MapboxMap() {
           </Map>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

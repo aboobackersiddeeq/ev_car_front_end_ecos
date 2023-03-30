@@ -3,8 +3,8 @@ import React, { useContext, useState } from 'react';
 import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../../firebase/Firebase-config';
 import { signInWithPopup } from 'firebase/auth';
- 
-import '../../style/login.css'; 
+
+import '../../style/login.css';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
 import axios from '../../axios/axios';
