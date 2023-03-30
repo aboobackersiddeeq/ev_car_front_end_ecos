@@ -13,7 +13,9 @@ function Booking() {
   useEffect(() => {
     axios
       .get('dealer/get-bookings', {
-        headers: { 'x-access-dealertoken': localStorage.getItem('dealertoken') },
+        headers: {
+          'x-access-dealertoken': localStorage.getItem('dealertoken'),
+        },
       })
       .then((response) => {
         if (response.data.status === 'success') {
