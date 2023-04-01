@@ -3,11 +3,7 @@ import swal from 'sweetalert';
 import '../../../style/login.css';
 import axios from '../../../axios/axios';
 import { AppContext } from '../../../context/AppContext';
-// import {
-//   getAuth,
-//   createUserWithEmailAndPassword,
-//   updateProfile,
-// } from 'firebase/auth';
+ 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
@@ -46,31 +42,7 @@ function Signup() {
         toast(error.message);
       }
     }
-
-    // let id;
-    // const auth = getAuth();
-    // console.log(auth);
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then(async (userCredential) => {
-    //     await updateProfile(auth.currentUser, { displayName: name }).catch(
-    //       (err) => swal(err)
-    //     );
-    //     id = userCredential.user;
-    //   })
-    //   .then(() => {
-    //     addDoc(Collection, {
-    //       userid: id.uid,
-    //       name: name,
-    //       phone: phone,
-    //     });
-    //   })
-    //   .then(() => {
-    //     navigate('/');
-    //   })
-
-    //   .catch((error) => {
-    //     swal(error.message);
-    //   });
+ 
   };
   return (
     <div>
