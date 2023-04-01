@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-This project is ecos charging station finding , car booking ,test drive booking Application  w 
+This project is ecos charging station finding , car booking ,test drive booking Application .
 
 ## Available Scripts
 
