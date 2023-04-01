@@ -3,4 +3,6 @@
     width: 100%;
 }.Parent{
     width: 100%;
+}#mck-sidebox{
+    width: 320px !important;
 }
