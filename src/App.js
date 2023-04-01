@@ -8,6 +8,7 @@ import AdminRouters from './routers/AdminRouters';
 import UserRouters from './routers/UserRouters';
 import DealerRouters from './routers/DealerRouters';
 import { Toaster } from 'react-hot-toast';
+// import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
   const [adminLoginStatus, setAdminLoginStatus] = useState(false);
@@ -35,7 +36,7 @@ function App() {
   }, [adminLoginStatus, dispatch, setAdminLoginStatus]);
 
   return (
-    <div>
+    <>
       <AppContext.Provider
         value={{
           adminLoginStatus: adminLoginStatus,
@@ -48,12 +49,15 @@ function App() {
           setUserLoginStatus,
         }}
       >
+        {/* <ErrorBoundary> */}
+
         <Toaster position="top-center" reverseOrder={false} />
         <AdminRouters />
         <UserRouters />
         <DealerRouters />
+        {/* </ErrorBoundary> */}
       </AppContext.Provider>
-    </div>
+    </>
   );
 }
 
