@@ -158,7 +158,7 @@ select:-webkit-autofill:focus {
 .checkmark {
   position: absolute;
   top: 31px;
-  left: -42px;
+  left: -17px;
   height: 17px;
   width: 17px;
   background-color: transparent;
