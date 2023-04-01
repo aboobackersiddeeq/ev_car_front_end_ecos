@@ -10,15 +10,7 @@
     background-color: #ffffff;
   }
   
-  /* input {
-    border: 2px solid currentcolor;
-  }
-  input:invalid {
-    border: 2px dashed red;
-  }
-  input:invalid:focus {
-    background-image: linear-gradient(pink, lightgreen);
-  } */
+  
     h6{
       margin-bottom: 7px;
       font-size: medium;
@@ -47,6 +39,8 @@
   }
   body{
     background-color: #313131;
+    min-height: 100vh;
+    width: 100%;
   }
   
   .loginButton {
