@@ -14,7 +14,7 @@ const Checkout = () => {
   const [dealerData, setDealerData] = useState([]);
   const handlePayment = async (params) => {
     const options = {
-      key: 'rzp_test_wyOr3rz1W1Hsvd',
+      key:process.env.REACT_APP_RAZORPAY_KEY,
       amount: formData.bookingPrice * 100,
       currency: 'INR',
       name: 'ecos',
