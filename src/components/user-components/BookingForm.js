@@ -116,19 +116,19 @@ const BookingForm = (props) => {
               </div>
             </div>
 
-            <h1 className="please">SELECT YOUR COLOR:</h1>
+            <h1 className="please pb-2">SELECT YOUR COLOR:</h1>
             <div className="col-md-12"></div>
 
             <div className="peracard">
               {colors &&
                 colors.map((element, index) => {
                   return (
-                    <Card
+                    < div
                       key={element}
-                      className="card"
+                      className=""
                       style={{ width: '7rem' }}
                     >
-                      <Card.Body>
+                      <Card.Body >
                         <Button
                           onClick={() => {
                             handilecolor(index);
@@ -136,17 +136,17 @@ const BookingForm = (props) => {
                           className={
                             index === isActive
                               ? 'active Button tick-active'
-                              : 'Button'
+                              : 'Button '
                           }
                           style={{ backgroundColor: element }}
                         ></Button>
                         <p className="center">{element}</p>
                       </Card.Body>
-                    </Card>
+                    </div >
                   );
                 })}
             </div>
-            <div>
+            <div className="peracard">
               <div className="bookingPara">
                 <div className="booking-amount">
                   <h3>$ {bookingPrice}</h3>
@@ -156,9 +156,7 @@ const BookingForm = (props) => {
                   <h3>$ {price}</h3>
                   <p>Ex-Showroom price</p>
                 </div>
-              </div>
-              <div className="regFormBtn  ">
-                <button className="nexon-btn h-checkout ">CHECKOUT</button>
+                <button className="nexon-btn h-checkout  btn-block">CHECKOUT</button>
               </div>
             </div>
 
