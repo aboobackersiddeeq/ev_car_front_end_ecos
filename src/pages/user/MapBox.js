@@ -38,12 +38,10 @@ function MapboxMap() {
   const handilePin = (data) => {
     const long = data[0];
     const lat = data[1];
-    console.log('daaaaaaaaaa');
     axiosInstance.post('/map/get-map-near', { long, lat }).then((response) => {
       setSelectPin(response.data.result);
     });
   };
-  console.log(selectPin);
   const mapRef = useRef();
   const navigate = useNavigate();
 
@@ -84,10 +82,10 @@ function MapboxMap() {
         setPin(response.data.result);
       });
     } catch (error) {
-      toast.error(error.message);
+      toast.error("network error"+error.message);
     }
   }, []);
-  React.useEffect(() => {
+    useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
       setViewPort({
         ...viewPort,
@@ -101,21 +99,21 @@ function MapboxMap() {
   useEffect(() => {
     axios
       .get(
-        'https://api.openchargemap.io/v3/poi/?output=json&countrycode=IN&maxresults=100&key=278d57de-b26d-4512-8553-1e14532c4657&StateOrProvince  =kerala'
+        `https://api.openchargemap.io/v3/poi/?output=json&countrycode=IN&maxresults=100&key=${process.env.REACT_APP_API_KEY}&StateOrProvince  =kerala`
       )
       .then((response) => {
         setPlace(response.data);
       })
       .catch((error) => {
-        console.log(error);
+       toast.error(error.message)
       });
   }, []);
 
   const handleDubleClick = (e) => {
-    console.log(e, 'dobleclick data');
     const { lng, lat } = e.lngLat;
     setNewPopup({ lng, lat });
   };
+ 
 
   return (
     <div>
@@ -229,7 +227,7 @@ function MapboxMap() {
               setViewPort(event.viewPort);
             }}
             onDblClick={handleDubleClick}
-            mapboxAccessToken="pk.eyJ1IjoicmFzaGlkcmFzaGkiLCJhIjoiY2xmbm5yazJqMDEyNjN1cW15bW16aHZyZyJ9.z8umjVwkkrxiAoVlKMeHOw"
+            mapboxAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
             mapStyle="mapbox://styles/mapbox/streets-v9"
             // zoom={3}
           >
