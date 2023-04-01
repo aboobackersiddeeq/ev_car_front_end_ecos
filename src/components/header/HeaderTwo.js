@@ -18,7 +18,7 @@ function HeaderTwo() {
   return (
     <div className="parentNav">
       <div className="navup">
-        <span className="sub-heading">Chat With Us </span>
+        <span className="sub-heading" onClick={() => navigate('/chat')}>Chat With Us </span>
         <span className="sub-heading" onClick={() => navigate('/map')}>
           Charging Locator{' '}
         </span>

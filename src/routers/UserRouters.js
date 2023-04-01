@@ -18,7 +18,7 @@ import { useEffect } from 'react';
 import axios from '../axios/axios';
 import { userData } from '../redux/User';
 import { useDispatch } from 'react-redux';
-// import Errorpage from '../components/error/Errorpage';
+import ChatAgent from '../components/ChatAgent';
 
 const UserRouters = () => {
   const dispatch = useDispatch(userData);
@@ -41,19 +41,19 @@ const UserRouters = () => {
   return (
     <>
       <Routes>
-        <Route path="/" exact element={<Home />}></Route>
-        <Route path="/ev" element={<Ev />}></Route>
-        <Route path="/ev-max" element={<EvMax />}></Route>
-        <Route path="/ev-prime" element={<EvPrime />}></Route>
-        <Route path="/ev-dark" element={<DarkEdition />}></Route>
-        <Route path="/ev-test-booking" element={<EvTestBooking />}></Route>
-        <Route path="/booking" element={<Booking />}></Route>
-        <Route path="/ev-thank" element={<ThankYou />}></Route>
-        <Route path="/checkout" element={<Checkout />}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/map" element={<MapboxMap />}></Route>
-        {/* <Route path="*" element={<Errorpage />}></Route> */}
+        <Route exact path="/"   element={<Home />}></Route>
+        <Route exact path="/ev" element={<Ev />}></Route>
+        <Route exact path="/ev-max" element={<EvMax />}></Route>
+        <Route exact path="/ev-prime" element={<EvPrime />}></Route>
+        <Route exact path="/ev-dark" element={<DarkEdition />}></Route>
+        <Route exact path="/ev-test-booking" element={<EvTestBooking />}></Route>
+        <Route exact path="/booking" element={<Booking />}></Route>
+        <Route exact path="/ev-thank" element={<ThankYou />}></Route>
+        <Route exact path="/checkout" element={<Checkout />}></Route>
+        <Route exact path="/login" element={<Login />}></Route>
+        <Route exact path="/signup" element={<Signup />}></Route>
+        <Route exact path="/map" element={<MapboxMap />}></Route> 
+        <Route exact path="/chat" element={<ChatAgent/>}></Route> 
       </Routes>
     </>
   );
