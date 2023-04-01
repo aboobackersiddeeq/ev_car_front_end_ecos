@@ -9,6 +9,7 @@ const Booking = () => {
     setImage(data);
   };
   return (
+      <div className='main-div-booking'>
     <div className="bg-light parent">
       <HeaderTwo />
       <div className="container-fluid  ">
@@ -26,8 +27,9 @@ const Booking = () => {
         </div>
       </div>
       <div></div>
-      <Footer />
     </div>
+      <Footer />
+      </div>
   );
 };
 
