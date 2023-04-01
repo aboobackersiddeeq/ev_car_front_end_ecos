@@ -3,6 +3,13 @@
   color: #00adba;
   padding-top: 20px;
 }
+.parent{
+  min-height: 100vh;
+ 
+}
+.main-div-booking{
+  overflow: hidden;
+}
 .li {
   padding-bottom: 10px;
   padding-top: 10px;
@@ -68,7 +75,8 @@
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     }
     .bookingPara{
-      display: flex;
+      /* display: flex; */
+      /* margin-top: -116px; */
     }.booking-amount{
       margin-right: 40px;
       font-style: italic;
@@ -95,6 +103,7 @@
   }.center{
     text-align: center;
     padding-top: 5px;
+    padding-right: 23px;
   }
 
   .tick-active::after {
@@ -129,3 +138,6 @@
   .border-top { border-top: 1px solid #e5e5e5; }
   .border-bottom { border-bottom: 1px solid #e5e5e5; }
   .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+  .btn-block{
+    display: block;
+  }
