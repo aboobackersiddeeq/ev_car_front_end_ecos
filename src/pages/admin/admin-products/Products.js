@@ -10,7 +10,6 @@ import { product } from '../../../redux/Product';
 import { useDispatch } from 'react-redux';
 import Multiselect from 'multiselect-react-dropdown';
 import { toast } from 'react-hot-toast';
-
 function Products() {
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
