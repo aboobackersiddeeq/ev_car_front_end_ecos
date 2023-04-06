@@ -1,0 +1,45 @@
+.sidebarChat {
+  display: flex;
+  padding-left: 23px;
+  padding-top: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #f6f6f6;
+}
+.sidebarChat:hover {
+  background-color: #ebebeb;
+}
+.sidebarChat_info > h2 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.sidebarChat_info {
+  margin-left: 15px;
+}
+.sidebar-dropdown-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  font-weight: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+.dropdown-toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.dropdown-toggle:hover {
+  border: none;
+}
+.dropdown-toggle:focus {
+  border: none;
+}
+.dropdown-toggle::after {
+  content: unset;
+}
+ 
