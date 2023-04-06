@@ -14,11 +14,13 @@ const AdminRouters = () => {
   return (
     <>
       <Routes>
-        <Route exact
-          path="/admin/login" 
+        <Route
+          exact
+          path="/admin/login"
           element={!adminLoginStatus ? <AdminLogin /> : <AdminDashboard />}
         ></Route>
-        <Route exact
+        <Route
+          exact
           path="/admin"
           element={adminLoginStatus ? <AdminDashboard /> : <AdminLogin />}
         ></Route>
@@ -27,9 +29,14 @@ const AdminRouters = () => {
             <Route exact path="/admin/users" element={<AdminUser />}></Route>
             <Route exact path="/admin/products" element={<Products />}></Route>
             <Route exact path="/admin/bookings" element={<Booking />}></Route>
-            <Route exact path="/admin/community" element={<Community />}></Route>
+            <Route
+              exact
+              path="/admin/community"
+              element={<Community />}
+            ></Route>
             <Route exact path="/admin/dealers" element={<Dealers />}></Route>
-            <Route exact
+            <Route
+              exact
               path="/admin/test-drive"
               element={<TestDriveBooking />}
             ></Route>

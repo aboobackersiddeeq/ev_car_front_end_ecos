@@ -19,6 +19,7 @@ import axios from '../axios/axios';
 import { userData } from '../redux/User';
 import { useDispatch } from 'react-redux';
 import ChatAgent from '../components/ChatAgent';
+import Community from '../pages/user/Community';
 
 const UserRouters = () => {
   const dispatch = useDispatch(userData);
@@ -32,7 +33,7 @@ const UserRouters = () => {
         if (!response.data.auth) {
           setUserLoginStatus(false);
         } else {
-          dispatch(userData(response.data));
+          dispatch(userData(response.data.result));
           setUserLoginStatus(true);
         }
       });
@@ -41,19 +42,28 @@ const UserRouters = () => {
   return (
     <>
       <Routes>
-        <Route exact path="/"   element={<Home />}></Route>
+        <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/ev" element={<Ev />}></Route>
         <Route exact path="/ev-max" element={<EvMax />}></Route>
         <Route exact path="/ev-prime" element={<EvPrime />}></Route>
         <Route exact path="/ev-dark" element={<DarkEdition />}></Route>
-        <Route exact path="/ev-test-booking" element={<EvTestBooking />}></Route>
+        <Route
+          exact
+          path="/ev-test-booking"
+          element={<EvTestBooking />}
+        ></Route>
         <Route exact path="/booking" element={<Booking />}></Route>
         <Route exact path="/ev-thank" element={<ThankYou />}></Route>
         <Route exact path="/checkout" element={<Checkout />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
         <Route exact path="/signup" element={<Signup />}></Route>
-        <Route exact path="/map" element={<MapboxMap />}></Route> 
-        <Route exact path="/chat" element={<ChatAgent/>}></Route> 
+        <Route exact path="/map" element={<MapboxMap />}></Route>
+        <Route exact path="/chat" element={<ChatAgent />}></Route>
+
+        <Route
+          path="/community"
+          element={!userLoginStatus ? <Login /> : <Community />}
+        ></Route>
       </Routes>
     </>
   );

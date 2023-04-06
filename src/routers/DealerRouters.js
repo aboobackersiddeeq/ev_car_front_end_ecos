@@ -30,7 +30,8 @@ const DealerRouters = () => {
   }, [dealerLoginStatus, dispatch, setDealerLoginStatus]);
   return (
     <Routes>
-      <Route exact
+      <Route
+        exact
         path="/dealer/login"
         element={!dealerLoginStatus ? <DealerLogin /> : <DealerDashboard />}
       ></Route>
@@ -38,13 +39,15 @@ const DealerRouters = () => {
         <>
           <Route exact path="/dealer/bookings" element={<Booking />}></Route>
           <Route exact path="/dealer/products" element={<Products />}></Route>
-          <Route exact
+          <Route
+            exact
             path="/dealer/test-drive"
             element={<TestDriveBooking />}
           ></Route>
         </>
       )}
-      <Route exact
+      <Route
+        exact
         path="/dealer"
         element={dealerLoginStatus ? <DealerDashboard /> : <DealerLogin />}
       ></Route>
