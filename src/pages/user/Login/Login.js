@@ -4,14 +4,15 @@ import { auth, provider } from '../../../firebase/Firebase-config';
 import { signInWithPopup } from 'firebase/auth';
 import swal from 'sweetalert';
 import '../../../style/login.css';
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../../axios/axios';
 import { AppContext } from '../../../context/AppContext';
 import { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-
+import { useDispatch } from 'react-redux';
+import { userData } from '../../../redux/User';
 function Login() {
+  const dispatch = useDispatch(userData);
   const handleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
       console.log(data, 'data');
@@ -30,12 +31,14 @@ function Login() {
             } else {
               setUserLoginStatus(true);
               localStorage.setItem('usertoken', response.data.token);
+              dispatch(userData(response.data.result));
               navigate('/');
               swal('success', response.data.message, 'success');
             }
-          });
+          })
+          .catch((error) => toast.error('Network error ', error.message));
       } catch (error) {
-        toast(error.message);
+        toast.error(error.message, 'Network error');
       }
       navigate('/');
     });
@@ -46,30 +49,25 @@ function Login() {
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-    // const auth = getAuth();
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then(() => {
-    //     navigate('/');
-    //   })
-    //   .catch((error) => {
-    //     swal('User not found');
-    //   });
 
     try {
-      axios.post('/login', { password, email }).then((response) => {
-        console.log(response.data);
-        if (!response.data.auth) {
-          swal('sorry', response.data.message, 'error');
-          setUserLoginStatus(false);
-        } else {
-          setUserLoginStatus(true);
-          localStorage.setItem('usertoken', response.data.token);
-          navigate('/');
-          swal('success', response.data.message, 'success');
-        }
-      });
+      axios
+        .post('/login', { password, email })
+        .then((response) => {
+          if (!response.data.auth) {
+            swal('sorry', response.data.message, 'error');
+            setUserLoginStatus(false);
+          } else {
+            setUserLoginStatus(true);
+            localStorage.setItem('usertoken', response.data.token);
+            dispatch(userData(response.data.result));
+            navigate('/');
+            swal('success', response.data.message, 'success');
+          }
+        })
+        .catch((error) => toast.error('Network error '));
     } catch (error) {
-      toast(error.message);
+      toast.error(error.message, 'Network error ');
     }
   };
 

@@ -22,8 +22,8 @@ function Booking() {
           swal('OOPS', response.data.message, 'error');
         }
       })
-      .catch((err) => {
-        alert('network error: ' + err.message);
+      .catch((error) => {
+        swal('OOPS', error.message, 'error');
       });
   }, []);
 

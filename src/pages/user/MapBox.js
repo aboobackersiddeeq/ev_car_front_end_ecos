@@ -82,10 +82,10 @@ function MapboxMap() {
         setPin(response.data.result);
       });
     } catch (error) {
-      toast.error("network error"+error.message);
+      toast.error('network error' + error.message);
     }
   }, []);
-    useEffect(() => {
+  useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
       setViewPort({
         ...viewPort,
@@ -105,7 +105,7 @@ function MapboxMap() {
         setPlace(response.data);
       })
       .catch((error) => {
-       toast.error(error.message)
+        toast.error(error.message);
       });
   }, []);
 
@@ -113,7 +113,6 @@ function MapboxMap() {
     const { lng, lat } = e.lngLat;
     setNewPopup({ lng, lat });
   };
- 
 
   return (
     <div>

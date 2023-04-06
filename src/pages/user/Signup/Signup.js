@@ -3,11 +3,14 @@ import swal from 'sweetalert';
 import '../../../style/login.css';
 import axios from '../../../axios/axios';
 import { AppContext } from '../../../context/AppContext';
- 
+
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { userData } from '../../../redux/User';
 
 function Signup() {
+  const dispatch = useDispatch(userData);
   const [email, setEmail] = useState('');
   const { setUserLoginStatus } = useContext(AppContext);
   const [password, setPassword] = useState('');
@@ -33,6 +36,7 @@ function Signup() {
               swal('SUCCESS', response.data.message, 'success');
               localStorage.setItem('usertoken', response.data.token);
               setUserLoginStatus(true);
+              dispatch(userData(response.data.result));
               navigate('/');
             } else {
               swal('OOPS', response.data.message, 'error');
@@ -42,7 +46,6 @@ function Signup() {
         toast(error.message);
       }
     }
- 
   };
   return (
     <div>

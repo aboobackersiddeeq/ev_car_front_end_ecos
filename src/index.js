@@ -3,23 +3,14 @@ import ReactDOM from 'react-dom/client';
 import '../src/style/index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import adminReducer from './redux/Admin';
-import dealerReducer from './redux/Dealer';
-import productReducer from './redux/Product';
-import userReducer from './redux/User';
+import { store, persistor } from './redux/Store';
+
 import { BrowserRouter } from 'react-router-dom';
 import { firebaseContext } from './context/FirebaseContext';
 import { auth, provider, app, db } from './firebase/Firebase-config';
 import Context from './context/FirebaseContext';
-import { configureStore } from '@reduxjs/toolkit';
-const store = configureStore({
-  reducer: {
-    admin: adminReducer,
-    dealer: dealerReducer,
-    product: productReducer,
-    user: userReducer,
-  },
-});
+import { PersistGate } from 'redux-persist/integration/react';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -27,7 +18,9 @@ root.render(
       <BrowserRouter>
         <Context>
           <Provider store={store}>
-            <App />
+            <PersistGate persistor={persistor}>
+              <App />
+            </PersistGate>
           </Provider>
         </Context>
       </BrowserRouter>

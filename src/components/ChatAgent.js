@@ -9,11 +9,12 @@ export class ChatAgent extends Component {
         popupWidget: true,
         automaticChatOpenOnNavigation: true,
       };
-      kommunicateSettings.onInit = function() {
-          var cssChanges = "  .mck-box{width: 387px!important; Height: 500px !important}";
-          var css2 = "  .mck-sidebox{top: 190!important; left:60 !important}";
-       window.Kommunicate.customizeWidgetCss(cssChanges);
-       window.Kommunicate.customizeWidgetCss(css2);
+      kommunicateSettings.onInit = function () {
+        var cssChanges =
+          '  .mck-box{width: 387px!important; Height: 500px !important}';
+        var css2 = '  .mck-sidebox{top: 190!important; left:60 !important}';
+        window.Kommunicate.customizeWidgetCss(cssChanges);
+        window.Kommunicate.customizeWidgetCss(css2);
       };
       var s = document.createElement('script');
       s.type = 'text/javascript';
@@ -23,10 +24,9 @@ export class ChatAgent extends Component {
       h.appendChild(s);
       window.kommunicate = m;
       m._globals = kommunicateSettings;
-     
     })(document, window.kommunicate || {});
   }
-   
+
   render() {
     return (
       <>
