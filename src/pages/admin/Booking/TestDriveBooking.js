@@ -5,10 +5,19 @@ import Footer from '../../../components/footer/Footer';
 import axios from '../../../axios/axios';
 import { useEffect, useState } from 'react';
 import swal from 'sweetalert';
+import { useReactToPrint } from 'react-to-print';
+import { useRef } from 'react';
+import { toast } from 'react-hot-toast';
 
 function TestDriveBooking() {
+  const componentsPDF = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [details, setDetails] = useState([]);
+  const generatePDF = useReactToPrint({
+    content: () => componentsPDF.current,
+    documentTitle: `Test drive data ${new Date()}`,
+    onAfterPrint: () => toast.success('PDF saved '),
+  });
 
   useEffect(() => {
     axios
@@ -68,11 +77,16 @@ function TestDriveBooking() {
               </Form>
             </div>
             <div className="col-md-3">
-              <Button variant="outline-dark">Download</Button>
+              <Button onClick={() => generatePDF()} variant="outline-dark">
+                Download
+              </Button>
             </div>
           </div>
         </div>
-        <div className="container p-5">
+        <div className="container p-5" ref={componentsPDF}>
+          <h3 className="pb-5 text-center fw-bold print-additional-text">
+            Test Drive Bookings
+          </h3>
           {filterData.length > 0 ? (
             <Table responsive="sm">
               <thead>
