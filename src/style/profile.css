@@ -1,0 +1,73 @@
+.profile_body{
+    float: right;
+    margin-right: 20px;
+    margin-top: 10px;
+    text-align: center;
+    width: 20%;
+     /* max-width: 20%; */
+     box-shadow: -1px 4px 20px -6px rgb(21, 21, 21);
+     padding: 20px;
+     color: rgb(21, 20, 20);
+     z-index: 30;
+   
+}
+.profile_content{
+     display: flex;
+     justify-content: center;
+     margin-top: 30px;
+    
+}
+.profile_content > .MuiAvatar-root {
+    width: 150px;
+    height: 150px;
+    font-size: 60px;
+
+}.profile_content > .MuiSvgIcon-root{
+    position: relative;
+    top:70px;
+    left: -70px;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.profile_content:hover .icon {
+    display: block;
+    cursor: pointer;
+     
+  }
+
+.profile_body >h3{
+    margin-top: 20px;
+    cursor: pointer;
+ 
+}
+.profile_body >p > .MuiSvgIcon-root{
+  font-size: medium;
+  cursor: pointer;
+   
+  
+}
+  .profile_close_icon{
+     float: right;
+     width: 27px  !important;
+
+  }
+  .dealer_state{
+    margin-top:-10px;
+    font-size: x-small;
+  }.profile_body_group{
+      
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 120px;
+    text-align: center;
+    width: 250px;
+    height: max-content;
+     /* max-width: 20%; */
+     box-shadow: -1px 4px 20px -6px rgb(21, 21, 21);
+     padding: 20px;
+     color: rgb(21, 20, 20);
+     z-index: 140;
+     position: absolute;
+  left: 37%;
+  top: 0px;
+  }
