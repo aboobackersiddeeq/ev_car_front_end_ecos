@@ -4,3 +4,12 @@ width: 400px;
 height: 400px;
 margin-top: 170px;
 }
+.print-additional-text {
+    display: none;
+  }
+  
+  @media print {
+    .print-additional-text {
+      display: block;
+    }
+  }

@@ -38,7 +38,7 @@ select option {
   top: -50px;
 }
 
-.select_box:after {
+/* .select_box:after {
   content: "";
   align-items: end;
   border-left: 8px solid transparent;
@@ -51,7 +51,7 @@ select option {
   position: relative;
   top: -20px;
   left: -1%;
-}
+} */
 
 .registerForm label {
   position: relative;
@@ -171,3 +171,5 @@ select:-webkit-autofill:focus {
   left: -15px;
   /* display: none; */
 }
+
+

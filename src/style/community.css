@@ -3,6 +3,8 @@
     place-items: center;
     height: 100vh;
     background-color:#dadbd3;
+    z-index: 2;
+    
   
    }
    .app_body_community{
@@ -12,4 +14,5 @@
     height:95vh;
     width: 90vw;
     box-shadow: -1px 4px 20px -6px rgb(21, 21, 21);
+    z-index: 2;
    }

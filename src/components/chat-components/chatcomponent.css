@@ -24,7 +24,7 @@
 }
 .chat_body {
   flex: 1;
-  background-image: url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png");
+  background-image: url("https://imgs.search.brave.com/0LimlAYsVS2PcDunI4NrRKYXjTlhiAI8uM3HFQKuWCU/rs:fit:294:225:1/g:ce/aHR0cHM6Ly90c2U0/Lm1tLmJpbmcubmV0/L3RoP2lkPU9JUC5l/TVNaZ3lhVXRLVkNt/UmNFNlBUbERBQUFB/QSZwaWQ9QXBp");
   background-repeat: repeat;
   background-position: center;
   padding: 30px;
@@ -95,5 +95,19 @@
   position: absolute;
   top: 8px;
   right: 5px;
+}.chat_date{
+  text-align: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 }
-
+.chat_date >span{
+  border-radius: 6px;
+  background-color: #f5f3f3;
+  font-size: small;
+ 
+}.chat_arrowdownward{
+  position: fixed !important;
+  top: 78%;
+  left: 88%;
+}
