@@ -6,15 +6,16 @@ import { useContext } from 'react';
 import '../../style/header.css';
 import { useSelector } from 'react-redux';
 import { AppContext } from '../../context/AppContext';
+import Profile from '../../pages/dealer/Profile';
+import { useState } from 'react';
 function AdminHeader() {
   const navigate = useNavigate();
-  const { dealerLoginStatus, setDealerLoginStatus } = useContext(AppContext);
+  const { setDealerLoginStatus } = useContext(AppContext);
   const dealer = useSelector((state) => state.dealer.value);
+  const [profileShow, setProfileShow] = useState(false);
   const logout = () => {
-    console.log('logout');
     localStorage.removeItem('dealertoken');
     setDealerLoginStatus(false);
-    console.log(dealerLoginStatus);
     navigate('/dealer');
   };
   return (
@@ -50,7 +51,8 @@ function AdminHeader() {
               <Nav.Link
                 className="admin-heading"
                 eventKey={7}
-                onClick={() => navigate('/dealer/users')}
+                onClick={() => setProfileShow(true)}
+                onDoubleClick={() => setProfileShow(false)}
               >
                 Profile
               </Nav.Link>
@@ -67,6 +69,9 @@ function AdminHeader() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      <div className="dealer_profile">
+        {profileShow && <Profile setProfileShow={setProfileShow} />}
+      </div>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { dealerLogin } from '../redux/Dealer';
 import Booking from '../pages/dealer/Booking';
 import TestDriveBooking from '../pages/dealer/TestDriveBooking';
 import Products from '../pages/dealer/Products';
+import Profile from '../pages/dealer/Profile';
 const DealerRouters = () => {
   const dispatch = useDispatch(dealerLogin);
   const { dealerLoginStatus, setDealerLoginStatus } = useContext(AppContext);
@@ -39,6 +40,8 @@ const DealerRouters = () => {
         <>
           <Route exact path="/dealer/bookings" element={<Booking />}></Route>
           <Route exact path="/dealer/products" element={<Products />}></Route>
+          <Route exact path="/dealer/profile" element={<Profile />}></Route>
+
           <Route
             exact
             path="/dealer/test-drive"

@@ -1,14 +1,15 @@
 import { Avatar, IconButton } from '@material-ui/core';
 import {
-  AttachFile,
+  ArrowDownward,
+  // AttachFile,
   InsertEmoticon,
   Mic,
   MoreVert,
-  SearchOutlined,
+  // SearchOutlined,
   Send,
 } from '@material-ui/icons';
 import axios from '../../axios/axios';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,15 +18,34 @@ import './chatcomponent.css';
 import { toast } from 'react-hot-toast';
 import { booleanSwitch } from '../../redux/Boolean';
 import Picker from '@emoji-mart/react';
-const ChatMain = ({ socket }) => {
+import { baseUrl } from '../../constants/BaseURL';
+const ChatMain = ({ socket, setProfileShow }) => {
   const group = useSelector((state) => state.group.value);
   const user = useSelector((state) => state.user.value);
   const boolean = useSelector((state) => state.boolean);
   const dispatch = useDispatch();
+  const messageRef = useRef(null);
   const [message, setMessage] = useState('');
-  const [fullMsg, setFullMsg] = useState('');
+  const [fullMsg, setFullMsg] = useState([]);
   const [showPicker, setShowPicker] = useState(false);
+  const sortedMessages = fullMsg.sort((a, b) => a.createdAt - b.createdAt);
+  const today = new Date().toDateString();
+  const groupedMessages = [];
+  sortedMessages.forEach((message) => {
+    const messageDate = new Date(message.createdAt).toDateString();
+    const lastGroup = groupedMessages[groupedMessages.length - 1];
+    if (lastGroup && lastGroup.date === messageDate) {
+      lastGroup.messages.push(message);
+    } else {
+      groupedMessages.push({ date: messageDate, messages: [message] });
+    }
+  });
 
+  const scrollToDiv = () => {
+    setImmediate(() =>
+      messageRef.current?.scrollIntoView({ behavior: 'smooth' })
+    );
+  };
   const onEmojiClick = (emoji) => {
     setMessage((prevInput) => prevInput + emoji.native);
     setShowPicker(false);
@@ -69,66 +89,97 @@ const ChatMain = ({ socket }) => {
     } catch (error) {
       swal(error.message);
     }
-  }, [boolean, group.id, fullMsg]);
+  }, [boolean, group, fullMsg]);
+  useEffect(() => {
+    setImmediate(() =>
+      messageRef.current?.scrollIntoView({ behavior: 'smooth' })
+    );
+  }, [boolean]);
   return (
     <div className="chat-parent">
       <div className="chat_header">
-        <Avatar />
+        <div
+          onClick={() => setProfileShow(true)}
+          onDoubleClick={() => setProfileShow(false)}
+        >
+          <Avatar alt={group.name} src={`${baseUrl}${group.image}`} />
+        </div>
         <div className="chat_headerInfo">
           <h3>{group.name}</h3>
-          <p>Last seen at...</p>
+          {group.members &&
+            group.members.map((value) => <span>{value.name} ,</span>)}{' '}
+          ...
         </div>
+
         <div className="chat_headerRight">
-          <IconButton>
+          {/* <IconButton>
             <SearchOutlined />
           </IconButton>
           <IconButton>
             <AttachFile />
-          </IconButton>
+          </IconButton> */}
           <IconButton>
             <MoreVert />
           </IconButton>
         </div>
       </div>
+
       <div className="chat_body">
-        {fullMsg &&
-          fullMsg.map((value, index) => {
-            if (value.name.id === user._id) {
-              return (
-                <h6 className="chat_message chat_reciever">
-                  <span className="chat_name">
-                    {value.name.name.slice(0, 5)}
-                  </span>
-                  <span className="chat_text"> {value.text}</span>
-                  <span className="chat_timestamp">
-                    {new Date(Date.parse(value.createdAt))
-                      .toLocaleString('en-US', {
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: true,
-                      })
-                      .split(' ')}
-                  </span>
-                </h6>
-              );
-            } else {
-              return (
-                <p className="chat_message  ">
-                  <span className="chat_name">{value.name.name}</span>
-                  <span className="chat_text"> {value.text}</span>
-                  <span className="chat_timestamp">
-                    {new Date(Date.parse(value.createdAt))
-                      .toLocaleString('en-US', {
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: true,
-                      })
-                      .split(' ')}
-                  </span>
-                </p>
-              );
-            }
-          })}
+        {groupedMessages.map((element) => (
+          <div key={element.date}>
+            <p className="chat_date">
+              <span className=" px-2 py-1">
+                {element.date === today ? 'Today' : element.date}
+              </span>
+            </p>
+
+            {element.messages.map((value, index) => {
+              if (value.name.id === user._id) {
+                return (
+                  <p key={value._id} className="chat_message chat_reciever">
+                    <span className="chat_name">
+                      {value.name.name.slice(0, 5)}
+                    </span>
+                    <span className="chat_text"> {value.text}</span>
+                    <span className="chat_timestamp">
+                      {new Date(Date.parse(value.createdAt))
+                        .toLocaleString('en-US', {
+                          hour: 'numeric',
+                          minute: 'numeric',
+                          hour12: true,
+                        })
+                        .split(' ')}
+                    </span>
+                  </p>
+                );
+              } else {
+                return (
+                  <p key={value._id} className="chat_message  ">
+                    <span className="chat_name">
+                      {' '}
+                      {value.name.name.slice(0, 5)}
+                    </span>
+                    <span className="chat_text"> {value.text}</span>
+                    <span className="chat_timestamp">
+                      {new Date(Date.parse(value.createdAt))
+                        .toLocaleString('en-US', {
+                          hour: 'numeric',
+                          minute: 'numeric',
+                          hour12: true,
+                        })
+                        .split(' ')}
+                    </span>
+                  </p>
+                );
+              }
+            })}
+          </div>
+        ))}
+        <IconButton onClick={scrollToDiv} className="chat_arrowdownward">
+          <ArrowDownward className="bg-white rounded-circle p-1" />
+        </IconButton>
+        <p className="pt-3"></p>
+        <div ref={messageRef} />
       </div>
       <div className="chat_footer">
         <div style={{ position: 'relative', top: '-191px' }}>
