@@ -70,7 +70,7 @@ const Profile = ({ setProfileShow }) => {
       setError('min length of password is 6');
     } else {
       setError('');
-      
+
       try {
         if (!dealer.result.email) {
           toast.error('Authentication failed');
@@ -171,19 +171,18 @@ const Profile = ({ setProfileShow }) => {
   };
   const oldPasswordChecking = () => {
     try {
-      
-      if (! oldPassword) {
-        toast.error('Password is required');
-      }if (! dealer.result.email) {
-        toast.error('Authetication failed');
-      } else if (! oldPassword.trim()) {
+      if (!oldPassword) {
         toast.error('Password is required');
       }
-       else {
+      if (!dealer.result.email) {
+        toast.error('Authetication failed');
+      } else if (!oldPassword.trim()) {
+        toast.error('Password is required');
+      } else {
         axios
           .post(
             '/dealer/old-password',
-            {   email: dealer.result.email, password :oldPassword },
+            { email: dealer.result.email, password: oldPassword },
             {
               headers: {
                 'x-access-dealertoken': localStorage.getItem('dealertoken'),
@@ -194,8 +193,8 @@ const Profile = ({ setProfileShow }) => {
           .then((response) => {
             if (response.data.status === 'success') {
               toast.success(response.data.message);
-              setOldPassword('')
-              setPassOpen(false)
+              setOldPassword('');
+              setPassOpen(false);
               setOtpVerify(true);
             } else {
               toast.error(response.data.message);
@@ -292,37 +291,36 @@ const Profile = ({ setProfileShow }) => {
           Reset password <Edit />
         </p>
       )}
-      {resetOpen && !nameOpen &&  (
+      {resetOpen && !nameOpen && (
         <>
-        <Button
-          variant="text"
-          onClick={() => {
-            setOtpOpen(true);
-            otpSend();
-            setPassOpen(false)
-          }}
-          onDoubleClick={() => {
-            setOtpOpen(false);
-          }}
+          <Button
+            variant="text"
+            onClick={() => {
+              setOtpOpen(true);
+              otpSend();
+              setPassOpen(false);
+            }}
+            onDoubleClick={() => {
+              setOtpOpen(false);
+            }}
           >
-          Get verification code
-        </Button>
-        <Button
-        variant="text"
-        onClick={() => {
-          setPassOpen(true);
-          setOtpOpen(false)
-          
-        }}
-        onDoubleClick={() => {
-          setPassOpen(false);
-        }}
-        >
-        Enter your Password
-      </Button>
+            Get verification code
+          </Button>
+          <Button
+            variant="text"
+            onClick={() => {
+              setPassOpen(true);
+              setOtpOpen(false);
+            }}
+            onDoubleClick={() => {
+              setPassOpen(false);
+            }}
+          >
+            Enter your Password
+          </Button>
         </>
       )}
-      {otpOpen && !nameOpen && !passOpen &&(
+      {otpOpen && !nameOpen && !passOpen && (
         <>
           <TextField
             id="standard-basic"
@@ -381,7 +379,12 @@ const Profile = ({ setProfileShow }) => {
               value={Cpassword}
             />
             {formError && <div style={{ color: 'red' }}>{formError}</div>}
-            <Button type='submit' className="mt-3" variant="contained" endIcon={<Send />}>
+            <Button
+              type="submit"
+              className="mt-3"
+              variant="contained"
+              endIcon={<Send />}
+            >
               Send
             </Button>
           </form>
