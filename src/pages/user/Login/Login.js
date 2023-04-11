@@ -99,7 +99,6 @@ function Login() {
             id="fname"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            name="email"
             placeholder="Email"
             defaultValue="John"
             required
@@ -113,7 +112,6 @@ function Login() {
             id="lname"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            name="password"
             placeholder="Password"
             required
             minLength={6}
