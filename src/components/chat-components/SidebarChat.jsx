@@ -1,4 +1,4 @@
-import { Avatar } from '@material-ui/core';
+import { Avatar } from '@mui/material';
 import axios from '../../axios/axios';
 import React, { useEffect } from 'react';
 import './sidebarChat.css';

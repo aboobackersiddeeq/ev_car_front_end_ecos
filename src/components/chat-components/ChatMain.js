@@ -1,4 +1,4 @@
-import { Avatar, IconButton } from '@material-ui/core';
+import { Avatar, IconButton } from '@mui/material';
 import {
   ArrowDownward,
   // AttachFile,
@@ -7,7 +7,7 @@ import {
   MoreVert,
   // SearchOutlined,
   Send,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import axios from '../../axios/axios';
 import React, { useRef } from 'react';
 import { useEffect } from 'react';

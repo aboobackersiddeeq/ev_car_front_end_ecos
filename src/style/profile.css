@@ -29,11 +29,11 @@
     transform: translate(-50%, -50%);
     display: none;
 }
-.profile_content:hover .icon {
+/* .profile_content:hover .icon {
     display: block;
     cursor: pointer;
      
-  }
+  } */
 
 .profile_body >h3{
     margin-top: 20px;

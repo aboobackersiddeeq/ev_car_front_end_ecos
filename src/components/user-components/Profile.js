@@ -1,5 +1,5 @@
-import { Avatar, TextField } from '@material-ui/core';
-import { Close, Edit, EditOutlined } from '@material-ui/icons';
+import { Avatar, TextField } from '@mui/material';
+import { Close, Edit, EditOutlined } from '@mui/icons-material';
 import axios from '../../axios/axios';
 import React from 'react';
 import { useState } from 'react';

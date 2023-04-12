@@ -19,7 +19,7 @@ import swal from 'sweetalert';
 import { toast } from 'react-hot-toast';
 import Geocoder from '../../components/Geocoder';
 import Footer from '../../components/footer/Footer';
-// import TimeAgo from 'timeago-react';
+// import format from 'timeago';
 function MapboxMap() {
   const [places, setPlace] = useState([]);
   const [newPopup, setNewPopup] = useState(null);

@@ -7,14 +7,14 @@ import {
   TextField,
   Button,
   DialogActions,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   Chat,
   DonutLarge,
   MoreVert,
   SearchOutlined,
   ArrowBack,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import axios from '../../axios/axios';
 import React from 'react';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
