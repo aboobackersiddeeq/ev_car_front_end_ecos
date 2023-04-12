@@ -51,7 +51,6 @@
     "prettier": "prettier --write \"src/**/*.js\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-     
   },
   "eslintConfig": {
     "extends": [
@@ -72,6 +71,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "^16.8.6",
     "prettier": "2.8.6"
   }
 }
