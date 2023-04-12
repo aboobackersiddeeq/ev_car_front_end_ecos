@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Products from '../pages/admin/admin-products/Products';
 import Booking from '../pages/admin/booking/Booking';
@@ -9,8 +9,31 @@ import AdminUser from '../pages/admin/user-management/AdminUser';
 import AdminLogin from '../pages/admin/AdminLogin';
 import AdminDashboard from '../pages/admin/dashboard/AdminDashboard';
 import { AppContext } from '../context/AppContext';
+import axios from '../axios/axios';
+import { adminlogin } from '../redux/Admin';
+import { useDispatch } from 'react-redux'
 const AdminRouters = () => {
-  const { adminLoginStatus } = useContext(AppContext);
+  const { adminLoginStatus,setAdminLoginStatus } = useContext(AppContext);
+
+  const dispatch = useDispatch(adminlogin);
+  useEffect(() => {
+    try {
+      axios
+        .get('/admin/isAdminAuth', {
+          headers: {
+            'x-access-admintoken': localStorage.getItem('admintoken'),
+          },
+        })
+        .then((response) => {
+          if (!response.data.auth) {
+            setAdminLoginStatus(false);
+          } else {
+            setAdminLoginStatus(true);
+            dispatch(adminlogin(response.data));
+          }
+        });
+    } catch {}
+  }, [adminLoginStatus, dispatch, setAdminLoginStatus]);
   return (
     <>
       <Routes>
