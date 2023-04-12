@@ -8,6 +8,8 @@ export const adminSlice = createSlice({
       state.value = action.payload;
     },
   },
+
+  
 });
 export const { adminlogin } = adminSlice.actions;
 export default adminSlice.reducer;
