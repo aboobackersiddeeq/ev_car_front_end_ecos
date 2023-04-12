@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import swal from 'sweetalert';
-import '../../../style/login.css';
-import axios from '../../../axios/axios';
-import { AppContext } from '../../../context/AppContext';
+import '../../style/login.css';
+import axios from '../../axios/axios';
+import { AppContext } from '../../context/AppContext';
 
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { userData } from '../../../redux/User';
+import { userData } from '../../redux/User';
 
 function Signup() {
   const dispatch = useDispatch(userData);

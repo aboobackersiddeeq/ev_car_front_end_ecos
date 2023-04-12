@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { GoogleButton } from 'react-google-button';
-import { auth, provider } from '../../../firebase/Firebase-config';
+import { auth, provider } from '../../firebase/Firebase-config';
 import { signInWithPopup } from 'firebase/auth';
 import swal from 'sweetalert';
-import '../../../style/login.css';
+import '../../style/login.css';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../../axios/axios';
-import { AppContext } from '../../../context/AppContext';
+import axios from '../../axios/axios';
+import { AppContext } from '../../context/AppContext';
 import { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { userData } from '../../../redux/User';
+import { userData } from '../../redux/User';
 function Login() {
   const dispatch = useDispatch(userData);
   const handleClick = () => {
