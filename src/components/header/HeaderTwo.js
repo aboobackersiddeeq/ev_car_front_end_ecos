@@ -1,8 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { signOut } from 'firebase/auth';
-import { firebaseContext } from '../../context/FirebaseContext';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useNavigate } from 'react-router-dom';
 import '../../style/headerTwo.css';
@@ -14,7 +12,6 @@ function HeaderTwo() {
   const navigate = useNavigate();
   const dispatch = useDispatch(userData);
   const { userLoginStatus, setUserLoginStatus } = useContext(AppContext);
-  const { auth } = useContext(firebaseContext);
   return (
     <div className="parentNav">
       <div className="navup">
@@ -31,7 +28,6 @@ function HeaderTwo() {
           <span
             className="sub-heading"
             onClick={() => {
-              signOut(auth);
               localStorage.removeItem('usertoken');
               setUserLoginStatus(false);
               dispatch(userData(null));

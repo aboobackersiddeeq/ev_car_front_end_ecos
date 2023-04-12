@@ -1,17 +1,4 @@
-// import { configureStore } from '@reduxjs/toolkit';
 
-// import adminReducer from './Admin';
-// import dealerReducer from './Dealer';
-// import productReducer from './Product';
-// import userReducer from './User';
-//  export const store = configureStore({
-//   reducer: {
-//     admin: adminReducer,
-//     dealer: dealerReducer,
-//     product: productReducer,
-//     user: userReducer,
-//   },
-// });
 
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';

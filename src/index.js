@@ -8,7 +8,6 @@ import { store, persistor } from './redux/Store';
 import { BrowserRouter } from 'react-router-dom';
 import { firebaseContext } from './context/FirebaseContext';
 import { auth, provider, app, db } from './firebase/Firebase-config';
-import Context from './context/FirebaseContext';
 import { PersistGate } from 'redux-persist/integration/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,13 +15,11 @@ root.render(
   <React.StrictMode>
     <firebaseContext.Provider value={{ auth, db, app, provider }}>
       <BrowserRouter>
-        <Context>
-          <Provider store={store}>
-            <PersistGate persistor={persistor}>
-              <App />
-            </PersistGate>
-          </Provider>
-        </Context>
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </Provider>
       </BrowserRouter>
     </firebaseContext.Provider>
   </React.StrictMode>
