@@ -1,12 +1,12 @@
 import Table from 'react-bootstrap/Table';
-import AdminHeader from '../../../components/header/AdminHeader';
+import AdminHeader from '../../components/header/AdminHeader';
 import { Form, Button, Modal } from 'react-bootstrap';
-import Footer from '../../../components/footer/Footer';
+import Footer from '../../components/footer/Footer';
 import swal from 'sweetalert';
 import { useEffect, useState } from 'react';
 import { Trash, PencilSquare } from 'react-bootstrap-icons';
-import axios from '../../../axios/axios';
-import { product } from '../../../redux/Product';
+import axios from '../../axios/axios';
+import { product } from '../../redux/Product';
 import { useDispatch } from 'react-redux';
 import Multiselect from 'multiselect-react-dropdown';
 import { toast } from 'react-hot-toast';

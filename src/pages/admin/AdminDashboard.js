@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import AdminHeader from '../../../components/header/AdminHeader';
-import '../../../style/adminDashboard.css';
-import Footer from '../../../components/footer/Footer';
-import Chart from '../../../components/admin -components/Chart';
-import axios from '../../../axios/axios';
+import AdminHeader from '../../components/header/AdminHeader';
+import '../../style/adminDashboard.css';
+import Footer from '../../components/footer/Footer';
+import Chart from '../../components/admin -components/Chart';
+import axios from '../../axios/axios';
 import { toast } from 'react-hot-toast';
 const AdminDashboard = () => {
   const [dashboardData, setDashboardData] = useState({});

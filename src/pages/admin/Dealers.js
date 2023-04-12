@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
-import AdminHeader from '../../../components/header/AdminHeader';
+import AdminHeader from '../../components/header/AdminHeader';
 import { Form, Button, Modal } from 'react-bootstrap';
-import Footer from '../../../components/footer/Footer';
+import Footer from '../../components/footer/Footer';
 import swal from 'sweetalert';
 import { useEffect, useState } from 'react';
 import {
@@ -10,8 +10,8 @@ import {
   PersonFillLock,
   Unlock,
 } from 'react-bootstrap-icons';
-import axios from '../../../axios/axios';
-import { dealerLogin } from '../../../redux/Dealer';
+import axios from '../../axios/axios';
+import { dealerLogin } from '../../redux/Dealer';
 import { useDispatch } from 'react-redux';
 function Products() {
   const [show, setShow] = useState(false);

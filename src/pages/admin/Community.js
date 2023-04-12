@@ -1,7 +1,7 @@
 import Table from 'react-bootstrap/Table';
-import AdminHeader from '../../../components/header/AdminHeader';
+import AdminHeader from '../../components/header/AdminHeader';
 import { Form, Button } from 'react-bootstrap';
-import Footer from '../../../components/footer/Footer';
+import Footer from '../../components/footer/Footer';
 function Community() {
   return (
     <div>

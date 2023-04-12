@@ -1,9 +1,9 @@
 import Table from 'react-bootstrap/Table';
-import AdminHeader from '../../../components/header/AdminHeader';
+import AdminHeader from '../../components/header/AdminHeader';
 import { Form, Button } from 'react-bootstrap';
-import Footer from '../../../components/footer/Footer';
+import Footer from '../../components/footer/Footer';
 import { useEffect, useState } from 'react';
-import axios from '../../../axios/axios';
+import axios from '../../axios/axios';
 import swal from 'sweetalert';
 import { PersonFillLock, Unlock } from 'react-bootstrap-icons';
 import { toast } from 'react-hot-toast';

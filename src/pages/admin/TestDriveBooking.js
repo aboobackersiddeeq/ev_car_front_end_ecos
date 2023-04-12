@@ -1,25 +1,27 @@
 import Table from 'react-bootstrap/Table';
-import AdminHeader from '../../../components/header/AdminHeader';
+import AdminHeader from '../../components/header/AdminHeader';
 import { Form, Button } from 'react-bootstrap';
-import Footer from '../../../components/footer/Footer';
-import axios from '../../../axios/axios';
-import swal from 'sweetalert';
+import Footer from '../../components/footer/Footer';
+import axios from '../../axios/axios';
 import { useEffect, useState } from 'react';
+import swal from 'sweetalert';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
-function Booking() {
+
+function TestDriveBooking() {
   const componentsPDF = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [details, setDetails] = useState([]);
   const generatePDF = useReactToPrint({
     content: () => componentsPDF.current,
-    documentTitle: `Booking data ${new Date()}`,
+    documentTitle: `Test drive data ${new Date()}`,
     onAfterPrint: () => toast.success('PDF saved '),
   });
+
   useEffect(() => {
     axios
-      .get('admin/get-bookings', {
+      .get('admin/test-drive', {
         headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
       })
       .then((response) => {
@@ -29,15 +31,15 @@ function Booking() {
           swal('OOPS', response.data.message, 'error');
         }
       })
-      .catch((error) => {
-        swal('OOPS', error.message, 'error');
+      .catch((err) => {
+        alert('network error: ' + err.message);
       });
   }, []);
 
   const filterData = details.filter((val, i, arr) => {
     if (searchTerm === '' || /^\s*$/.test(searchTerm)) {
       return true;
-    } else if (val.names.toLowerCase().includes(searchTerm.toLowerCase())) {
+    } else if (val.name.toLowerCase().includes(searchTerm.toLowerCase())) {
       return true;
     } else if (val.email.toLowerCase().includes(searchTerm.toLowerCase())) {
       return true;
@@ -48,6 +50,7 @@ function Booking() {
     }
     return false;
   });
+
   return (
     <div>
       <div>
@@ -57,7 +60,7 @@ function Booking() {
         <div className="container">
           <div className="row ">
             <div className="col-md-5">
-              <h2 className="head-contant">Bookings</h2>
+              <h2 className="head-contant">Test Drive Bookings</h2>
             </div>
             <div className="col-md-4">
               <Form className="d-flex">
@@ -74,16 +77,15 @@ function Booking() {
               </Form>
             </div>
             <div className="col-md-3">
-              <Button onClick={generatePDF} variant="outline-dark">
+              <Button onClick={() => generatePDF()} variant="outline-dark">
                 Download
               </Button>
             </div>
           </div>
         </div>
-        <div ref={componentsPDF} className="container p-5">
+        <div className="container p-5" ref={componentsPDF}>
           <h3 className="pb-5 text-center fw-bold print-additional-text">
-            {' '}
-            Bookings
+            Test Drive Bookings
           </h3>
           {filterData.length > 0 ? (
             <Table responsive="sm">
@@ -91,9 +93,8 @@ function Booking() {
                 <tr>
                   <th>ID</th>
                   <th>Date</th>
-                  <th>Dealer Id</th>
-                  <th>Email</th>
                   <th>Name</th>
+                  <th>Email</th>
                   <th>Phone No</th>
                   <th>Vehicle Name</th>
                   <th>State</th>
@@ -106,15 +107,14 @@ function Booking() {
                   return (
                     <tr key={element._id}>
                       <td>{index + 1}</td>
-                      <td>{element.updatedAt.substring(0, 10)}</td>
-                      <td>{element.dealer}</td>
+                      <td>{element.updatedAt}</td>
+                      <td>{element.name}</td>
                       <td>{element.email}</td>
-                      <td>{element.names}</td>
                       <td>{element.phone}</td>
                       <td>{element.model}</td>
                       <td>{element.state}</td>
                       <td>{element.city}</td>
-                      <td>{element.status}</td>
+                      <td>pending</td>
                     </tr>
                   );
                 })}
@@ -131,4 +131,4 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default TestDriveBooking;
