@@ -145,7 +145,7 @@ const TestDriveForm = () => {
             <div className="input-field selectField">
               <div className="select_box">
                 <select
-                  className="form-control selectRegister has-content "
+                  className="form-control selectRegister has-content map-state"
                   id="state"
                   name="state"
                   value={formData.state}
@@ -172,7 +172,7 @@ const TestDriveForm = () => {
               <div className="select_box">
                 <select
                   // required
-                  className="form-control selectRegister  has-content"
+                  className="form-control selectRegister  has-content map-state"
                   id="city"
                   name="city"
                   value={formData.city}
@@ -194,7 +194,7 @@ const TestDriveForm = () => {
             <div className="input-field selectField selectEv">
               <div className="select_box">
                 <select
-                  className="form-control selectRegister  has-content form-select"
+                  className="form-control selectRegister  has-content form-select map-state"
                   id="model"
                   name="model"
                   value={formData.model}
