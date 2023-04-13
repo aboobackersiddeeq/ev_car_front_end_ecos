@@ -241,7 +241,7 @@ const TestDriveForm = () => {
                 <div className="col-xs-6 col-sm-6 np captchaInput "></div>
 
                 <ReCAPTCHA
-                  sitekey="6LfpixAlAAAAAOvccWtvHMkI4las1J1l8eoaKI4i"
+                  sitekey={process.env.REACT_APP_SITE_KEY}
                   onChange={handleCaptchaChange}
                 />
               </div>
