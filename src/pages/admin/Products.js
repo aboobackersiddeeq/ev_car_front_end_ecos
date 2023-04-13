@@ -10,6 +10,7 @@ import { product } from '../../redux/Product';
 import { useDispatch } from 'react-redux';
 import Multiselect from 'multiselect-react-dropdown';
 import { toast } from 'react-hot-toast';
+import { hideLoading, showLoading } from '../../redux/Loading';
 function Products() {
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -23,7 +24,7 @@ function Products() {
   const [productName, setProductName] = useState('');
   const [options] = useState(['Blue', 'Black', 'Red', 'White']);
   const [formErrors, setFormErrors] = useState({});
-  const dispatch = useDispatch(product);
+  const dispatch = useDispatch();
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => {
     setImageTemb('');
@@ -65,6 +66,7 @@ function Products() {
       setFormErrors(errors);
       const imgBase = await toBase64(image);
       try {
+        dispatch(showLoading())
         axios
           .post(
             '/admin/add-product',
@@ -82,6 +84,7 @@ function Products() {
             }
           )
           .then((response) => {
+            dispatch(hideLoading())
             dispatch(product(response.data));
             setproduct(response.data.result);
             setShow(false);
@@ -97,6 +100,7 @@ function Products() {
     e.preventDefault();
     const imgBase = await toBase64(image);
     try {
+      dispatch(showLoading())
       axios
         .post(
           '/admin/edit-product',
@@ -116,6 +120,7 @@ function Products() {
         )
         .then((response) => {
           setproduct(response.data.result);
+          dispatch(hideLoading())
           swal('Poof! Your imaginary file has been Edited!', {
             icon: 'success',
           });
@@ -139,6 +144,7 @@ function Products() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
+        dispatch(showLoading())
         try {
           axios
             .post(
@@ -152,6 +158,7 @@ function Products() {
             )
             .then((response) => {
               setproduct(response.data.result);
+              dispatch(hideLoading())
               swal('Poof! Your imaginary file has been deleted!', {
                 icon: 'success',
               });
@@ -169,9 +176,11 @@ function Products() {
   };
 
   useEffect(() => {
+   dispatch(showLoading())
     axios.post('/admin/get-product', {}).then((response) => {
       dispatch(product(response.data));
       setproduct(response.data.result);
+      dispatch(hideLoading())
     });
   }, [dispatch]);
   const [searchTerm, setSearchTerm] = useState('');
