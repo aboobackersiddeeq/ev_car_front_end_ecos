@@ -8,7 +8,10 @@ import { useEffect, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../../redux/Loading';
 function Booking() {
+  const dispatch =useDispatch()
   const componentsPDF = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [details, setDetails] = useState([]);
@@ -18,6 +21,7 @@ function Booking() {
     onAfterPrint: () => toast.success('PDF saved '),
   });
   useEffect(() => {
+    dispatch(showLoading())
     axios
       .get('admin/get-bookings', {
         headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
@@ -25,6 +29,7 @@ function Booking() {
       .then((response) => {
         if (response.data.status === 'success') {
           setDetails(response.data.result);
+          dispatch(hideLoading())
         } else {
           swal('OOPS', response.data.message, 'error');
         }
@@ -32,7 +37,7 @@ function Booking() {
       .catch((error) => {
         swal('OOPS', error.message, 'error');
       });
-  }, []);
+  }, [dispatch]);
 
   const filterData = details.filter((val, i, arr) => {
     if (searchTerm === '' || /^\s*$/.test(searchTerm)) {
