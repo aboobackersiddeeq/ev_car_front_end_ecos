@@ -7,7 +7,7 @@ import DealerRouters from './routers/DealerRouters';
 import { Toaster } from 'react-hot-toast';
 import { CircularProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
-import ErrorBoundary from './components/error/ErrorBoundary';
+// import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
   const [progress] = useState(0);
@@ -35,13 +35,13 @@ function App() {
           setUserLoginStatus,
         }}
       >
-        <ErrorBoundary>
+        {/* <ErrorBoundary> */}
           <Toaster position="top-center" reverseOrder={false} />
 
           <AdminRouters />
           <UserRouters />
           <DealerRouters />
-        </ErrorBoundary>
+        {/* </ErrorBoundary> */}
       </AppContext.Provider>
     </>
   );
