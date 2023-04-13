@@ -40,7 +40,6 @@ const ChatMain = ({ socket, setProfileShow }) => {
       groupedMessages.push({ date: messageDate, messages: [message] });
     }
   });
-
   const scrollToDiv = () => {
     setImmediate(() =>
       messageRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -125,8 +124,8 @@ const ChatMain = ({ socket, setProfileShow }) => {
       </div>
 
       <div className="chat_body">
-        {groupedMessages.map((element) => (
-          <div key={element.date}>
+        {groupedMessages.map((element,ind) => (
+          <div key={`${element.date}-${ind}`}>
             <p className="chat_date">
               <span className=" px-2 py-1">
                 {element.date === today ? 'Today' : element.date}
