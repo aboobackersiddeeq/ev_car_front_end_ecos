@@ -5,19 +5,24 @@ import Footer from '../../components/footer/Footer';
 import swal from 'sweetalert';
 import { useEffect, useState } from 'react';
 import axios from '../../axios/axios';
+import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../../redux/Loading';
 
 function Products() {
   const [products, setproduct] = useState([]);
+  const dispatch =useDispatch()
 
   useEffect(() => {
     try {
+      dispatch(showLoading())
       axios.post('/admin/get-product', {}).then((response) => {
         setproduct(response.data.result);
+        dispatch(hideLoading())
       });
     } catch (error) {
       swal(error.message);
     }
-  }, []);
+  }, [dispatch]);
   const [searchTerm, setSearchTerm] = useState('');
   const filterData = products.filter((val, i, arr) => {
     const price = val.price.toString();
