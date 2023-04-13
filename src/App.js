@@ -7,25 +7,20 @@ import DealerRouters from './routers/DealerRouters';
 import { Toaster } from 'react-hot-toast';
 import { CircularProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
-// import ErrorBoundary from './components/error/ErrorBoundary';
+import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
-  const [progress] =useState(0)
+  const [progress] = useState(0);
   const [adminLoginStatus, setAdminLoginStatus] = useState(false);
   const [userLoginStatus, setUserLoginStatus] = useState(false);
   const [dealerLoginStatus, setDealerLoginStatus] = useState(false);
   const [bookingData, setBookingData] = useState({});
-  const loading = useSelector((state) => state.loading.loading );
-   console.log(loading,'loadking');
+  const loading = useSelector((state) => state.loading.loading);
   return (
     <>
       {loading && (
         <div className="spinner-parent">
-          <CircularProgress
-            variant="indeterminate"
-            value={progress}
-            // sx={{ color: 'white' }}
-          />
+          <CircularProgress variant="indeterminate" value={progress} />
         </div>
       )}
       <AppContext.Provider
@@ -40,13 +35,13 @@ function App() {
           setUserLoginStatus,
         }}
       >
-        {/* <ErrorBoundary> */}
+        <ErrorBoundary>
+          <Toaster position="top-center" reverseOrder={false} />
 
-        <Toaster position="top-center" reverseOrder={false} />
-        <AdminRouters />
-        <UserRouters />
-        <DealerRouters />
-        {/* </ErrorBoundary> */}
+          <AdminRouters />
+          <UserRouters />
+          <DealerRouters />
+        </ErrorBoundary>
       </AppContext.Provider>
     </>
   );
