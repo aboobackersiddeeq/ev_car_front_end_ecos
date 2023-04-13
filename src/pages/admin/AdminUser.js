@@ -7,8 +7,11 @@ import axios from '../../axios/axios';
 import swal from 'sweetalert';
 import { PersonFillLock, Unlock } from 'react-bootstrap-icons';
 import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../../redux/Loading';
 
 function AdminUser() {
+  const dispatch =useDispatch()
   const [users, setUsers] = useState([]);
   const blockUser = (id) => {
     swal({
@@ -48,6 +51,7 @@ function AdminUser() {
   };
 
   useEffect(() => {
+    dispatch(showLoading())
     axios
       .get('admin/get-users', {
         headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
@@ -55,6 +59,7 @@ function AdminUser() {
       .then((response) => {
         if (response.data.status === 'success') {
           setUsers(response.data.result);
+          dispatch(hideLoading())
         } else {
           swal('OOPS', response.data.message, 'error');
         }
@@ -62,7 +67,7 @@ function AdminUser() {
       .catch((err) => {
         alert('network error: ' + err.message);
       });
-  }, []);
+  }, [dispatch]);
 
   const [searchTerm, setSearchTerm] = useState('');
   const filterData = users.filter((val, i, arr) => {
