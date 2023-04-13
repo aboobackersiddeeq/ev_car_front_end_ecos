@@ -11,6 +11,7 @@ import productReducer from './Product';
 import userReducer from './User';
 import groupReducer from './Community';
 import booleanReducer from './Boolean';
+import loadingReducer from './Loading';
 
 const rootReducer = combineReducers({
   admin: adminReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   group: groupReducer,
   boolean: booleanReducer,
+  loading : loadingReducer,
 });
 const persistConfig = {
   key: 'root', // this is the key used to store the persisted state in storage
