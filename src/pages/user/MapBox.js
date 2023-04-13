@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import HeaderTwo from '../../components/header/HeaderTwo';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import SearchIcon from '@mui/icons-material/Search';
+import CallMissedOutgoingIcon from '@mui/icons-material/CallMissedOutgoing';
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import { GeoAltFill, ArrowClockwise } from 'react-bootstrap-icons';
 import '../../style/map.css';
 import axios from 'axios';
@@ -115,7 +118,7 @@ function MapboxMap() {
   };
 
   return (
-    <div>
+    <>
       <HeaderTwo />
       <div className="row map-perent">
         <div className="col-md-3 content-map-child">
@@ -138,55 +141,7 @@ function MapboxMap() {
               Others
             </li>
           </div>
-          {/* <h4 className="charging-map">
-            Charging Locator{' '}
-            <span className="arrow">
-              <ArrowClockwise />
-            </span>
-          </h4>
 
-          <div className="input-field  ">
-            <div className="select_box_map">
-              <select
-                className="form-control map-state  has-content-map "
-                id="state"
-                name="state"
-               
-              >
-                <option value="">Select State</option>
-
-                <option value="19">Kerala</option>
-                <option value="35">Tamil Nadu</option>
-                <option value="36">Telangana</option>
-              </select>
-          
-            </div>
-            <span
-              className="msg"
-              id="state_msg"
-              style={{ display: 'none' }}
-            ></span>
-          </div>
-
-          <div className=" input-field ">
-            <div className="select_box_map">
-              <select
-           
-                className="form-control  map-state  has-content-map"
-                id="city"
-                name="city"
-              
-              >
-                {' '}
-                <option value="">Select City</option>
-                <option value="Bijoynagar">Bijoynagar</option>
-                <option value="Biswanath Chariali">Biswanath Chariali</option>
-                <option value="Bokakhat">Bokakhat</option>
-                <option value="Bongaigaon">Bongaigaon</option>
-              </select>
-             
-            </div>
-          </div> */}
           {selectPin.length !== 0 ? (
             <p className="results-map-head">
               Results For Charging Stations{' '}
@@ -200,7 +155,26 @@ function MapboxMap() {
               </span>
             </p>
           ) : (
-            <p className="results-map-head">Drive What Drove Electric </p>
+            <div>
+              {/* <p className="results-map-head">Drive What Drove Electric </p> */}
+              <div className="keys-para">
+                <h3 className="keys">Search</h3>
+                <li className="li-keys-map">
+                  <CallMissedOutgoingIcon className="tata-icon" />
+                  Go to top right side search bar
+                </li>
+                <li className="li-keys-map">
+                  <SearchIcon className="tata-icon" />
+                  Seach your place
+                </li>
+                <li className="li-keys-map">
+                  <TravelExploreIcon className="tata-icon" />
+                  Find your nearest palce
+                </li>
+              </div>
+             
+              
+            </div>
           )}
           <div className="rusult-for">
             {selectPin.length !== 0 &&
@@ -496,7 +470,7 @@ function MapboxMap() {
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
