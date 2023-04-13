@@ -8,10 +8,13 @@ import axios from '../../axios/axios';
 import { useRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { useReactToPrint } from 'react-to-print';
+import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../../redux/Loading';
 
 function TestDriveBooking() {
   const [searchTerm, setSearchTerm] = useState('');
   const [details, setDetails] = useState([]);
+  const dispatch =useDispatch()
   const componentsPDF = useRef();
   const generatePDF = useReactToPrint({
     content: () => componentsPDF.current,
@@ -20,6 +23,7 @@ function TestDriveBooking() {
   });
 
   useEffect(() => {
+    dispatch(showLoading())
     axios
       .get('admin/test-drive', {
         headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
@@ -27,6 +31,7 @@ function TestDriveBooking() {
       .then((response) => {
         if (response.data.status === 'success') {
           setDetails(response.data.result);
+          dispatch(hideLoading())
         } else {
           swal('OOPS', response.data.message, 'error');
         }
@@ -34,7 +39,7 @@ function TestDriveBooking() {
       .catch((err) => {
         alert('network error: ' + err.message);
       });
-  }, []);
+  }, [dispatch]);
 
   const filterData = details.filter((val, i, arr) => {
     if (searchTerm === '' || /^\s*$/.test(searchTerm)) {
