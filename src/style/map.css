@@ -1,6 +1,7 @@
 .map-perent{
  padding-top: 5.5em;
  margin: 0;
+ 
   
 }
 .map-child{
@@ -26,7 +27,7 @@
     border: 2px solid;
     margin-top: 50px;
     border-color: rgb(36, 144, 186);
-    color:rgb(73, 70, 70);
+    color:rgb(65, 62, 62);
     padding-left: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
@@ -48,8 +49,9 @@
    color: #be7d32;
 }
 .map-state{
-    background-color: rgb(233, 250, 251);
-    color: #00adba;
+    background-color: rgb(92, 93, 94);
+    margin-bottom: 18px;
+    /* color: #00adba; */
 }
 .select_box_map:after {
     content: "";
@@ -65,7 +67,7 @@
   }
   .keys{
     
-    background-color: rgb(49 49 49);
+    background-color: rgb(246, 240, 240);
     width: min-content;
     padding-left:5px;
     padding-right:5px;
@@ -93,7 +95,7 @@
    
   }
   .map-state{
-    background: url(../../public/images/dd-arrow.png) 96% / 12px no-repeat #e4eefc;
+    background: url(../../public/images/dd-arrow.png) 96% / 16px no-repeat #444547;
   }.desc-selected-map{
     font-size: x-small;
   }.result-para{
