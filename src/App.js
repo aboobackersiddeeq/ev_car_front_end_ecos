@@ -5,17 +5,29 @@ import AdminRouters from './routers/AdminRouters';
 import UserRouters from './routers/UserRouters';
 import DealerRouters from './routers/DealerRouters';
 import { Toaster } from 'react-hot-toast';
+import { CircularProgress } from '@mui/material';
+import { useSelector } from 'react-redux';
 // import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
+  const [progress] =useState(0)
   const [adminLoginStatus, setAdminLoginStatus] = useState(false);
   const [userLoginStatus, setUserLoginStatus] = useState(false);
   const [dealerLoginStatus, setDealerLoginStatus] = useState(false);
   const [bookingData, setBookingData] = useState({});
-  
-
+  const loading = useSelector((state) => state.loading.loading );
+   console.log(loading,'loadking');
   return (
     <>
+      {loading && (
+        <div className="spinner-parent">
+          <CircularProgress
+            variant="indeterminate"
+            value={progress}
+            // sx={{ color: 'white' }}
+          />
+        </div>
+      )}
       <AppContext.Provider
         value={{
           adminLoginStatus: adminLoginStatus,
