@@ -14,7 +14,7 @@ import { hideLoading, showLoading } from '../../redux/Loading';
 function TestDriveBooking() {
   const [searchTerm, setSearchTerm] = useState('');
   const [details, setDetails] = useState([]);
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
   const componentsPDF = useRef();
   const generatePDF = useReactToPrint({
     content: () => componentsPDF.current,
@@ -23,7 +23,7 @@ function TestDriveBooking() {
   });
 
   useEffect(() => {
-    dispatch(showLoading())
+    dispatch(showLoading());
     axios
       .get('admin/test-drive', {
         headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
@@ -31,7 +31,7 @@ function TestDriveBooking() {
       .then((response) => {
         if (response.data.status === 'success') {
           setDetails(response.data.result);
-          dispatch(hideLoading())
+          dispatch(hideLoading());
         } else {
           swal('OOPS', response.data.message, 'error');
         }

@@ -197,7 +197,7 @@ function Products() {
   };
 
   useEffect(() => {
-     dispatch(showLoading())
+    dispatch(showLoading());
     axios
       .get('/admin/get-dealers', {
         headers: {
@@ -207,7 +207,7 @@ function Products() {
       .then((response) => {
         dispatch(dealerLogin(response.data));
         setdealer(response.data.result);
-        dispatch(hideLoading())
+        dispatch(hideLoading());
       });
   }, [dispatch]);
   const [searchTerm, setSearchTerm] = useState('');

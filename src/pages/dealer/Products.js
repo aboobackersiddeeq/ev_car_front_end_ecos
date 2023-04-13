@@ -10,14 +10,14 @@ import { hideLoading, showLoading } from '../../redux/Loading';
 
 function Products() {
   const [products, setproduct] = useState([]);
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     try {
-      dispatch(showLoading())
+      dispatch(showLoading());
       axios.post('/admin/get-product', {}).then((response) => {
         setproduct(response.data.result);
-        dispatch(hideLoading())
+        dispatch(hideLoading());
       });
     } catch (error) {
       swal(error.message);

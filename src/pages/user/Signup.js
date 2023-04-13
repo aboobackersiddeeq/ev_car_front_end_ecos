@@ -15,7 +15,7 @@ function Signup() {
   const { setUserLoginStatus } = useContext(AppContext);
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');  
+  const [phone, setPhone] = useState('');
 
   const navigate = useNavigate();
   const handleSubmit = (e) => {

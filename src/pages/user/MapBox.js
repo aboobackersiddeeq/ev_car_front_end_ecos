@@ -172,8 +172,6 @@ function MapboxMap() {
                   Find your nearest palce
                 </li>
               </div>
-             
-              
             </div>
           )}
           <div className="rusult-for">

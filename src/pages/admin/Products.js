@@ -66,7 +66,7 @@ function Products() {
       setFormErrors(errors);
       const imgBase = await toBase64(image);
       try {
-        dispatch(showLoading())
+        dispatch(showLoading());
         axios
           .post(
             '/admin/add-product',
@@ -84,7 +84,7 @@ function Products() {
             }
           )
           .then((response) => {
-            dispatch(hideLoading())
+            dispatch(hideLoading());
             dispatch(product(response.data));
             setproduct(response.data.result);
             setShow(false);
@@ -100,7 +100,7 @@ function Products() {
     e.preventDefault();
     const imgBase = await toBase64(image);
     try {
-      dispatch(showLoading())
+      dispatch(showLoading());
       axios
         .post(
           '/admin/edit-product',
@@ -120,7 +120,7 @@ function Products() {
         )
         .then((response) => {
           setproduct(response.data.result);
-          dispatch(hideLoading())
+          dispatch(hideLoading());
           swal('Poof! Your imaginary file has been Edited!', {
             icon: 'success',
           });
@@ -144,7 +144,7 @@ function Products() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        dispatch(showLoading())
+        dispatch(showLoading());
         try {
           axios
             .post(
@@ -158,7 +158,7 @@ function Products() {
             )
             .then((response) => {
               setproduct(response.data.result);
-              dispatch(hideLoading())
+              dispatch(hideLoading());
               swal('Poof! Your imaginary file has been deleted!', {
                 icon: 'success',
               });
@@ -176,11 +176,11 @@ function Products() {
   };
 
   useEffect(() => {
-   dispatch(showLoading())
+    dispatch(showLoading());
     axios.post('/admin/get-product', {}).then((response) => {
       dispatch(product(response.data));
       setproduct(response.data.result);
-      dispatch(hideLoading())
+      dispatch(hideLoading());
     });
   }, [dispatch]);
   const [searchTerm, setSearchTerm] = useState('');

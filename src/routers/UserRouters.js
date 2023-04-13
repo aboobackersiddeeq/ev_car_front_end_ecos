@@ -20,6 +20,8 @@ import { userData } from '../redux/User';
 import { useDispatch } from 'react-redux';
 import ChatAgent from '../components/ChatAgent';
 import Community from '../pages/user/Community';
+import { hideLoading } from '../redux/Loading';
+import Errorpage from '../components/error/Errorpage';
 
 const UserRouters = () => {
   const dispatch = useDispatch(userData);
@@ -32,13 +34,14 @@ const UserRouters = () => {
       .then((response) => {
         if (!response.data.auth) {
           setUserLoginStatus(false);
+          dispatch(hideLoading());
         } else {
           dispatch(userData(response.data.result));
           setUserLoginStatus(true);
+          dispatch(hideLoading());
         }
       });
   }, [userLoginStatus, setUserLoginStatus, dispatch]);
-
   return (
     <>
       <Routes>
@@ -64,6 +67,7 @@ const UserRouters = () => {
           path="/community"
           element={!userLoginStatus ? <Login /> : <Community />}
         ></Route>
+        <Route path="*" errorElement={<Errorpage />}></Route>
       </Routes>
     </>
   );

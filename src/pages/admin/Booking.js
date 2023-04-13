@@ -11,7 +11,7 @@ import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { hideLoading, showLoading } from '../../redux/Loading';
 function Booking() {
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
   const componentsPDF = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [details, setDetails] = useState([]);
@@ -21,7 +21,7 @@ function Booking() {
     onAfterPrint: () => toast.success('PDF saved '),
   });
   useEffect(() => {
-    dispatch(showLoading())
+    dispatch(showLoading());
     axios
       .get('admin/get-bookings', {
         headers: { 'x-access-admintoken': localStorage.getItem('admintoken') },
@@ -29,7 +29,7 @@ function Booking() {
       .then((response) => {
         if (response.data.status === 'success') {
           setDetails(response.data.result);
-          dispatch(hideLoading())
+          dispatch(hideLoading());
         } else {
           swal('OOPS', response.data.message, 'error');
         }

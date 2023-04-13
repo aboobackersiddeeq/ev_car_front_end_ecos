@@ -11,9 +11,10 @@ import AdminDashboard from '../pages/admin/AdminDashboard';
 import { AppContext } from '../context/AppContext';
 import axios from '../axios/axios';
 import { adminlogin } from '../redux/Admin';
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import Errorpage from '../components/error/Errorpage';
 const AdminRouters = () => {
-  const { adminLoginStatus,setAdminLoginStatus } = useContext(AppContext);
+  const { adminLoginStatus, setAdminLoginStatus } = useContext(AppContext);
 
   const dispatch = useDispatch(adminlogin);
   useEffect(() => {
@@ -63,6 +64,7 @@ const AdminRouters = () => {
               path="/admin/test-drive"
               element={<TestDriveBooking />}
             ></Route>
+            <Route path="/admin/*" element={<Errorpage />}></Route>
           </>
         )}
       </Routes>

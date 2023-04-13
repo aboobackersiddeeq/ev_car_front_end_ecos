@@ -1,5 +1,3 @@
-
-
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
@@ -20,7 +18,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   group: groupReducer,
   boolean: booleanReducer,
-  loading : loadingReducer,
+  loading: loadingReducer,
 });
 const persistConfig = {
   key: 'root', // this is the key used to store the persisted state in storage

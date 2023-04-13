@@ -10,6 +10,7 @@ import Booking from '../pages/dealer/Booking';
 import TestDriveBooking from '../pages/dealer/TestDriveBooking';
 import Products from '../pages/dealer/Products';
 import Profile from '../pages/dealer/Profile';
+import Errorpage from '../components/error/Errorpage';
 const DealerRouters = () => {
   const dispatch = useDispatch(dealerLogin);
   const { dealerLoginStatus, setDealerLoginStatus } = useContext(AppContext);
@@ -54,6 +55,7 @@ const DealerRouters = () => {
         path="/dealer"
         element={dealerLoginStatus ? <DealerDashboard /> : <DealerLogin />}
       ></Route>
+      <Route path="/dealer/*" element={<Errorpage />}></Route>
     </Routes>
   );
 };
