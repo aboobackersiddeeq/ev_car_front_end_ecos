@@ -13,6 +13,7 @@ import {
 import axios from '../../axios/axios';
 import { dealerLogin } from '../../redux/Dealer';
 import { useDispatch } from 'react-redux';
+import { hideLoading, showLoading } from '../../redux/Loading';
 function Products() {
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
@@ -26,7 +27,7 @@ function Products() {
   const [email, setEmail] = useState('');
 
   const [formErrors, setFormErrors] = useState({});
-  const dispatch = useDispatch(dealerLogin);
+  const dispatch = useDispatch();
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => {
     setShowEdit(false);
@@ -196,6 +197,7 @@ function Products() {
   };
 
   useEffect(() => {
+     dispatch(showLoading())
     axios
       .get('/admin/get-dealers', {
         headers: {
@@ -205,6 +207,7 @@ function Products() {
       .then((response) => {
         dispatch(dealerLogin(response.data));
         setdealer(response.data.result);
+        dispatch(hideLoading())
       });
   }, [dispatch]);
   const [searchTerm, setSearchTerm] = useState('');
