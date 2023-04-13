@@ -124,7 +124,7 @@ const ChatMain = ({ socket, setProfileShow }) => {
       </div>
 
       <div className="chat_body">
-        {groupedMessages.map((element,ind) => (
+        {groupedMessages.map((element, ind) => (
           <div key={`${element.date}-${ind}`}>
             <p className="chat_date">
               <span className=" px-2 py-1">
