@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../style/test-drive-form.css';
-import ReCAPTCHA from 'react-google-recaptcha';
+// import ReCAPTCHA from 'react-google-recaptcha';
 import axios from '../../axios/axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -240,10 +240,10 @@ const TestDriveForm = () => {
                 <div className="g-recaptcha " id="g-recaptcha"></div>
                 <div className="col-xs-6 col-sm-6 np captchaInput "></div>
 
-                <ReCAPTCHA
+                {/* <ReCAPTCHA
                   sitekey={process.env.REACT_APP_SITE_KEY}
                   onChange={handleCaptchaChange}
-                />
+                /> */}
               </div>
               {formErrors.captcha && (
                 <span className="msg">{formErrors.captcha}</span>
