@@ -276,7 +276,7 @@ function MapboxMap() {
                                   : val.type === 'KSEB'
                                   ? 'green'
                                   : val.type === 'Ather'
-                                  ? '#be7d32'
+                                  ? '#59575a'
                                   : '',
                               fontSize: val._id === currentId ? '30px' : ' ',
                               cursor: 'pointer',
@@ -329,7 +329,7 @@ function MapboxMap() {
                                   : val.type === 'KSEB'
                                   ? 'green'
                                   : val.type === 'Ather'
-                                  ? '#be7d32'
+                                  ? '#59575a'
                                   : '',
                               fontSize: val._id === currentId ? '30px' : ' ',
                               cursor: 'pointer',
