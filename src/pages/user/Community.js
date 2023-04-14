@@ -5,8 +5,9 @@ import '../../style/community.css';
 import { io } from 'socket.io-client';
 import Profile from '../../components/user-components/Profile';
 import { useState } from 'react';
+import { baseUrl } from '../../constants/BaseURL';
 const Community = () => {
-  const socket = io('http://localhost:3001');
+  const socket = io(baseUrl);
   const [profileShow, setProfileShow] = useState(false);
   return (
     <div className="app_community">
