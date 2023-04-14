@@ -31,6 +31,7 @@ function MapboxMap() {
     latitude: 23.175841,
     zoom: 12,
   });
+  
   const user = useSelector((state) => state.user.value);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
@@ -47,7 +48,6 @@ function MapboxMap() {
   };
   const mapRef = useRef();
   const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -162,10 +162,12 @@ function MapboxMap() {
                 <li className="li-keys-map">
                   <CallMissedOutgoingIcon className="tata-icon" />
                   Go to top right side search bar
+                 
                 </li>
                 <li className="li-keys-map">
                   <SearchIcon className="tata-icon" />
                   Seach your place
+                  {process.env.REACT_APP_MAPBOX_ACCESS_TOKEN }
                 </li>
                 <li className="li-keys-map">
                   <TravelExploreIcon className="tata-icon" />
