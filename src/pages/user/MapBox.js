@@ -167,7 +167,6 @@ function MapboxMap() {
                 <li className="li-keys-map">
                   <SearchIcon className="tata-icon" />
                   Seach your place
-                  {process.env.REACT_APP_MAPBOX_ACCESS_TOKEN }
                 </li>
                 <li className="li-keys-map">
                   <TravelExploreIcon className="tata-icon" />
