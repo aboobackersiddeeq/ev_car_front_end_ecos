@@ -48,7 +48,7 @@ function HeaderTwo() {
       {['md '].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3 navbar">
           <Container>
-            <Navbar.Brand href="#">Ecos</Navbar.Brand>
+            <Navbar.Brand  onClick={() => navigate('/')}>Ecos</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -56,7 +56,7 @@ function HeaderTwo() {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
+                <Offcanvas.Title onClick={() => navigate('/')} id={`offcanvasNavbarLabel-expand-${expand}`} >
                   Ecos
                 </Offcanvas.Title>
               </Offcanvas.Header>
@@ -80,9 +80,9 @@ function HeaderTwo() {
                   >
                     Dark Edition
                   </Nav.Link>
-                  <Nav.Link className="hidden" href="#action1">
+                  {/* <Nav.Link className="hidden" href="#action1">
                     Home
-                  </Nav.Link>
+                  </Nav.Link> */}
                   <Nav.Link
                     className="book-now"
                     eventKey={5}
@@ -90,30 +90,52 @@ function HeaderTwo() {
                   >
                     Book A Test Drive
                   </Nav.Link>
-                  <Nav.Link className="book-now" eventKey={3} href="#me">
+                  <Nav.Link className="book-now  mt-2" eventKey={3} href="#me">
                     Download Brochure
                   </Nav.Link>
                   <Nav.Link
-                    className="book-now"
+                    className="book-now  mt-2"
                     eventKey={4}
                     onClick={() => navigate('/booking')}
                   >
                     Book Now
                   </Nav.Link>
-                  <Nav.Link className="hidden" href="#action2">
+                  <Nav.Link
+                    className="hidden"
+                    onClick={() => navigate('/chat')}
+                  >
                     Chat With Us
                   </Nav.Link>
-                  <Nav.Link className="hidden" href="#action2">
+                  <Nav.Link className="hidden" onClick={() => navigate('/map')}>
                     Charging Locator{' '}
                   </Nav.Link>
-                  <Nav.Link className="hidden" href="#action2">
+                  <Nav.Link
+                    className="hidden"
+                    onClick={() => navigate('/community')}
+                  >
                     Community
                   </Nav.Link>
-                  <Nav.Link className="hidden" href="#action2">
+                  {/* <Nav.Link className="hidden" href="#action2">
                     Profile
-                  </Nav.Link>
-                  <Nav.Link className="hidden" href="#action2">
-                    Logout
+                  </Nav.Link> */}
+                  <Nav.Link className="hidden" >
+                  {userLoginStatus ? (
+          <span
+            
+            onClick={() => {
+              localStorage.removeItem('usertoken');
+              setUserLoginStatus(false);
+              dispatch(userData(null));
+              navigate('/login');
+            }}
+          >
+            Logout
+          </span>
+        ) : (
+          <span   onClick={() => navigate('/login')}>
+            Login
+          </span>
+        )}
                   </Nav.Link>
                 </Nav>
               </Offcanvas.Body>
