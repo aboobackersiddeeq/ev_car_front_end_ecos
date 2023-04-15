@@ -90,11 +90,11 @@ function HeaderTwo() {
                   >
                     Book A Test Drive
                   </Nav.Link>
-                  <Nav.Link className="book-now  mt-2" eventKey={3} href="#me">
+                  <Nav.Link className="book-now " eventKey={3} href="#me">
                     Download Brochure
                   </Nav.Link>
                   <Nav.Link
-                    className="book-now  mt-2"
+                    className="book-now "
                     eventKey={4}
                     onClick={() => navigate('/booking')}
                   >

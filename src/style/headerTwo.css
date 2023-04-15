@@ -16,6 +16,14 @@
 @media (max-width: 767px) {
   .navup {
     display: none;
+  }.book-now{
+    font-size: large;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    border-top: none;
+    margin-left: 0px;
+    margin-top: 3px;
+    padding: 5px;
   }
 }
 .navup {
