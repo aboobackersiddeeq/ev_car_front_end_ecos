@@ -31,7 +31,7 @@ function MapboxMap() {
     latitude: 23.175841,
     zoom: 12,
   });
-  
+
   const user = useSelector((state) => state.user.value);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
@@ -162,7 +162,6 @@ function MapboxMap() {
                 <li className="li-keys-map">
                   <CallMissedOutgoingIcon className="tata-icon" />
                   Go to top right side search bar
-                 
                 </li>
                 <li className="li-keys-map">
                   <SearchIcon className="tata-icon" />
