@@ -67,9 +67,7 @@ function DealerLogin() {
             id="fname"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            name="email"
             placeholder="Email"
-            defaultValue="John"
           />
           <br />
           <label htmlFor="lname">Password</label>
