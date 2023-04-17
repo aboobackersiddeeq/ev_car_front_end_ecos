@@ -8,9 +8,10 @@ import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { useDispatch } from 'react-redux';
 import { userData } from '../../redux/User';
+import { selectionGroup } from '../../redux/Community';
 function HeaderTwo() {
   const navigate = useNavigate();
-  const dispatch = useDispatch(userData);
+  const dispatch = useDispatch();
   const { userLoginStatus, setUserLoginStatus } = useContext(AppContext);
   return (
     <div className="parentNav">
@@ -31,6 +32,7 @@ function HeaderTwo() {
               localStorage.removeItem('usertoken');
               setUserLoginStatus(false);
               dispatch(userData(null));
+              dispatch(selectionGroup(null));
               navigate('/login');
             }}
           >
@@ -48,7 +50,7 @@ function HeaderTwo() {
       {['md '].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3 navbar">
           <Container>
-            <Navbar.Brand  onClick={() => navigate('/')}>Ecos</Navbar.Brand>
+            <Navbar.Brand onClick={() => navigate('/')}>Ecos</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -56,7 +58,10 @@ function HeaderTwo() {
               placement="end"
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title onClick={() => navigate('/')} id={`offcanvasNavbarLabel-expand-${expand}`} >
+                <Offcanvas.Title
+                  onClick={() => navigate('/')}
+                  id={`offcanvasNavbarLabel-expand-${expand}`}
+                >
                   Ecos
                 </Offcanvas.Title>
               </Offcanvas.Header>
@@ -118,24 +123,22 @@ function HeaderTwo() {
                   {/* <Nav.Link className="hidden" href="#action2">
                     Profile
                   </Nav.Link> */}
-                  <Nav.Link className="hidden" >
-                  {userLoginStatus ? (
-          <span
-            
-            onClick={() => {
-              localStorage.removeItem('usertoken');
-              setUserLoginStatus(false);
-              dispatch(userData(null));
-              navigate('/login');
-            }}
-          >
-            Logout
-          </span>
-        ) : (
-          <span   onClick={() => navigate('/login')}>
-            Login
-          </span>
-        )}
+                  <Nav.Link className="hidden">
+                    {userLoginStatus ? (
+                      <span
+                        onClick={() => {
+                          localStorage.removeItem('usertoken');
+                          setUserLoginStatus(false);
+                          dispatch(userData(null));
+                          dispatch(selectionGroup(null));
+                          navigate('/login');
+                        }}
+                      >
+                        Logout
+                      </span>
+                    ) : (
+                      <span onClick={() => navigate('/login')}>Login</span>
+                    )}
                   </Nav.Link>
                 </Nav>
               </Offcanvas.Body>
