@@ -71,4 +71,12 @@
   }
   .or{
     text-align: center;
+  }.msg_signup{
+    display: block;
+     /* padding: -4%; */
+     margin-top: -9px;
+     margin-bottom: -25px;
+     font-size: 10px;
+     color: red;
+ 
   }
