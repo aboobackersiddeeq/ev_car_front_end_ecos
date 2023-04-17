@@ -1,13 +1,4 @@
-/* .OffcanvasBody {
-  color: rgb(189, 184, 29);
-  width: 30px;
-}
-.justify-content-end {
-  color: blue;
-} */
-/* .offcanvas.offcanvas-end {
-  width: 40%;
-} */
+ 
 @media (min-width: 767px) {
   .hidden {
     display: none;
