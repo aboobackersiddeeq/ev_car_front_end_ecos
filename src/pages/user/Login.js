@@ -100,7 +100,6 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            defaultValue="John"
             required
           />
           <br />
@@ -118,9 +117,14 @@ function Login() {
           />
           <br />
           <br />
-          <button className="loginButton">Login</button>
+          <button className="loginButton">LOGIN</button>
         </form>
-        <span onClick={() => navigate('/signup')}>Signup</span>
+        <span
+          style={{ fontSize: 'medium', marginTop: '40px' }}
+          onClick={() => navigate('/signup')}
+        >
+          Signup
+        </span>
       </div>
     </div>
   );
