@@ -36,11 +36,11 @@ function App() {
         }}
       >
         {/* <ErrorBoundary> */}
-          <Toaster position="top-center" reverseOrder={false} />
+        <Toaster position="top-center" reverseOrder={false} />
 
-          <AdminRouters />
-          <UserRouters />
-          <DealerRouters />
+        <AdminRouters />
+        <UserRouters />
+        <DealerRouters />
         {/* </ErrorBoundary> */}
       </AppContext.Provider>
     </>
