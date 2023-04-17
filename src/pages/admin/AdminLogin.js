@@ -69,7 +69,6 @@ function AdminLogin() {
             id="fname"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            name="email"
             placeholder="Email"
           />
           <br />
