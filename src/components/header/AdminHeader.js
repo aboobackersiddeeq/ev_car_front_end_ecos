@@ -52,13 +52,13 @@ function AdminHeader() {
               >
                 Products
               </Nav.Link>
-              <Nav.Link
+              {/* <Nav.Link
                 className="admin-heading"
                 eventKey={5}
                 onClick={() => navigate('/admin/community')}
               >
                 Community
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link
                 className="admin-heading"
                 eventKey={6}
