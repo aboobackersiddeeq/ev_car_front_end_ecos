@@ -69,7 +69,7 @@ const ChatMain = ({ socket, setProfileShow }) => {
   };
   useEffect(() => {
     try {
-      if (group.id) {
+      if (group?.id) {
         axios
           .post(
             '/group/get-messages',
@@ -96,28 +96,39 @@ const ChatMain = ({ socket, setProfileShow }) => {
   }, [boolean]);
   return (
     <div className="chat-parent">
-      <div className="chat_header">
-        <div
-          onClick={() => setProfileShow(true)}
-          onDoubleClick={() => setProfileShow(false)}
-        >
-          <Avatar alt={group.name} src={`${baseUrl}${group.image}`} />
-        </div>
-        <div className="chat_headerInfo">
-          <h3>{group.name}</h3>
-          {group.members &&
-            group.members.map((value) => <span>{value.name} ,</span>)}{' '}
-          ...
-        </div>
+      {group ? (
+        <div className="chat_header">
+          <div
+            onClick={() => setProfileShow(true)}
+            onDoubleClick={() => setProfileShow(false)}
+          >
+            <Avatar alt={group.name} src={`${baseUrl}${group.image}`} />
+          </div>
+          <div className="chat_headerInfo">
+            <h3>{group.name}</h3>
+            {group.members &&
+              group.members.map((value) => <span>{value.name} ,</span>)}{' '}
+            ...
+          </div>
 
-        <div className="chat_headerRight">
-          <IconButton>
-            <MoreVert />
-          </IconButton>
+          <div className="chat_headerRight">
+            <IconButton>
+              <MoreVert />
+            </IconButton>
+          </div>
         </div>
-      </div>
+      ) : (
+        ''
+      )}
 
       <div className="chat_body">
+        {!group && (
+          <div>
+            <h4>' Group Not Found '</h4>
+            <p>You can Join a group Or Create a new group</p>
+            <p>After join select your group</p>
+          </div>
+        )}
         {groupedMessages.map((element, ind) => (
           <div key={`${element.date}-${ind}`}>
             <p className="chat_date">
@@ -174,36 +185,38 @@ const ChatMain = ({ socket, setProfileShow }) => {
         <p className="pt-3"></p>
         <div ref={messageRef} />
       </div>
-      <div className="chat_footer">
-        <div style={{ position: 'relative', top: '-191px' }}>
-          {showPicker && (
-            <Picker
-              pickerStyle={{ width: '100%' }}
-              onEmojiSelect={onEmojiClick}
-            />
-          )}
-        </div>
-        <InsertEmoticon
-          style={{ fontSize: '46px' }}
-          onClick={() => setShowPicker((val) => !val)}
-        />
-
-        <form>
-          <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type a message"
+      {group && (
+        <div className="chat_footer">
+          <div style={{ position: 'relative', top: '-191px' }}>
+            {showPicker && (
+              <Picker
+                pickerStyle={{ width: '100%' }}
+                onEmojiSelect={onEmojiClick}
+              />
+            )}
+          </div>
+          <InsertEmoticon
+            style={{ fontSize: '46px' }}
+            onClick={() => setShowPicker((val) => !val)}
           />
-          {message.trim() ? (
-            <button type="submit" onClick={handleSendMessage}>
-              <Send />
-            </button>
-          ) : (
-            <Mic style={{ fontSize: '36px', paddingTop: '6px' }} />
-          )}
-        </form>
-      </div>
+
+          <form>
+            <input
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Type a message"
+            />
+            {message.trim() ? (
+              <button type="submit" onClick={handleSendMessage}>
+                <Send />
+              </button>
+            ) : (
+              <Mic style={{ fontSize: '36px', paddingTop: '6px' }} />
+            )}
+          </form>
+        </div>
+      )}
     </div>
   );
 };
