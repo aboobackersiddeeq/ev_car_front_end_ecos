@@ -5,7 +5,8 @@ export class ChatAgent extends Component {
   componentDidMount() {
     (function (d, m) {
       var kommunicateSettings = {
-        appId: '1e8770ee3930455a5b34e3b916dcf5664',
+        appId: '4bca18f3458cf56f92e20d2d16070f09',
+        // appId: '1e8770ee3930455a5b34e3b916dcf5664',
         popupWidget: true,
         automaticChatOpenOnNavigation: true,
       };
