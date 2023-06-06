@@ -85,6 +85,7 @@ function Signup() {
               setOtpError(
                 `You've entered doesn't match your code. Please try again`
               );
+              dispatch(hideLoading());
               // swal('OOPS', response.data.message, 'error');
             }
           })
