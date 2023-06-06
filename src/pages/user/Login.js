@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TextField from '@mui/material/TextField';
 import { GoogleButton } from 'react-google-button';
 import { auth, provider } from '../../firebase/Firebase-config';
 import { signInWithPopup } from 'firebase/auth';
@@ -11,8 +12,55 @@ import { useContext } from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { userData } from '../../redux/User';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import {
+  FormControl,
+  IconButton,
+  Input,
+  InputAdornment,
+  InputLabel,
+} from '@mui/material';
+import ForgotPassword from './ForgotPassword';
+import { hideLoading, showLoading } from '../../redux/Loading';
 function Login() {
+  const [forgotPassword,setForgotPassword]= useState(false)
+  const [emailError,setEmailError]= useState('')
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
   const dispatch = useDispatch(userData);
+  const handileForgotPassword =()=>{
+    if (!email.trim()) {
+      setEmailError('Email is required');
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      setEmailError('Email is invalid');
+    }else{
+      setEmailError('')
+      try {
+        dispatch(showLoading());
+        axios
+          .post('/forgot-password', {
+            email: email,   
+          })
+          .then((response) => {
+            dispatch(hideLoading());
+            if (response.data.status === 'success') {
+              setForgotPassword(true)
+            } else {
+              swal('OOPS', response.data.message, 'error');
+            }
+          });
+      } catch (error) {
+        dispatch(hideLoading());
+        toast(error.message);
+      }
+      
+    }
+  }
   const handleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
       console.log(data, 'data');
@@ -49,7 +97,7 @@ function Login() {
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-
+      setEmailError('')
     try {
       axios
         .post('/login', { password, email })
@@ -73,7 +121,8 @@ function Login() {
 
   return (
     <div>
-      <div className="loginParentDiv">
+      {!forgotPassword ?
+      (<div className="loginParentDiv">
         <img
           alt="ecos-logo"
           width="200px"
@@ -81,7 +130,8 @@ function Login() {
           className="logo"
           src="../../../Images/ecosLogo2.png"
         ></img>
-        <h6>Sign In</h6>
+        <p></p>
+        {/* <h6>Sign In</h6> */}
         <div className="googleButton">
           <GoogleButton onClick={handleClick} id="signInDiv" />{' '}
         </div>
@@ -91,41 +141,58 @@ function Login() {
         </h6>
 
         <form onSubmit={handleLogin}>
-          <label htmlFor="fname">Email</label>
-          <br />
-          <input
-            className="input"
-            type="email"
-            id="fname"
+         
+          <TextField
+            id="standard-basic"
+            label="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
-          />
-          <br />
-          <label htmlFor="lname">Password</label>
-          <br />
-          <input
+            variant="standard"
             className="input"
-            type="password"
-            id="lname"
+            required
+            type='email'
+          />
+           {emailError && (
+              <span className="  msg_signup">{emailError}</span>
+            )} 
+          <br />
+          <FormControl className="input" variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">
+              Password
+            </InputLabel>
+            <Input
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
-            minLength={6}
-          />
+              id="standard-adornment-password"
+              type={showPassword ? 'text' : 'password'}
+              endAdornment={
+                <InputAdornment position="end" className="eye-button">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
           <br />
+          <span className='forgot-password' onClick={handileForgotPassword}>Forgot password?</span>
           <br />
           <button className="loginButton">LOGIN</button>
         </form>
-        <span
-          style={{ fontSize: 'medium', marginTop: '40px' }}
+        
+        <p
+          className='dont-have'
           onClick={() => navigate('/signup')}
         >
-          Signup
-        </span>
-      </div>
+            Don't have an account? Sign Up
+        </p>
+      </div>)
+      :<ForgotPassword email={email} setForgotPassword={setForgotPassword} />}
     </div>
   );
 }
