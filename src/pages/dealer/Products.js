@@ -91,7 +91,7 @@ function Products() {
                   filterData.map((element, index) => {
                     return (
                       <tr key={element._id}>
-                        <td>{index}</td>
+                        <td>{index +1}</td>
                         <td>
                           <img
                             src={element.image}
