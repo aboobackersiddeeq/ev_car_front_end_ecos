@@ -169,7 +169,7 @@ function MapboxMap() {
                 </li>
                 <li className="li-keys-map">
                   <TravelExploreIcon className="tata-icon" />
-                  Find your nearest palce
+                  Find your nearest charging location
                 </li>
               </div>
             </div>
