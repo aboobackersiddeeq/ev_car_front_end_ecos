@@ -12,7 +12,6 @@ const Geocoder = (props) => {
   ctrl.on('result', (e) => {
     const coords = e.result.geometry.coordinates;
     props.handilePin(coords);
-    console.log(coords);
   });
   return null;
 };
