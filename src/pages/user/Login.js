@@ -72,9 +72,8 @@ function Login() {
             provider: data.providerId,
           })
           .then((response) => {
-            console.log(response.data);
             if (!response.data.auth) {
-              swal('sorry', response.data.message, 'error');
+              swal('Sorry', response.data.message, 'error');
               setUserLoginStatus(false);
             } else {
               setUserLoginStatus(true);
@@ -97,13 +96,13 @@ function Login() {
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-      setEmailError('')
+    setEmailError('')
     try {
       axios
-        .post('/login', { password, email })
-        .then((response) => {
+      .post('/login', { password, email })
+      .then((response) => {
           if (!response.data.auth) {
-            swal('sorry', response.data.message, 'error');
+            swal('Sorry', response.data.message, 'error');
             setUserLoginStatus(false);
           } else {
             setUserLoginStatus(true);
