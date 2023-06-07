@@ -105,7 +105,7 @@ function Signup() {
     if (Object.keys(errors).length === 0) {
       setFormErrors(errors);
       if (password === '' || phone === '' || email === '' || name === '') {
-        swal('sorry!', 'All fields are required!', 'error');
+        swal('Sorry!', 'All fields are required!', 'error');
       } else {
         
         try {
