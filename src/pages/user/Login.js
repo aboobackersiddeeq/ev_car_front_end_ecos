@@ -73,7 +73,7 @@ function Login() {
           })
           .then((response) => {
             if (!response.data.auth) {
-              swal('Sorry', response.data.message, 'error');
+              swal('Sorry!', response.data.message, 'error');
               setUserLoginStatus(false);
             } else {
               setUserLoginStatus(true);
@@ -102,7 +102,7 @@ function Login() {
       .post('/login', { password, email })
       .then((response) => {
           if (!response.data.auth) {
-            swal('Sorry', response.data.message, 'error');
+            swal('Sorry!', response.data.message, 'error');
             setUserLoginStatus(false);
           } else {
             setUserLoginStatus(true);
