@@ -107,12 +107,12 @@ function Signup() {
       if (password === '' || phone === '' || email === '' || name === '') {
         swal('Sorry!', 'All fields are required!', 'error');
       } else {
-        
         try {
           dispatch(showLoading());
           axios
             .post('/otp', {
-              email: email,   
+              email: email,
+              username: name,
             })
             .then((response) => {
               dispatch(hideLoading());
@@ -254,10 +254,7 @@ function Signup() {
             <button className="loginButton">Next</button>
           </form>
 
-          <p
-             className='dont-have'
-            onClick={() => navigate('/login')}
-          >
+          <p className="dont-have" onClick={() => navigate('/login')}>
             Already have an account? Sign in
           </p>
         </div>
@@ -274,8 +271,9 @@ function Signup() {
           <br />
           <h4 className="or">Enter security code</h4>
           <p className="or input ">
-          Let us know that this email address belongs to you. Enter the code from the email sent to <strong>{email}</strong>
-         </p>
+            Let us know that this email address belongs to you. Enter the code
+            from the email sent to <strong>{email}</strong>
+          </p>
 
           <TextField
             id="standard-basic"
