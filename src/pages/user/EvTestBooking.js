@@ -2,11 +2,12 @@ import React from 'react';
 import HeaderTwo from '../../components/header/HeaderTwo';
 import TestDriveForm from '../../components/user-components/TestDriveForm';
 import '../../style/evTestBooking.css';
+import Footer from '../../components/footer/home-footer/Footer';
 const EvTestBooking = () => {
   return (
     <div className="bg-light parent">
       <HeaderTwo />
-      <div className="container-fluid  ">
+      <div className="container-fluid mb-3  ">
         <div className="row">
           <div className="col-md-7 bg-light">
             <img
@@ -24,6 +25,7 @@ const EvTestBooking = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

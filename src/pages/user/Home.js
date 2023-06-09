@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import HeaderTwo from '../../components/header/HeaderTwo';
 import '../../style/home.css';
 import VideoPopupModal from '../../components/user-components/VideoPopupModal';
+import Footer from '../../components/footer/home-footer/Footer';
 
 const Home = () => {
   const [isOpen, setOpen] = useState(false);
@@ -25,6 +26,7 @@ const Home = () => {
           alt=""
         />
       </div>
+      <Footer/>
     </>
   );
 };

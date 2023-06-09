@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Footer from '../../components/footer/Footer';
+import Footer from '../../components/footer/home-footer/Footer';
 import HeaderTwo from '../../components/header/HeaderTwo';
 import { AppContext } from '../../context/AppContext';
 import axios from '../../axios/axios';

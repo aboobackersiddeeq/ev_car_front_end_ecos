@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Footer from '../../components/footer/Footer';
+import Footer from '../../components/footer/home-footer/Footer';
 import HeaderTwo from '../../components/header/HeaderTwo';
 import BookingForm from '../../components/user-components/BookingForm';
 
