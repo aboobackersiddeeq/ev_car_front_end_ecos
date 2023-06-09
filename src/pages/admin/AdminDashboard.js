@@ -35,22 +35,34 @@ const AdminDashboard = () => {
             className="side-content-div col-lg-3"
             style={{ position: 'fixed' }}
           >
-            <img
-              className="admincar-img"
-              src="../../../Images/admincar.jpg"
-              alt=""
-            />
+            <img className="admincar-img" src="/blurred.jpg" alt="blurred" />
             <div
               style={{
                 position: 'absolute',
-                top: '50%',
-                left: '50%',
+                top: '30%',
+                left: '40%',
                 transform: 'translate(-50%, -50%)',
                 color: '#fff',
-                fontSize: '2.2rem',
+                fontSize: '2.9rem',
+                fontFamily: 'monospace',
+                textAlign: 'center',
               }}
               className="drive-what-is"
             >
+              <br />
+              <br />
+              <br />
+              <img
+                style={{
+                  width: '175px',
+                  height: '135px',
+                  marginBottom: '30px',
+                  marginLeft: '-20px',
+                }}
+                src="/ecos-side.png"
+                alt="logo"
+              />
+              <br />
               Drive What Drove Electric
             </div>
           </div>

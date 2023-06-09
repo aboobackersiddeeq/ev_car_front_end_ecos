@@ -34,29 +34,41 @@ const DealerDashboard = () => {
       <div>
         <div className="">
           <div className=" adminbody contantBody row">
+          <div
+            className="side-content-div col-lg-3"
+            style={{ position: 'fixed' }}
+          >
+            <img className="admincar-img" src="/blurred.jpg" alt="blurred" />
             <div
-              className="side-content-div col-lg-3"
-              style={{ position: 'fixed' }}
+              style={{
+                position: 'absolute',
+                top: '30%',
+                left: '40%',
+                transform: 'translate(-50%, -50%)',
+                color: '#fff',
+                fontSize: '2.9rem',
+                fontFamily: 'monospace',
+                textAlign: 'center',
+              }}
+              className="drive-what-is"
             >
+              <br />
+              <br />
+              <br />
               <img
-                className="admincar-img"
-                src="../../../Images/admincar.jpg"
-                alt=""
-              />
-              <div
                 style={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  color: '#fff',
-                  fontSize: '2.2rem',
+                  width: '175px',
+                  height: '135px',
+                  marginBottom: '30px',
+                  marginLeft: '-20px',
                 }}
-                className="drive-what-is"
-              >
-                Drive What Drove Electric
-              </div>
+                src="/ecos-side.png"
+                alt="logo"
+              />
+              <br />
+              Drive What Drove Electric
             </div>
+          </div>
 
             <div className="col-lg-9  bars-wraper  ">
               <div className="chart mt-4 ">
