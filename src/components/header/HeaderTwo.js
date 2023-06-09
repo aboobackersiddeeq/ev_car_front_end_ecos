@@ -50,7 +50,9 @@ function HeaderTwo() {
       {['md '].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3 navbar">
           <Container>
-            <Navbar.Brand onClick={() => navigate('/')}>Ecos</Navbar.Brand>
+            <Navbar.Brand onClick={() => navigate('/')}>
+            <img onClick={() => navigate('/')} className='ecos-name' src="/ecos-name.png" alt="logo"/>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
@@ -62,6 +64,7 @@ function HeaderTwo() {
                   onClick={() => navigate('/')}
                   id={`offcanvasNavbarLabel-expand-${expand}`}
                 >
+                  
                   Ecos
                 </Offcanvas.Title>
               </Offcanvas.Header>
