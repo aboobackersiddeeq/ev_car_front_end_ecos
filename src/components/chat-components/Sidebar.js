@@ -90,7 +90,8 @@ const Sidebar = () => {
             <span onClick={() => navigate(-1)} className="pt-2">
               <ArrowBack />
             </span>
-            <Avatar src="" />
+            <img   className='ecos-name pb-2 m-2 ' src="/ecos-name.png" alt="logo"/>
+            {/* <Avatar src="" /> */}
           </div>
         )}
 
