@@ -1,6 +1,5 @@
 import {
   IconButton,
-  Avatar,
   Dialog,
   DialogTitle,
   DialogContent,
