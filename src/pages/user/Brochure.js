@@ -4,12 +4,13 @@ const Brochure = () => {
   return (
     <div>
       <div className=" popup_content1 pop_con popupBrochure">
-        <a className="popupclosebtn">
+        <div className="popupclosebtn">
           <img
             className="img-responsive"
             src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/closebtnIcon.png"
+            alt='close'
           />
-        </a>
+        </div>
         <div className="tc_content">
           <div className="col-xs-12 col-sm-12 col-md-12">
             <div className="col-xs-6 col-sm-4 col-md-4 wrapBrochure">
@@ -23,10 +24,12 @@ const Brochure = () => {
                 <img
                   className="img-responsive thumbBrochure"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/nexon-max-pdf-thumb.jpg"
+                  alt='nexon-max'
                 />
                 <img
                   className="img-responsive downloadICON"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/ico-download.png"
+                  alt='nexon-max'
                 />
               </a>
               <p className="titleBrochure">Nexon EV MAX Brochure</p>
@@ -34,13 +37,13 @@ const Brochure = () => {
             <div className="col-xs-6 col-sm-4 col-md-4 wrapBrochure">
               <a
                 href="https://youtu.be/gKpdGLcMcVw"
-                target="_blank"
                 title="Nexon EV MAX Video Brochure"
                 style={{ position: 'relative' }}
               >
                 <img
                   className="img-responsive thumbBrochure"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/brochuremax-thumb.jpg"
+                  alt='nexon-max'
                 />
               </a>
               <p className="titleBrochure">Nexon EV MAX Video Brochure</p>
@@ -55,11 +58,13 @@ const Brochure = () => {
                 <img
                   className="img-responsive thumbBrochure"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/Nexon-EV-pdf-thumb.jpg"
+                  alt='nexon-max'
                 />
 
                 <img
                   className="img-responsive downloadICON"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/ico-download.png"
+                  alt='nexon-max'
                 />
               </a>
               <p className="titleBrochure">
@@ -77,11 +82,13 @@ const Brochure = () => {
                 <img
                   className="img-responsive thumbBrochure"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/Nexon-EV-Max-Dark-pdf-thumb.jpg"
+                  alt='nexon-max'
                 />
 
                 <img
                   className="img-responsive downloadICON"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/ico-download.png"
+                  alt='nexon-max'
                 />
               </a>
               <p className="titleBrochure">Nexon EV Max #Dark Brochure</p>
@@ -97,11 +104,13 @@ const Brochure = () => {
                 <img
                   className="img-responsive thumbBrochure"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/Nexon-EV-Dark-pdf-thumb.jpg"
+                  alt='nexon-max'
                 />
 
                 <img
                   className="img-responsive downloadICON"
                   src="https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/assets/ico-download.png"
+                  alt='nexon-max'
                 />
               </a>
               <p className="titleBrochure">Nexon EV PRIME #Dark Brochure</p>
