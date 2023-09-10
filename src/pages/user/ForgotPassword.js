@@ -17,7 +17,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { userData } from '../../redux/User';
 import { AppContext } from '../../context/AppContext';
-const ForgotPassword = ({ email,setForgotPassword }) => {
+const ForgotPassword = ({ email, setForgotPassword }) => {
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -50,13 +50,13 @@ const ForgotPassword = ({ email,setForgotPassword }) => {
             dispatch(hideLoading());
             if (response.data.status === 'success') {
               setUserLoginStatus(true);
-            localStorage.setItem('usertoken', response.data.token);
-            dispatch(userData(response.data.result));
-            navigate('/');
+              localStorage.setItem('usertoken', response.data.token);
+              dispatch(userData(response.data.result));
+              navigate('/');
               swal('SUCCESS', response.data.message, 'success');
-               setNewPasswordPage(false)
-               setForgotPassword(false)
-             } else {
+              setNewPasswordPage(false);
+              setForgotPassword(false);
+            } else {
               swal('OOPS', response.data.message, 'error');
             }
           })
@@ -67,6 +67,8 @@ const ForgotPassword = ({ email,setForgotPassword }) => {
       } catch (error) {
         dispatch(hideLoading());
         toast(error.message);
+      } finally {
+        dispatch(hideLoading());
       }
     }
   };
@@ -87,7 +89,7 @@ const ForgotPassword = ({ email,setForgotPassword }) => {
             if (response.data.status === 'success') {
               setOtpError('');
               swal('SUCCESS', response.data.message, 'success');
-              setNewPasswordPage(true)
+              setNewPasswordPage(true);
             } else {
               setOtpError(
                 `You've entered doesn't match your code. Please try again`
@@ -102,6 +104,8 @@ const ForgotPassword = ({ email,setForgotPassword }) => {
       } catch (error) {
         dispatch(hideLoading());
         toast(error.message);
+      } finally {
+        dispatch(hideLoading());
       }
     }
   };

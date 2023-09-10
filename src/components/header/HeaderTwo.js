@@ -47,7 +47,7 @@ function HeaderTwo() {
           Call<span id="middleSpan">1800 209 8282</span>For Any Assistance
         </span>
       </div>
-      {['md '].map((expand) => (
+      {['xl'].map((expand) => (
         <Navbar key={expand} bg="light" expand={expand} className="mb-3 navbar">
           <Container>
             <Navbar.Brand onClick={() => navigate('/')}>
@@ -98,7 +98,7 @@ function HeaderTwo() {
                   >
                     Book A Test Drive
                   </Nav.Link>
-                  <Nav.Link className="book-now " eventKey={3} href="#me">
+                  <Nav.Link className="book-now " eventKey={3}  >
                     Download Brochure
                   </Nav.Link>
                   <Nav.Link

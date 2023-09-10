@@ -1,20 +1,22 @@
- 
-@media (min-width: 767px) {
+@media (min-width: 1200px) {
   .hidden {
     display: none;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 1200px) {
   .navup {
     display: none;
-  }.book-now{
-    font-size: large;
-    font-weight: 400;
-    color: rgb(255, 255, 255);
+  }
+  .book-now {
     border-top: none;
-    margin-left: 0px;
-    margin-top: 3px;
-    padding: 5px;
+    color: black !important;
+    background-color: white !important;
+    font-size: 15px !important;
+    margin-left: -0px !important;
+  }
+  .book-now:hover {
+    color: rgb(255, 255, 255) !important;
+    background-color: #0d7e86 !important;
   }
 }
 .navup {
@@ -47,11 +49,8 @@ span {
   font-weight: 400;
   color: rgb(255, 255, 255);
   background-color: #00adba;
-  border-color: rgb(78, 183, 26);
   border-top: none;
-
   margin-left: 3px;
-
   position: relative;
 }
 .navbar-nav .nav-link.active,
@@ -73,6 +72,6 @@ span {
 .nexon-ev:active {
   color: black;
 }
-.ecos-name{
+.ecos-name {
   width: 80px;
 }
