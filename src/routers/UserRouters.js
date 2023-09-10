@@ -22,6 +22,7 @@ import ChatAgent from '../components/ChatAgent';
 import Community from '../pages/user/Community';
 import { hideLoading } from '../redux/Loading';
 import Errorpage from '../components/error/Errorpage';
+import Brochure from '../pages/user/Brochure';
 
 const UserRouters = () => {
   const dispatch = useDispatch(userData);
@@ -56,6 +57,7 @@ const UserRouters = () => {
           element={<EvTestBooking />}
         ></Route>
         <Route exact path="/booking" element={<Booking />}></Route>
+        <Route exact path="/brochure" element={<Brochure />}></Route>
         <Route exact path="/ev-thank" element={<ThankYou />}></Route>
         <Route exact path="/checkout" element={<Checkout />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
@@ -67,7 +69,7 @@ const UserRouters = () => {
           path="/community"
           element={!userLoginStatus ? <Login /> : <Community />}
         ></Route>
-        <Route path="*" errorElement={<Errorpage />}></Route>
+        <Route path="/*" element={<Errorpage />}></Route>
       </Routes>
     </>
   );

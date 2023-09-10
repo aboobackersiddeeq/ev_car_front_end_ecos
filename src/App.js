@@ -7,6 +7,8 @@ import DealerRouters from './routers/DealerRouters';
 import { Toaster } from 'react-hot-toast';
 import { CircularProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import ErrorBoundary from './components/error/ErrorBoundary';
 // import ErrorBoundary from './components/error/ErrorBoundary';
 
 function App() {
@@ -35,13 +37,18 @@ function App() {
           setUserLoginStatus,
         }}
       >
-        {/* <ErrorBoundary> */}
+        <ErrorBoundary>
         <Toaster position="top-center" reverseOrder={false} />
+        <Routes>
+          <Route path={"/*"} element={<UserRouters />} />
+          <Route path={"/dealer/*"} element={<DealerRouters />} />
+          <Route path={"/admin/*"} element={ <AdminRouters />} />
+        </Routes>
 
-        <AdminRouters />
+        {/* <AdminRouters />
         <UserRouters />
-        <DealerRouters />
-        {/* </ErrorBoundary> */}
+        <DealerRouters /> */}
+        </ErrorBoundary>
       </AppContext.Provider>
     </>
   );

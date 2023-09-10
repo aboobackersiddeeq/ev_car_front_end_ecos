@@ -34,28 +34,28 @@ const DealerRouters = () => {
     <Routes>
       <Route
         exact
-        path="/dealer/login"
+        path="/login"
         element={!dealerLoginStatus ? <DealerLogin /> : <DealerDashboard />}
       ></Route>
       {dealerLoginStatus && (
         <>
-          <Route exact path="/dealer/bookings" element={<Booking />}></Route>
-          <Route exact path="/dealer/products" element={<Products />}></Route>
-          <Route exact path="/dealer/profile" element={<Profile />}></Route>
+          <Route exact path="/bookings" element={<Booking />}></Route>
+          <Route exact path="/products" element={<Products />}></Route>
+          <Route exact path="/profile" element={<Profile />}></Route>
 
           <Route
             exact
-            path="/dealer/test-drive"
+            path="/test-drive"
             element={<TestDriveBooking />}
           ></Route>
         </>
       )}
       <Route
         exact
-        path="/dealer"
+        path="/"
         element={dealerLoginStatus ? <DealerDashboard /> : <DealerLogin />}
       ></Route>
-      <Route path="/dealer/*" element={<Errorpage />}></Route>
+      <Route path="/*" element={<Errorpage />}></Route>
     </Routes>
   );
 };

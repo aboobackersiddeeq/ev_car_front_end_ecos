@@ -40,33 +40,33 @@ const AdminRouters = () => {
       <Routes>
         <Route
           exact
-          path="/admin/login"
+          path="/login"
           element={!adminLoginStatus ? <AdminLogin /> : <AdminDashboard />}
         ></Route>
         <Route
           exact
-          path="/admin"
+          path="/"
           element={adminLoginStatus ? <AdminDashboard /> : <AdminLogin />}
         ></Route>
         {adminLoginStatus && (
           <>
-            <Route exact path="/admin/users" element={<AdminUser />}></Route>
-            <Route exact path="/admin/products" element={<Products />}></Route>
-            <Route exact path="/admin/bookings" element={<Booking />}></Route>
+            <Route exact path="/users" element={<AdminUser />}></Route>
+            <Route exact path="/products" element={<Products />}></Route>
+            <Route exact path="/bookings" element={<Booking />}></Route>
             <Route
               exact
-              path="/admin/community"
+              path="/community"
               element={<Community />}
             ></Route>
-            <Route exact path="/admin/dealers" element={<Dealers />}></Route>
+            <Route exact path="/dealers" element={<Dealers />}></Route>
             <Route
               exact
-              path="/admin/test-drive"
+              path="/test-drive"
               element={<TestDriveBooking />}
             ></Route>
-            <Route path="/admin/*" element={<Errorpage />}></Route>
           </>
         )}
+        <Route  path="/*" element={<Errorpage />}></Route>
       </Routes>
     </>
   );

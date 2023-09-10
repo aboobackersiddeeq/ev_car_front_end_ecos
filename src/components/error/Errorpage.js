@@ -1,20 +1,14 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import '../../style/error.css'
 
 const Errorpage = () => {
-  const navigate = useNavigate();
+  
   return (
-    <div className="text-white text-center">
-      <h1 className="text-center">404 error</h1>
-      <button
-        className="btn btn-primary"
-        onClick={() => {
-          navigate('/');
-        }}
-      >
-        Back to Home
-      </button>
-    </div>
+    <div className="not-found-page">
+    <h1 className='error_header'>404 | Page Not Found</h1>
+    <p className='error_footer'>Oops! The page you are looking for does not exist.</p>    
+  </div>
+   
   );
 };
 
