@@ -1,0 +1,86 @@
+@media (min-width: 768px)
+{.pop_con {
+    width: 80%!important;
+}}
+@media (min-width: 992px)
+{.pop_con {
+    width: 80%!important;
+}}
+.popupBrochure{
+    display: inline;
+
+}
+.popup_content1 {
+    
+    position: fixed;
+    width: 40%;
+    margin: 0 auto;
+    background: url("https://nexonev.tatamotors.com/wp-content/themes/tata-nexon/images/nexon-max/download-bro-bg.png") center/cover #023141fc;
+    padding: 30px 25px;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    top: 45%;
+    left: 50%;
+    z-index: 9999;
+}
+.popupclosebtn {
+    float: right;
+    color: #337ab7;
+    font-size: 20px;
+    cursor: pointer;
+}
+/*  */
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    /* display: block; */
+    max-width: 100%;
+    height: auto;
+}
+.tc_content {
+    height: 300px;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 18px;
+}
+.wrapBrochure {
+    position: relative;
+    margin-bottom: 55px;
+}
+.popupBrochure .titleBrochure {
+    text-align: center;
+    padding-top: 30px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+}
+.downloadICON {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%,-50%);
+}
+
+ 
+.downloadICON {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(-50%,-50%);
+}
+.downloadICON {
+    /* position: absolute;
+    bottom: 11px;
+    right: 9px; */
+    max-width: 25px;
+}
+
+/* img {
+    vertical-align: middle;
+} */
+.popupBrochure .thumbBrochure {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+ 
