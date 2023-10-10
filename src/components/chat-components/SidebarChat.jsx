@@ -25,7 +25,6 @@ const SidebarChat = ({ joinBtnClick, setJoinBtnClick, newGroup }) => {
         )
         .then((response) => {
           if (response.data.status === 'success') {
-            console.log(response.data.result);
             setGroupData(response.data.result);
           } else {
             swal('OOPS', response.data.message, 'error');

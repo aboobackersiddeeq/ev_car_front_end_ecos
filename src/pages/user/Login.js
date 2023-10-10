@@ -24,8 +24,8 @@ import {
 import ForgotPassword from './ForgotPassword';
 import { hideLoading, showLoading } from '../../redux/Loading';
 function Login() {
-  const [forgotPassword,setForgotPassword]= useState(false)
-  const [emailError,setEmailError]= useState('')
+  const [forgotPassword, setForgotPassword] = useState(false);
+  const [emailError, setEmailError] = useState('');
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -33,23 +33,23 @@ function Login() {
     event.preventDefault();
   };
   const dispatch = useDispatch(userData);
-  const handileForgotPassword =()=>{
+  const handileForgotPassword = () => {
     if (!email.trim()) {
       setEmailError('Email is required');
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       setEmailError('Email is invalid');
-    }else{
-      setEmailError('')
+    } else {
+      setEmailError('');
       try {
         dispatch(showLoading());
         axios
           .post('/forgot-password', {
-            email: email,   
+            email: email,
           })
           .then((response) => {
             dispatch(hideLoading());
             if (response.data.status === 'success') {
-              setForgotPassword(true)
+              setForgotPassword(true);
             } else {
               swal('OOPS', response.data.message, 'error');
             }
@@ -57,13 +57,13 @@ function Login() {
       } catch (error) {
         dispatch(hideLoading());
         toast(error.message);
+      } finally {
+        dispatch(hideLoading());
       }
-      
     }
-  }
+  };
   const handleClick = () => {
     signInWithPopup(auth, provider).then((data) => {
-      console.log(data, 'data');
       try {
         axios
           .post('/login-with-google', {
@@ -96,11 +96,11 @@ function Login() {
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-    setEmailError('')
+    setEmailError('');
     try {
       axios
-      .post('/login', { password, email })
-      .then((response) => {
+        .post('/login', { password, email })
+        .then((response) => {
           if (!response.data.auth) {
             swal('Sorry!', response.data.message, 'error');
             setUserLoginStatus(false);
@@ -120,78 +120,76 @@ function Login() {
 
   return (
     <div>
-      {!forgotPassword ?
-      (<div className="loginParentDiv">
-        <img
-          alt="ecos-logo"
-          width="200px"
-          height="200px"
-          className="logo"
-          src="../../../Images/ecosLogo2.png"
-        ></img>
-        <p></p>
-        {/* <h6>Sign In</h6> */}
-        <div className="googleButton">
-          <GoogleButton onClick={handleClick} id="signInDiv" />{' '}
-        </div>
+      {!forgotPassword ? (
+        <div className="loginParentDiv">
+          <img
+            alt="ecos-logo"
+            width="200px"
+            height="200px"
+            className="logo"
+            src="../../../Images/ecosLogo2.png"
+          ></img>
+          <p></p>
+          {/* <h6>Sign In</h6> */}
+          <div className="googleButton">
+            <GoogleButton onClick={handleClick} id="signInDiv" />{' '}
+          </div>
 
-        <h6 className="or">
-          <br /> Or <br />{' '}
-        </h6>
+          <h6 className="or">
+            <br /> Or <br />{' '}
+          </h6>
 
-        <form onSubmit={handleLogin}>
-         
-          <TextField
-            id="standard-basic"
-            label="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            variant="standard"
-            className="input"
-            required
-            type='email'
-          />
-           {emailError && (
-              <span className="  msg_signup">{emailError}</span>
-            )} 
-          <br />
-          <FormControl className="input" variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">
-              Password
-            </InputLabel>
-            <Input
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-              id="standard-adornment-password"
-              type={showPassword ? 'text' : 'password'}
-              endAdornment={
-                <InputAdornment position="end" className="eye-button">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
+          <form onSubmit={handleLogin}>
+            <TextField
+              id="standard-basic"
+              label="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              variant="standard"
+              className="input"
+              required
+              type="email"
             />
-          </FormControl>
-          <br />
-          <span className='forgot-password' onClick={handileForgotPassword}>Forgot password?</span>
-          <br />
-          <button className="loginButton">LOGIN</button>
-        </form>
-        
-        <p
-          className='dont-have'
-          onClick={() => navigate('/signup')}
-        >
+            {emailError && <span className="  msg_signup">{emailError}</span>}
+            <br />
+            <FormControl className="input" variant="standard">
+              <InputLabel htmlFor="standard-adornment-password">
+                Password
+              </InputLabel>
+              <Input
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                id="standard-adornment-password"
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                  <InputAdornment position="end" className="eye-button">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <br />
+            <span className="forgot-password" onClick={handileForgotPassword}>
+              Forgot password?
+            </span>
+            <br />
+            <button className="loginButton">LOGIN</button>
+          </form>
+
+          <p className="dont-have" onClick={() => navigate('/signup')}>
             Don't have an account? Sign Up
-        </p>
-      </div>)
-      :<ForgotPassword email={email} setForgotPassword={setForgotPassword} />}
+          </p>
+        </div>
+      ) : (
+        <ForgotPassword email={email} setForgotPassword={setForgotPassword} />
+      )}
     </div>
   );
 }

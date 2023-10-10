@@ -37,8 +37,6 @@ const Sidebar = () => {
       toast.error('Somthing went worong ');
     } else {
       try {
-        console.log(newGroup);
-
         axios
           .post(
             'group/new-group',

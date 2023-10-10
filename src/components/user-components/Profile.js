@@ -36,7 +36,6 @@ const Profile = ({ setProfileShow }) => {
           )
           .then((response) => {
             if (response.data.status === 'success') {
-              console.log(response.data);
               dispatch(
                 selectionGroup({
                   id: response.data.result._id,

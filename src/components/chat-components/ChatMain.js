@@ -142,7 +142,7 @@ const ChatMain = ({ socket, setProfileShow }) => {
                 return (
                   <p key={value._id} className="chat_message chat_reciever">
                     <span className="chat_name">
-                      {value.name.name.slice(0, 5)}
+                      {value?.name?.name?.slice(0, 5)}
                     </span>
                     <span className="chat_text"> {value.text}</span>
                     <span className="chat_timestamp">
@@ -161,7 +161,7 @@ const ChatMain = ({ socket, setProfileShow }) => {
                   <p key={value._id} className="chat_message  ">
                     <span className="chat_name">
                       {' '}
-                      {value.name.name.slice(0, 5)}
+                      {value?.name?.name?.slice(0, 5)}
                     </span>
                     <span className="chat_text"> {value.text}</span>
                     <span className="chat_timestamp">
