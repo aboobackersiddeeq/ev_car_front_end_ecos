@@ -16,7 +16,10 @@ export class ErrorBoundary extends Component {
 
   render() {
     if (this.state.hasError) {
-      return <h1>something went wrong</h1>;
+      return  <div className="not-found-page">
+      <h1 className='error_header'> 500 | Internal Server Error</h1>
+      <p className='error_footer'>Oops! Something went wrong.</p>    
+    </div>
     } else {
       return this.props.children;
     }
