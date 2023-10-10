@@ -111,7 +111,7 @@ const SidebarChat = ({ joinBtnClick, setJoinBtnClick, newGroup }) => {
                   handleOpenGroup(
                     value._id,
                     value.groupName.charAt(0).toUpperCase() +
-                      value.groupName.slice(1),
+                      value?.groupName?.slice(1),
                     value
                   )
                 }
@@ -119,14 +119,14 @@ const SidebarChat = ({ joinBtnClick, setJoinBtnClick, newGroup }) => {
                 <Avatar
                   alt={
                     (value.groupName.charAt(0).toUpperCase() +
-                      value.groupName.slice(1))
+                      value?.groupName?.slice(1))
                   }
                   src ={`${baseUrl}${value.image}`}
                 />
                 <div className="sidebarChat_info">
                   <h2>
                     {value.groupName.charAt(0).toUpperCase() +
-                      value.groupName.slice(1)}
+                      value?.groupName?.slice(1)}
                   </h2>
 
                   <p>This is last message</p>
@@ -144,21 +144,21 @@ const SidebarChat = ({ joinBtnClick, setJoinBtnClick, newGroup }) => {
                   handleJoinGroupadding(
                     value._id,
                     value.groupName.charAt(0).toUpperCase() +
-                      value.groupName.slice(1)
+                      value?.groupName?.slice(1)
                   )
                 }
               >
                 <Avatar
                   alt={
                     (value.groupName.charAt(0).toUpperCase() +
-                      value.groupName.slice(1))
+                      value?.groupName?.slice(1))
                   }
                   src ={`${baseUrl}${value.image}`}
                 />
                 <div className="sidebarChat_info">
                   <h2>
                     {value.groupName.charAt(0).toUpperCase() +
-                      value.groupName.slice(1)}
+                      value?.groupName?.slice(1)}
                   </h2>
 
                   <p>This is last message</p>
